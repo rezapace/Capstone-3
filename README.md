@@ -50,3 +50,7 @@ Proyek ini akan berlangsung selama 2 sprint (2 minggu) dengan penilaian secara b
 <!-- add picture readme md -->
 ![Figma](https://raw.githubusercontent.com/Capstone-Mikti/Capstone-3/main/Materi/flow%201.png)
 ![Figma](https://raw.githubusercontent.com/Capstone-Mikti/Capstone-3/main/Materi/flow%202.png)
+
+
+<!-- add link url -->
+[x] [Figma](https://www.figma.com/file/BdDlFZ7u3E6upQlSwUcOax/Code-Challenge-Project-Based?type=whiteboard&node-id=0-1&t=Le6Pdip9Patyl5DV-0)

@@ -1,6 +1,7 @@
 # Capstone-3: Aplikasi Backend Pemesanan Tiket
 
-By : Ravitas update test
+
+By : Ravitas update
 
 Dalam proyek capstone ini, tujuan utamanya adalah untuk memberikan pengalaman baru kepada peserta, serta mengimplementasikan Metode Scrum dalam pengembangan produk digital. Proyek ini akan dilakukan dalam bentuk kelompok dan fokus pada pengembangan bagian Back End.
 

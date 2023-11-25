@@ -41,19 +41,6 @@ func ValidatorErrors(err error) map[string]string {
 	// untuk membuat map
 	fields := map[string]string{}
 
-	// untuk mengecek error yang terjadi atau membuat pesan erro pada field yang diinputkan ketika tidak valid
-	// untuk membuat required pada field
-	// if castedObject, ok := err.(validator.ValidationErrors); ok {
-	// 	for _, err := range castedObject {
-	// 		switch err.Tag() {
-	// 		case "required":
-	// 			fields[err.Field()] = fmt.Sprintf("%s is required", err.Field())
-	// 		default:
-	// 			fields[err.Field()] = fmt.Sprintf("%s error with tag %s should be %s", err.Field(), err.Tag(), err.Param())
-	// 		}
-	// 	}
-	// }
-
 	if castedObject, ok := err.(validator.ValidationErrors); ok {
 		for _, err := range castedObject {
 			switch err.Tag() {

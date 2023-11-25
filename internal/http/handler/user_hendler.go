@@ -52,20 +52,6 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 
 	//kalau retrun nya kaya gini akan tampil pesan "User created successfully"
 	return ctx.JSON(http.StatusCreated, "User created successfully")
-
-	//tapi kalau bikin retrun nya kaya gini bakal tampil data user yang baru dibuat
-	//return ctx.JSON(http.StatusCreated, user)
-
-	// return ctx.JSON(http.StatusOK, map[string]interface{}{
-	// 	"message": "User updated successfully",
-	// 	"data": map[string]interface{}{
-	// 		"id":       user.ID,
-	// 		"name":     user.Name,
-	// 		"email":    user.Email,
-	// 		"password": user.Password,
-	// 		"created":  user.CreatedAt,
-	// 	},
-	// })
 }
 
 // func untuk melakukan updateUser by id

@@ -58,3 +58,4 @@ Proyek ini akan berlangsung selama 2 sprint (2 minggu) dengan penilaian secara b
 - [x] [Figma](https://www.figma.com/file/BdDlFZ7u3E6upQlSwUcOax/Code-Challenge-Project-Based?type=whiteboard&node-id=0-1&t=Le6Pdip9Patyl5DV-0)
 - [x] [PPT Document](https://docs.google.com/presentation/d/1vvOwCKjysLxORL7GOtOJbgiW3XAVuYsRK0ccUa8VOzA/edit#slide=id.g21e0640a876_0_25)
 - [x] [Desain Aplikasi](https://www.figma.com/file/1MtWn0HIt9SidftaQIlrXG/Project-Coding-Challenge-References?type=design&node-id=0-4&mode=design&t=dC1tZcf7zlIMfZBL-0)
+- [x] [Notion](https://www.notion.so/kumal/Projek-Pemesanan-Tiket-89ef1e2e0d1b4067ba48316fb64fe673?pvs=4)

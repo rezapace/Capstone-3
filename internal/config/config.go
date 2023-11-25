@@ -7,19 +7,19 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// Config is a config
+// Config adalah konfigurasi untuk aplikasi
 type Config struct {
 	Port     string         `env:"PORT" envDefault:"8080"`
 	Postgres PostgresConfig `envPrefix:"POSTGRES_"`
 	JWT      JwtConfig      `envPrefix:"JWT_"`
 }
 
-// JwtConfig is a config for jwt
+// JwtConfig adalah konfigurasi untuk JWT
 type JwtConfig struct {
 	SecretKey string `env:"SECRET_KEY"`
 }
 
-// PostgresConfig is a config for postgres
+// PostgresConfig adalah konfigurasi untuk koneksi ke database postgres
 type PostgresConfig struct {
 	Host     string `env:"HOST" envDefault:"localhost"`
 	Port     string `env:"PORT" envDefault:"5432"`
@@ -28,7 +28,7 @@ type PostgresConfig struct {
 	Database string `env:"DATABASE" envDefault:"postgres"`
 }
 
-// NewConfig creates a new config
+// untuk membuat new config
 func NewConfig(envPath string) (*Config, error) {
 	cfg, err := parseConfig(envPath)
 	if err != nil {
@@ -57,3 +57,6 @@ func parseConfig(envPath string) (*Config, error) {
 	}
 	return cfg, nil
 }
+
+//NOTE :
+// direktory ini berfungsi untuk konfigurasi database, port, dan lain-lain

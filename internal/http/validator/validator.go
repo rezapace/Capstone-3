@@ -8,17 +8,23 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
+// untuk membuat validator
 type FormValidator struct {
 	validator *validator.Validate
 }
 
+// untuk memvalidasi struct yang diinputkan
 func (fv *FormValidator) Validate(i interface{}) error {
+	// untuk melakukan validasi
 	return fv.validator.Struct(i)
 }
 
+// func ini digunakan ketika ingin mereturn data json yang diinputkan
 func NewFormValidator() *FormValidator {
+	// diguanakn ketik ingin melakuka validate ke struct akan di enable
 	validate := validator.New(validator.WithRequiredStructEnabled())
 
+	//untk memvalidate type data json yang diinputkan. misal ketika ingin menginputkan nama harus huruf kecil semua. gabisa satu kecil satu gede.
 	validate.RegisterTagNameFunc(func(fld reflect.StructField) string {
 		name := strings.SplitN(fld.Tag.Get("json"), ",", 2)[0]
 		if name == "-" {
@@ -30,16 +36,34 @@ func NewFormValidator() *FormValidator {
 	return &FormValidator{validate}
 }
 
+// untuk menampilkan error yang terjadi / maping error validator pada field atau json yang required.
 func ValidatorErrors(err error) map[string]string {
+	// untuk membuat map
 	fields := map[string]string{}
+
+	// untuk mengecek error yang terjadi atau membuat pesan erro pada field yang diinputkan ketika tidak valid
+	// untuk membuat required pada field
+	// if castedObject, ok := err.(validator.ValidationErrors); ok {
+	// 	for _, err := range castedObject {
+	// 		switch err.Tag() {
+	// 		case "required":
+	// 			fields[err.Field()] = fmt.Sprintf("%s is required", err.Field())
+	// 		default:
+	// 			fields[err.Field()] = fmt.Sprintf("%s error with tag %s should be %s", err.Field(), err.Tag(), err.Param())
+	// 		}
+	// 	}
+	// }
 
 	if castedObject, ok := err.(validator.ValidationErrors); ok {
 		for _, err := range castedObject {
 			switch err.Tag() {
 			case "required":
-				fields[err.Field()] = fmt.Sprintf("field %s harus di isi", err.Field())
+				fields[err.Field()] = fmt.Sprintf("%s harus diisi", err.Field())
+			case "password":
+				// Validasi khusus untuk field "password"
+				fields[err.Field()] = "Password harus mengandung setidaknya satu huruf besar dan satu digit"
 			default:
-				fields[err.Field()] = fmt.Sprintf("%s error with tag %s should be %s", err.Field(), err.Tag(), err.Param())
+				fields[err.Field()] = fmt.Sprintf("Kesalahan pada %s dengan tag %s seharusnya %s", err.Field(), err.Tag(), err.Param())
 			}
 		}
 	}

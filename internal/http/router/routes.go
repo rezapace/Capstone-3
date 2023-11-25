@@ -1,16 +1,20 @@
 package router
 
 import (
+	"Ticketing/internal/http/handler"
+
 	"github.com/labstack/echo/v4"
-	"github.com/zhikariz/weather-app/internal/http/handler"
 )
 
+// membuat struct route
 type Route struct {
 	Method  string
 	Path    string
 	Handler echo.HandlerFunc
 }
 
+// membuat fungsi untuk mengembalikan route
+// pada func ini perlu login krna private
 func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 	return []*Route{
 		{
@@ -21,32 +25,47 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 	}
 }
 
-func PrivateRoutes(userHandler *handler.UserHandler) []*Route {
+// membuat fungsi untuk mengembalikan route
+// pada func ini tdk perlu login krna public
+func PrivateRoutes(UserHandler *handler.UserHandler) []*Route {
 	return []*Route{
-		{
-			Method:  echo.GET,
-			Path:    "/users",
-			Handler: userHandler.GetAllUsers,
-		},
-		{
-			Method:  echo.GET,
-			Path:    "/users/:id",
-			Handler: userHandler.GetUserByID,
-		},
 		{
 			Method:  echo.POST,
 			Path:    "/users",
-			Handler: userHandler.CreateUser,
+			Handler: UserHandler.CreateUser,
 		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/users",
+			Handler: UserHandler.GetAllUser,
+		},
+
 		{
 			Method:  echo.PUT,
 			Path:    "/users/:id",
-			Handler: userHandler.UpdateUser,
+			Handler: UserHandler.UpdateUser,
 		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/users/:id",
+			Handler: UserHandler.GetUserByID,
+		},
+
 		{
 			Method:  echo.DELETE,
 			Path:    "/users/:id",
-			Handler: userHandler.DeleteUser,
+			Handler: UserHandler.DeleteUser,
 		},
 	}
 }
+
+//NOTE :
+//MENGAPA TERDAPAT 2 FUNC DIATAS? YAITU PUBLIC DAN PRIVATE
+//KAREN DI SERVER.GO KITA BUAT GROUP API, DAN KITA MEMBAGI ROUTE YANG PERLU LOGIN DAN TIDAK PERLU LOGIN
+// YAITU PUBLIC DAN PRIVATE
+
+//note ;
+//untuk menjalankan nya setelah port 8080 ditambahin /api/v1
+// karna di server.go kita membuat group API

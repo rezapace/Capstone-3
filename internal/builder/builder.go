@@ -22,9 +22,16 @@ func BuildPublicRoutes(cfg *config.Config, db *gorm.DB) []*router.Route {
 }
 
 func BuildPrivateRoutes(cfg *config.Config, db *gorm.DB) []*router.Route {
-	//memanggil fungsi PublicRoutes() dari router
-	userRepository := repository.NewUserRepository(db)
-	userService := service.NewUserService(userRepository)
-	userHandler := handler.NewUserHandler(userService)
-	return router.PrivateRoutes(userHandler)
+    // Create a user handler
+    userRepository := repository.NewUserRepository(db)
+    userService := service.NewUserService(userRepository)
+    userHandler := handler.NewUserHandler(userService)
+
+    // Create a ticket handler
+    ticketRepository := repository.NewTicketRepository(db)
+    ticketService := service.NewTicketService(ticketRepository)
+    ticketHandler := handler.NewTicketHandler(ticketService)
+
+    // Menggunakan PrivateRoutes dengan kedua handler
+    return router.PrivateRoutes(userHandler, ticketHandler)
 }

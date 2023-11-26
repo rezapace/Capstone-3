@@ -32,7 +32,7 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini tdk perlu login krna public
-func PrivateRoutes(UserHandler *handler.UserHandler) []*Route {
+func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
@@ -63,8 +63,44 @@ func PrivateRoutes(UserHandler *handler.UserHandler) []*Route {
 			Path:    "/users/:id",
 			Handler: UserHandler.DeleteUser,
 		},
+		{
+			Method:  echo.POST,
+			Path:    "/ticket",
+			Handler: TicketHandler.CreateTicket,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/ticket",
+			Handler: TicketHandler.GetAllTickets,
+		},
+
+		{
+			Method:  echo.PUT,
+			Path:    "/ticket/:id",
+			Handler: TicketHandler.UpdateTicket,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/:id",
+			Handler: TicketHandler.GetTicket,
+		},
+
+		{
+			Method:  echo.DELETE,
+			Path:    "/ticket/:id",
+			Handler: TicketHandler.DeleteTicket,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/search/:search",
+			Handler: TicketHandler.SearchTicket,
+		},
 	}
 }
+
 
 //NOTE :
 //MENGAPA TERDAPAT 2 FUNC DIATAS? YAITU PUBLIC DAN PRIVATE

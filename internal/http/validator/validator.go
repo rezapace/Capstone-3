@@ -57,3 +57,4 @@ func ValidatorErrors(err error) map[string]string {
 
 	return fields
 }
+

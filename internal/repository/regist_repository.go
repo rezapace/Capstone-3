@@ -18,8 +18,8 @@ func NewRegistrationRepository(db *gorm.DB) *RegistrationRepository {
 	}
 }
 
-func (r *RegistrationRepository) CreateUser(ctx context.Context, name, email, password string) (*entity.User, error) {
-	newUser := entity.NewUser(name, email, password)
+func (r *RegistrationRepository) CreateUser(ctx context.Context, name, email, number, password string) (*entity.User, error) {
+	newUser := entity.NewUser(name, email, number, password)
 
 	// Pastikan email unik
 	existingUser, err := r.GetByEmail(ctx, email)

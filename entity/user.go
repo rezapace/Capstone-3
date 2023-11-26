@@ -8,6 +8,7 @@ type User struct {
 	ID        int64     `json:"id"`
 	Name      string    `json:"name"`
 	Email     string    `json:"email"`
+	Number	  string    `json:"number"`
 	Password  string    `json:"-"`
     CreatedAt time.Time `json:"created_at"`
     UpdatedAt time.Time `json:"updated_at"`
@@ -15,21 +16,23 @@ type User struct {
 }
 
 // req untuk create user
-func NewUser(name, email, password string) *User {
+func NewUser(name, email, number, password string) *User {
 	return &User{
 		Name:      name,
 		Email:     email,
+		Number:    number,
 		Password:  password,
 		CreatedAt: time.Now(),
 	}
 }
 
 // req untuk update user
-func UpdateUser(id int64, name, email, password string) *User {
+func UpdateUser(id int64, name, email, number, password string) *User {
 	return &User{
 		ID:        id,
 		Name:      name,
 		Email:     email,
+		Number:    number,
 		Password:  password,
 		UpdatedAt: time.Now(),
 	}

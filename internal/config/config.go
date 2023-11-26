@@ -1,5 +1,6 @@
 package config
-
+//NOTE :
+// direktory ini berfungsi untuk konfigurasi database, port, dan lain-lain
 import (
 	"errors"
 
@@ -37,13 +38,7 @@ func NewConfig(envPath string) (*Config, error) {
 	return cfg, nil
 }
 
-// parseConfig parses the configuration file located at envPath and returns a
-// Config struct and an error if any. It uses the godotenv package to load the
-// environment variables from the file and the env package to parse them into
-// the Config struct.
-//
-// envPath: The path to the environment file.
-// Returns: A pointer to the Config struct and an error.
+// untuk parse config
 func parseConfig(envPath string) (*Config, error) {
 	err := godotenv.Load(envPath)
 	if err != nil {
@@ -57,6 +52,3 @@ func parseConfig(envPath string) (*Config, error) {
 	}
 	return cfg, nil
 }
-
-//NOTE :
-// direktory ini berfungsi untuk konfigurasi database, port, dan lain-lain

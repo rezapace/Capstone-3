@@ -105,11 +105,3 @@ func checkError(err error) {
 	}
 }
 
-// 	// //memanggil entity user
-// 	// users := make([]entity.User, 0)
-// 	// if err := db.Find(&users).Error; err != nil {
-// 	// 	checkError(err)
-// 	// }
-// 	// for _, v := range users { // ini untuk menampilkan data user secara looping
-// 	// 	fmt.Println(v)
-// 	// }

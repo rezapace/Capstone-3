@@ -5,7 +5,9 @@ CREATE TABLE
     name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    number VARCHAR(255) NOT NULL
+    number VARCHAR(255) NOT NULL,
+    roles VARCHAR(255) NOT NULL,
+    saldo INTEGER NOT NULL
 );
 
 ALTER TABLE "public"."users" ADD CONSTRAINT "users_pkey" PRIMARY KEY ("id");

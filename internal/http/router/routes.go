@@ -25,7 +25,7 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 		{
 			Method:  echo.POST,
 			Path:    "/register",
-			Handler: UserHandler.register,
+			Handler: authHandler.Registration,
 		},
 	}
 }

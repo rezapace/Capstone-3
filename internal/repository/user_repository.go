@@ -1,5 +1,6 @@
 package repository
-
+// NOTE :
+// FOLDER INI UNTUK MENANGANI KE BAGIAN DATABASE DAN QUERY
 import (
 	"context"
 	"errors"
@@ -80,6 +81,3 @@ func (r *UserRepository) GetByEmail(ctx context.Context, email string) (*entity.
 	}
 	return user, nil
 }
-
-// NOTE :
-// FOLDER INI UNTUK MENANGANI KE BAGIAN DATABASE DAN QUERY

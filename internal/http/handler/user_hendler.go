@@ -1,5 +1,6 @@
 package handler
-
+//NOTE :
+// FOLDER INI UNTUK MEMANGGIL SERVICE DAN REPOSITORY
 import (
 	"Ticketing/entity"
 	"Ticketing/internal/http/validator"
@@ -37,6 +38,7 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 		Name     string `json:"name" validate:"required"`
 		Email    string `json:"email" validate:"required,email"`
 		Number   string `json:"number" validate:"required"`
+		Roles	 string `json:"roles" validate:"required"`
 		Password string `json:"password" validate:"required,min=8"`
 	}
 
@@ -45,7 +47,7 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
 
-	user := entity.NewUser(input.Name, input.Email, input.Number, input.Password)
+	user := entity.NewUser(input.Name, input.Email, input.Number, input.Roles, input.Password)
 	err := h.userService.CreateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
@@ -60,8 +62,9 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 	var input struct {
 		ID       int64  `param:"id" validate:"required"`
 		Name     string `json:"name" validate:"required"`
-		Number   string `json:"number" validate:"required"`
 		Email    string `json:"email" validate:"required"`
+		Number   string `json:"number" validate:"required"`
+		Roles	 string `json:"roles" validate:"required"`
 		Password string `json:"password" validate:"required"`
 	}
 
@@ -69,7 +72,7 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
 
-	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Password)
+	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
 	err := h.userService.UpdateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
@@ -81,19 +84,6 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 		// "updated": user.UpdatedAt, //buat munculin si updateAt nya
 	})
 }
-
-// // func untuk melakukan getUser by id
-// func (h *UserHandler) GetUserByID(ctx echo.Context) error {
-// 	id := ctx.Param("id")
-// 	user, err := h.userService.GetUserByID(ctx.Request().Context(), id)
-// 	if err != nil {
-// 		return ctx.JSON(http.StatusUnprocessableEntity, err)
-// 	}
-
-// 	return ctx.JSON(http.StatusOK, map[string]interface{}{
-// 		"data": user,
-// 	})
-// }
 
 func (h *UserHandler) GetUserByID(ctx echo.Context) error {
 	idStr := ctx.Param("id")
@@ -125,29 +115,6 @@ func (h *UserHandler) GetUserByID(ctx echo.Context) error {
 	})
 }
 
-// func untuk melakukan deleteUser by id
-// func (h *UserHandler) DeleteUser(ctx echo.Context) error {
-// 	idStr := ctx.Param("id")
-// 	id, err := strconv.ParseInt(idStr, 10, 64)
-// 	if err != nil {
-// 		// Jika tidak dapat mengonversi ID menjadi int64, kembalikan respons error
-// 		return ctx.JSON(http.StatusBadRequest, map[string]interface{}{
-// 			"error": "Invalid ID",
-// 		})
-// 	}
-
-// 	err = h.userService.Delete(ctx.Request().Context(), id)
-// 	if err != nil {
-// 		return ctx.JSON(http.StatusUnprocessableEntity, map[string]interface{}{
-// 			"error": err.Error(),
-// 		})
-// 	}
-
-// 	return ctx.JSON(http.StatusOK, map[string]interface{}{
-// 		"message": "User deleted successfully",
-// 	})
-// }
-
 func (h *UserHandler) DeleteUser(ctx echo.Context) error {
 	var input struct {
 		ID int64 `param:"id" validate:"required"`
@@ -166,6 +133,3 @@ func (h *UserHandler) DeleteUser(ctx echo.Context) error {
 		"message": "User deleted successfully",
 	})
 }
-
-//NOTE :
-// FOLDER INI UNTUK MEMANGGIL SERVICE DAN REPOSITORY

@@ -6,6 +6,7 @@ import (
 	"errors"
 )
 
+//login 
 type LoginUseCase interface {
 	Login(ctx context.Context, email string, password string) (*entity.User, error)
 }
@@ -44,4 +45,31 @@ func (s *loginService) Login(ctx context.Context, email string, password string)
 	//ketika email dan passwerd sama maka akan mengembalikan nil
 	return user, nil
 
+}
+
+
+
+// register
+type RegistrationUseCase interface {
+	Registration(ctx context.Context, user *entity.User) error
+}
+
+type RegistrationRepository interface {
+	Registration(ctx context.Context, user *entity.User) error
+	// GetByEmail(ctx context.Context, email string) (*entity.User, error)
+}
+
+type registrationService struct {
+	repository RegistrationRepository
+}
+
+func NewRegistrationService(repository RegistrationRepository) *registrationService {
+	return &registrationService{
+		repository: repository,
+	}
+}
+
+func (s *registrationService) Registration(ctx context.Context, user *entity.User) error {
+
+	return s.repository.Registration(ctx, user)
 }

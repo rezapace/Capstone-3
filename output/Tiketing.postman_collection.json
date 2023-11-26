@@ -7,36 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"rezaaa\",\r\n    \"email\" : \"reza123@gmail.com\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "LOGIN",
 			"request": {
 				"method": "POST",
@@ -74,7 +44,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemEiLCJlbWFpbCI6InJlemFAZ21haWwuY29tIiwiZXhwIjoxNzAwOTQ5Mjg4fQ.OG-ChUlyjITZ2-v4byETJFvFGZsTMvCyaFh6ycGXNBQ",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemEiLCJlbWFpbCI6InJlemFAZ21haWwuY29tIiwiZXhwIjoxNzAwOTQ2OTg4fQ.627B_seVkhJrIv85Af89IP8HMV6KkGz5wPU83Wz6Hng",
 							"type": "string"
 						}
 					]
@@ -83,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"rr1\",\r\n    \"email\" : \"reza1@gmail.com\",\r\n    \"number\": \"896232123123123\",\r\n    \"password\" : \"123123123123\"\r\n}",
+					"raw": "{\r\n    \"name\" : \"rr1\",\r\n    \"email\" : \"reza1@gmail.com\",\r\n    \"password\" : \"123123123123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -114,7 +84,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemEiLCJlbWFpbCI6InJlemFAZ21haWwuY29tIiwiZXhwIjoxNzAwOTQ5Mjg4fQ.OG-ChUlyjITZ2-v4byETJFvFGZsTMvCyaFh6ycGXNBQ",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemEiLCJlbWFpbCI6InJlemFAZ21haWwuY29tIiwiZXhwIjoxNzAwOTQ2MjQzfQ.WDe46np9E7jrEKDOs0X6UM0zmopIGUViYOWCJ5Ekr9A",
 							"type": "string"
 						}
 					]
@@ -145,7 +115,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemEiLCJlbWFpbCI6InJlemFAZ21haWwuY29tIiwiZXhwIjoxNzAwOTQ4MTE0fQ.BdWNuKbuIZmTP3nV3QNtIXZpw-sxdyR9IOYTEqcbZOA",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemEiLCJlbWFpbCI6InJlemFAZ21haWwuY29tIiwiZXhwIjoxNzAwOTQ3MzA4fQ.Ff2Vi9EsovthYUa6f98yEfVAaHXrufB0q6b5whxLM2c",
 							"type": "string"
 						}
 					]
@@ -154,7 +124,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"rezaupdate\",\r\n    \"email\" : \"reza@gmail.com\",\r\n    \"number\" : \"1234\",\r\n    \"password\" : \"123123123123\"\r\n}",
+					"raw": "{\r\n    \"name\" : \"rezaupdate\",\r\n    \"email\" : \"reza@gmail.com\",\r\n    \"password\" : \"123123123123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -186,7 +156,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemEiLCJlbWFpbCI6InJlemFAZ21haWwuY29tIiwiZXhwIjoxNzAwOTQ4NTUzfQ.Y7NS257fGTh6Zmopf8fkbWHVuSUuoO9izcDA_0n83NY",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemEiLCJlbWFpbCI6InJlemFAZ21haWwuY29tIiwiZXhwIjoxNzAwOTQ3MzA4fQ.Ff2Vi9EsovthYUa6f98yEfVAaHXrufB0q6b5whxLM2c",
 							"type": "string"
 						}
 					]
@@ -194,7 +164,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/users/1",
+					"raw": "http://localhost:8080/api/v1/users/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -204,7 +174,7 @@
 						"api",
 						"v1",
 						"users",
-						"1"
+						"2"
 					]
 				}
 			},

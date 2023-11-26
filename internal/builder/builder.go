@@ -11,10 +11,13 @@ import (
 )
 
 func BuildPublicRoutes(cfg *config.Config, db *gorm.DB) []*router.Route {
+	registrationRepository := repository.NewRegistrationRepository(db)
+	registrationService := service.NewRegistrationService(registrationRepository)
 	userRepository := repository.NewUserRepository(db) // kenapa make ini? karena nge find email nya dari user_repository
 	loginService := service.NewLoginService(userRepository)
 	tokenService := service.NewTokenService(cfg)
-	authHandler := handler.NewAuthHandler(loginService, tokenService)
+	authHandler := handler.NewAuthHandler(registrationService, loginService, tokenService)
+
 	return router.PublicRoutes(authHandler)
 }
 

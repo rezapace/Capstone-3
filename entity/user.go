@@ -9,42 +9,46 @@ type User struct {
 	Name      string    `json:"name"`
 	Email     string    `json:"email"`
 	Number	  string    `json:"number"`
+	Roles     string    `json:"roles"`
+	Saldo	  int64     `json:"saldo"`
 	Password  string    `json:"-"`
     CreatedAt time.Time `json:"created_at"`
     UpdatedAt time.Time `json:"updated_at"`
     DeletedAt *time.Time `json:"deleted_at,omitempty"`
 }
 
-// req untuk create user
-func NewUser(name, email, number, password string) *User {
+// Admin New User
+func NewUser(name, email, number, password, roles string) *User {
 	return &User{
 		Name:      name,
 		Email:     email,
 		Number:    number,
+		Roles:     roles,
 		Password:  password,
 		CreatedAt: time.Now(),
 	}
 }
 
-// req untuk update user
-func UpdateUser(id int64, name, email, number, password string) *User {
+// Admin Update User
+func UpdateUser(id int64, name, email, number, roles, password string) *User {
 	return &User{
 		ID:        id,
 		Name:      name,
 		Email:     email,
 		Number:    number,
+		Roles:     roles,
 		Password:  password,
 		UpdatedAt: time.Now(),
 	}
 }
 
-// req untuk login
-// func Login(email, password string) *User {
-// 	return &User{
-// 		Email:    email,
-// 		Password: password,
-// 	}
-// }
-
-//note : ketika type data untuk ID hanya int, maka akan error ketika dijalankan. karena ID tidak bisa di tambahkan otmatis oleh database
-// namun ketika type data untuk ID diubah menjadi int64, maka tidak akan error ketika dijalankan. karena ID bisa di tambahkan otmatis oleh database melalui postman.
+// Public Register
+func Register(name, email, password, roles, number string) *User {
+	return &User{
+		Name:        name,
+		Email:       email,
+		Password:    password,
+		Roles:       roles,
+		Number:      number,
+	}
+}

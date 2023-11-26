@@ -44,7 +44,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\" : \"reza1223@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+					"raw": "{\r\n    \"email\" : \"reza1223a@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -347,7 +347,7 @@
 			"response": []
 		},
 		{
-			"name": "Admin Create Ticket",
+			"name": "Admin Update Ticket",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -447,6 +447,215 @@
 						"ticket",
 						"search",
 						"cold"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Create Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNjU5M30.17LzDHFBUFuVxokdnBAe7o1S5_hIdPp8-N1z_Di6TQQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/blog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"blog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Get All Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/blog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"blog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Get Blog By ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/blog/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"blog",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Update Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/ticket/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"ticket",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Search Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/blog/search/Nama ",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"blog",
+						"search",
+						"Nama "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Delete Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/blog/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"blog",
+						"1"
 					]
 				}
 			},

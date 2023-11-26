@@ -32,7 +32,7 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini tdk perlu login krna public
-func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler) []*Route {
+func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler, BlogHandler *handler.BlogHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
@@ -97,6 +97,42 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.GET,
 			Path:    "/ticket/search/:search",
 			Handler: TicketHandler.SearchTicket,
+		},
+
+		{
+			Method:  echo.POST,
+			Path:    "/blog",
+			Handler: BlogHandler.CreateBlog,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/blog",
+			Handler: BlogHandler.GetAllBlogs,
+		},
+
+		{
+			Method:  echo.PUT,
+			Path:    "/blog/:id",
+			Handler: BlogHandler.UpdateBlog,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/blog/:id",
+			Handler: BlogHandler.GetBlog,
+		},
+
+		{
+			Method:  echo.DELETE,
+			Path:    "/blog/:id",
+			Handler: BlogHandler.DeleteBlog,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/blog/search/:search",
+			Handler: BlogHandler.SearchBlog,
 		},
 	}
 }

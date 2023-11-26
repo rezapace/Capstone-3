@@ -32,6 +32,11 @@ func BuildPrivateRoutes(cfg *config.Config, db *gorm.DB) []*router.Route {
     ticketService := service.NewTicketService(ticketRepository)
     ticketHandler := handler.NewTicketHandler(ticketService)
 
+	// Create a Blog handler
+	BlogRepository := repository.NewBlogRepository(db)
+	BlogService := service.NewBlogService(BlogRepository)
+	BlogHandler := handler.NewBlogHandler(BlogService)
+
     // Menggunakan PrivateRoutes dengan kedua handler
-    return router.PrivateRoutes(userHandler, ticketHandler)
+    return router.PrivateRoutes(userHandler, ticketHandler, BlogHandler)
 }

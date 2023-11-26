@@ -36,6 +36,7 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 	var input struct {
 		Name     string `json:"name" validate:"required"`
 		Email    string `json:"email" validate:"required,email"`
+		Number   string `json:"number" validate:"required"`
 		Password string `json:"password" validate:"required,min=8"`
 	}
 
@@ -44,7 +45,7 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
 
-	user := entity.NewUser(input.Name, input.Email, input.Password)
+	user := entity.NewUser(input.Name, input.Email, input.Number, input.Password)
 	err := h.userService.CreateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
@@ -52,20 +53,6 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 
 	//kalau retrun nya kaya gini akan tampil pesan "User created successfully"
 	return ctx.JSON(http.StatusCreated, "User created successfully")
-
-	//tapi kalau bikin retrun nya kaya gini bakal tampil data user yang baru dibuat
-	//return ctx.JSON(http.StatusCreated, user)
-
-	// return ctx.JSON(http.StatusOK, map[string]interface{}{
-	// 	"message": "User updated successfully",
-	// 	"data": map[string]interface{}{
-	// 		"id":       user.ID,
-	// 		"name":     user.Name,
-	// 		"email":    user.Email,
-	// 		"password": user.Password,
-	// 		"created":  user.CreatedAt,
-	// 	},
-	// })
 }
 
 // func untuk melakukan updateUser by id
@@ -73,6 +60,7 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 	var input struct {
 		ID       int64  `param:"id" validate:"required"`
 		Name     string `json:"name" validate:"required"`
+		Number   string `json:"number" validate:"required"`
 		Email    string `json:"email" validate:"required"`
 		Password string `json:"password" validate:"required"`
 	}
@@ -81,7 +69,7 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
 
-	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Password)
+	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Password)
 	err := h.userService.UpdateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
@@ -129,6 +117,7 @@ func (h *UserHandler) GetUserByID(ctx echo.Context) error {
 			"id":       user.ID,
 			"name":     user.Name,
 			"email":    user.Email,
+			"number":   user.Number,
 			"password": user.Password,
 			"created":  user.CreatedAt,
 			"updated":  user.UpdatedAt,

@@ -26,3 +26,15 @@ CREATE TABLE "public"."tickets" (
     Updated_At TIMESTAMP,
     Deleted_At TIMESTAMP
 );
+
+-- membuat table blog dengan field id, gambar, judul, deskripsi, tanggal_bulan_tahun
+CREATE TABLE blogs (
+    ID SERIAL PRIMARY KEY,
+    Image TEXT,
+    Date DATE,
+    Title TEXT,
+    Description TEXT,
+    Created_At TIMESTAMP,
+    Updated_At TIMESTAMP,
+    Deleted_At TIMESTAMP
+);

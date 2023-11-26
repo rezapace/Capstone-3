@@ -1,5 +1,6 @@
 package service
-
+//NOTE :
+// FOLDER INI UNTUK MENANGANI LOGIC DAN MEMANGGIL REPOSITORY
 import (
 	"context"
 
@@ -66,5 +67,5 @@ func (s *UserService) Delete(ctx context.Context, id int64) error {
 	return s.repository.Delete(ctx, id)
 }
 
-//NOTE :
-// FOLDER INI UNTUK MENANGANI LOGIC DAN MEMANGGIL REPOSITORY
+
+

@@ -2,7 +2,6 @@
 	"info": {
 		"_postman_id": "843c34b5-2096-432b-ae60-e404f602be20",
 		"name": "Tiketing",
-		"description": "Projek Capstone Golang Mikti Ticketing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26142588"
 	},
@@ -414,39 +413,6 @@
 						"v1",
 						"ticket",
 						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Admin Search",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzMzUwMn0.W8rTSfdRYgxivpskkme-5hZuEgEnhbPR_Tp4atjVKLU",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/ticket/search/cold",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"ticket",
-						"search",
-						"cold"
 					]
 				}
 			},

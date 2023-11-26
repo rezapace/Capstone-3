@@ -23,7 +23,6 @@ func NewUserHandler(userService service.UserUsecase) *UserHandler {
 // func untuk melakukan getAll User
 func (h *UserHandler) GetAllUser(ctx echo.Context) error {
 	users, err := h.userService.GetAll(ctx.Request().Context())
-
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
 	}
@@ -41,18 +40,15 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 		Roles	 string `json:"roles" validate:"required"`
 		Password string `json:"password" validate:"required,min=8"`
 	}
-
 	//ini func untuk error checking
 	if err := ctx.Bind(&input); err != nil {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
-
 	user := entity.NewUser(input.Name, input.Email, input.Number, input.Roles, input.Password)
 	err := h.userService.CreateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
 	}
-
 	//kalau retrun nya kaya gini akan tampil pesan "User created successfully"
 	return ctx.JSON(http.StatusCreated, "User created successfully")
 }
@@ -67,17 +63,14 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 		Roles	 string `json:"roles" validate:"required"`
 		Password string `json:"password" validate:"required"`
 	}
-
 	if err := ctx.Bind(&input); err != nil {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
-
 	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
 	err := h.userService.UpdateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
 	}
-
 	return ctx.JSON(http.StatusOK, map[string]interface{}{
 		"message": "User updated successfully",
 		"user":    user,
@@ -85,6 +78,7 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 	})
 }
 
+// func untuk melakukan getUser by id
 func (h *UserHandler) GetUserByID(ctx echo.Context) error {
 	idStr := ctx.Param("id")
 	id, err := strconv.ParseInt(idStr, 10, 64)
@@ -94,14 +88,12 @@ func (h *UserHandler) GetUserByID(ctx echo.Context) error {
 			"error": "Invalid ID",
 		})
 	}
-
 	user, err := h.userService.GetUserByID(ctx.Request().Context(), id)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, map[string]interface{}{
 			"error": err.Error(),
 		})
 	}
-
 	return ctx.JSON(http.StatusOK, map[string]interface{}{
 		"data": map[string]interface{}{
 			"id":       user.ID,
@@ -115,6 +107,7 @@ func (h *UserHandler) GetUserByID(ctx echo.Context) error {
 	})
 }
 
+// DeleteUser func untuk melakukan delete user by id
 func (h *UserHandler) DeleteUser(ctx echo.Context) error {
 	var input struct {
 		ID int64 `param:"id" validate:"required"`

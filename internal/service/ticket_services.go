@@ -12,6 +12,7 @@ type TicketUseCase interface {
 	CreateTicket(ctx context.Context, ticket *entity.Ticket) error
 	GetTicket(ctx context.Context, id int64) (*entity.Ticket, error)
 	UpdateTicket(ctx context.Context, ticket *entity.Ticket) error
+	SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error)
 	DeleteTicket(ctx context.Context, id int64) error
 }
 
@@ -20,6 +21,7 @@ type TicketRepository interface {
 	CreateTicket(ctx context.Context, ticket *entity.Ticket) error
 	GetTicket(ctx context.Context, id int64) (*entity.Ticket, error)
 	UpdateTicket(ctx context.Context, ticket *entity.Ticket) error
+	SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error)
 	DeleteTicket(ctx context.Context, id int64) error
 }
 
@@ -51,4 +53,9 @@ func (s *TicketService) GetTicket(ctx context.Context, id int64) (*entity.Ticket
 
 func (s *TicketService) DeleteTicket(ctx context.Context, id int64) error {
 	return s.Repository.DeleteTicket(ctx, id)
+}
+
+// search ticket
+func (s *TicketService) SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error) {
+	return s.Repository.SearchTicket(ctx, search)
 }

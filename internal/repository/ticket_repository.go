@@ -67,3 +67,12 @@ func (r *TicketRepository) DeleteTicket(ctx context.Context, id int64) error {
 	return nil
 }
 
+// SearchTicket search ticket
+func (r *TicketRepository) SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Where("title LIKE ?", "%"+search+"%").Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}

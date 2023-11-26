@@ -76,8 +76,6 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 }
 
 
-
-
 // GetTicket handles the retrieval of a ticket by ID.
 func (h *TicketHandler) GetTicket(c echo.Context) error {
 	idStr := c.Param("id") // assuming the ID is passed as a URL parameter as a string
@@ -175,5 +173,25 @@ func (h *TicketHandler) DeleteTicket(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "Ticket deleted successfully",
+	})
+}
+
+// SearchTicket handles the search of a ticket by title.
+func (h *TicketHandler) SearchTicket(c echo.Context) error {
+	var input struct {
+		Search string `param:"search" validate:"required"` //harus pramater search
+	}
+
+	if err := c.Bind(&input); err != nil {
+		return c.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
+	}
+
+	tickets, err := h.ticketService.SearchTicket(c.Request().Context(), input.Search)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tickets,
 	})
 }

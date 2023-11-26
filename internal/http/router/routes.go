@@ -92,6 +92,12 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Path:    "/ticket/:id",
 			Handler: TicketHandler.DeleteTicket,
 		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/search/:search",
+			Handler: TicketHandler.SearchTicket,
+		},
 	}
 }
 

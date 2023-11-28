@@ -76,3 +76,43 @@ func (r *TicketRepository) SearchTicket(ctx context.Context, search string) ([]*
 	}
 	return tickets, nil
 }
+
+// filter ticket by location
+func (r *TicketRepository) FilterTicket(ctx context.Context, location string) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Where("location LIKE ?", "%"+location+"%").Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}
+
+// filter ticket by category
+func (r *TicketRepository) FilterTicketByCategory(ctx context.Context, category string) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Where("category LIKE ?", "%"+category+"%").Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}
+
+// filter ticket by range time (start - end)
+func (r *TicketRepository) FilterTicketByRangeTime(ctx context.Context, start string, end string) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Where("start_time >= ? AND end_time <= ?", start, end).Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}
+
+// filter ticket by price (min - max)
+func (r *TicketRepository) FilterTicketByPrice(ctx context.Context, min int64, max int64) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Where("price >= ? AND price <= ?", min, max).Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}

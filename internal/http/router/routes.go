@@ -6,13 +6,24 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+const (
+	Admin = "Admin"
+	Buyer = "Buyer"
+)
+
+var (
+	allRoles  = []string{Admin, Buyer}
+	onlyAdmin = []string{Admin}
+	onlyBuyer = []string{Buyer}
+)
+
 // membuat struct route
 type Route struct {
 	Method  string
 	Path    string
 	Handler echo.HandlerFunc
+	Role    []string
 }
-
 // membuat fungsi untuk mengembalikan route
 // pada func ini perlu login krna private
 func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
@@ -38,71 +49,83 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.POST,
 			Path:    "/users",
 			Handler: UserHandler.CreateUser,
+			Role:    allRoles,
 		},
 
 		{
 			Method:  echo.GET,
 			Path:    "/users",
 			Handler: UserHandler.GetAllUser,
+			Role:    onlyAdmin,
 		},
 
 		{
 			Method:  echo.PUT,
 			Path:    "/users/:id",
 			Handler: UserHandler.UpdateUser,
+			Role:    allRoles,
 		},
 
 		{
 			Method:  echo.GET,
 			Path:    "/users/:id",
 			Handler: UserHandler.GetUserByID,
+			Role:    allRoles,
 		},
 
 		{
 			Method:  echo.DELETE,
 			Path:    "/users/:id",
 			Handler: UserHandler.DeleteUser,
+			Role:    allRoles,
 		},
 		{
 			Method:  echo.POST,
 			Path:    "/ticket",
 			Handler: TicketHandler.CreateTicket,
+			Role:    onlyAdmin,
 		},
 
 		{
 			Method:  echo.GET,
 			Path:    "/ticket",
 			Handler: TicketHandler.GetAllTickets,
+			Role:    allRoles,
 		},
 
 		{
 			Method:  echo.PUT,
 			Path:    "/ticket/:id",
 			Handler: TicketHandler.UpdateTicket,
+			Role:    onlyAdmin,
 		},
 
 		{
 			Method:  echo.GET,
 			Path:    "/ticket/:id",
 			Handler: TicketHandler.GetTicket,
+			Role:    allRoles,
 		},
 
 		{
 			Method:  echo.DELETE,
 			Path:    "/ticket/:id",
 			Handler: TicketHandler.DeleteTicket,
+			Role:    onlyAdmin,
 		},
 
 		{
 			Method:  echo.GET,
 			Path:    "/ticket/search/:search",
 			Handler: TicketHandler.SearchTicket,
+			Role:    allRoles,
 		},
 
 		{
 			Method:  echo.POST,
 			Path:    "/blog",
 			Handler: BlogHandler.CreateBlog,
+			Role:    onlyBuyer,
 		},
 
 		{

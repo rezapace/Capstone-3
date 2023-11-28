@@ -45,12 +45,11 @@ func ValidatorErrors(err error) map[string]string {
 		for _, err := range castedObject {
 			switch err.Tag() {
 			case "required":
-				fields[err.Field()] = fmt.Sprintf("%s harus diisi", err.Field())
-			case "password":
-				// Validasi khusus untuk field "password"
-				fields[err.Field()] = "Password harus mengandung setidaknya satu huruf besar dan satu digit"
+				fields[err.Field()] = fmt.Sprintf("field %s harus di isi", err.Field())
+			case "oneof":
+				fields[err.Field()] = fmt.Sprintf("field %s harus memiliki salah satu dari nilai: %s", err.Field(), err.Param())
 			default:
-				fields[err.Field()] = fmt.Sprintf("Kesalahan pada %s dengan tag %s seharusnya %s", err.Field(), err.Tag(), err.Param())
+				fields[err.Field()] = fmt.Sprintf("%s error with tag %s should be %s", err.Field(), err.Tag(), err.Param())
 			}
 		}
 	}

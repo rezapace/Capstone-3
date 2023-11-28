@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"rezaaa1aa\",\r\n    \"email\" : \"reza1223a@gmail.com\",\r\n    \"roles\" : \"customer\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Admin\",\r\n    \"email\" : \"Admin@gmail.com\",\r\n    \"roles\" : \"Admin\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -47,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"reza1223a@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"Admin@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -83,7 +83,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAxMjE0MH0.wTnqMw_aC5ydiKOqCUk41UsLYSypwcmqpVdpJjWSWUU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJBZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJleHAiOjE3MDExOTExMTZ9.a-tEEG2VV0rEbRCblc-V2xsu6N6EQIU7YVQ81kGWTZY",
 									"type": "string"
 								}
 							]
@@ -123,7 +123,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAxMjE0MH0.wTnqMw_aC5ydiKOqCUk41UsLYSypwcmqpVdpJjWSWUU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJBZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJleHAiOjE3MDExOTExMTZ9.a-tEEG2VV0rEbRCblc-V2xsu6N6EQIU7YVQ81kGWTZY",
 									"type": "string"
 								}
 							]
@@ -154,7 +154,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoicmV6YTEyMjNAZ21haWwuY29tIiwiZXhwIjoxNzAxMDEyMzQ1fQ.JjGXZDnuJg4-TRyRg3C5RcF7nbgLIwVaAY6Pt1e7kKc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJBZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJleHAiOjE3MDExOTExMTZ9.a-tEEG2VV0rEbRCblc-V2xsu6N6EQIU7YVQ81kGWTZY",
 									"type": "string"
 								}
 							]
@@ -910,6 +910,34 @@
 								"api",
 								"v1",
 								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order By User_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/order/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
 							]
 						}
 					},

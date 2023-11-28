@@ -108,7 +108,7 @@ func (r *TicketRepository) FilterTicketByRangeTime(ctx context.Context, start st
 }
 
 // filter ticket by price (min - max)
-func (r *TicketRepository) FilterTicketByPrice(ctx context.Context, min int64, max int64) ([]*entity.Ticket, error) {
+func (r *TicketRepository) FilterTicketByPrice(ctx context.Context, min string, max string) ([]*entity.Ticket, error) {
 	tickets := make([]*entity.Ticket, 0)
 	result := r.db.WithContext(ctx).Where("price >= ? AND price <= ?", min, max).Find(&tickets)
 	if result.Error != nil {

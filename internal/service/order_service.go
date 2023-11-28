@@ -12,6 +12,7 @@ type OrderUsecase interface {
 	UpdateTicket(ctx context.Context, ticket *entity.Ticket) error
 	GetOrders(ctx context.Context) ([]*entity.Order, error)
 	GetTicketByID(ctx context.Context, id int64) (*entity.Ticket, error)
+	GetOrderByUserID(ctx context.Context, userID int64) ([]*entity.Order, error)
 }
 
 type OrderRepository interface {
@@ -20,6 +21,7 @@ type OrderRepository interface {
 	UpdateTicket(ctx context.Context, ticket *entity.Ticket) error
 	GetOrders(ctx context.Context) ([]*entity.Order, error)
 	GetTicketByID(ctx context.Context, id int64) (*entity.Ticket, error)
+	GetOrderByUserID(ctx context.Context, userID int64) ([]*entity.Order, error)
 }
 
 type OrderService struct {
@@ -79,4 +81,9 @@ func (s *OrderService) GetOrders(ctx context.Context) ([]*entity.Order, error) {
 
 func (s *OrderService) GetTicketByID(ctx context.Context, id int64) (*entity.Ticket, error) {
 	return s.repository.GetTicketByID(ctx, id)
+}
+
+// get order by user_id
+func (s *OrderService) GetOrderByUserID(ctx context.Context, userID int64) ([]*entity.Order, error) {
+	return s.repository.GetOrderByUserID(ctx, userID)
 }

@@ -6,7 +6,6 @@ import (
 	"Ticketing/entity"
 	"Ticketing/internal/http/validator"
 	"Ticketing/internal/service"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -37,10 +36,10 @@ func (h *UserHandler) GetAllUser(ctx echo.Context) error {
 func (h *UserHandler) CreateUser(ctx echo.Context) error {
 	var input struct {
 		Name     string `json:"name" validate:"required"`
-		Email    string `json:"email" validate:"email"`
-		Number   string `json:"number" validate:"min=11,max=13"`
+		Email    string `json:"email"`
+		Number   string `json:"number"`
 		Roles    string `json:"roles"`
-		Password string `json:"password" validate:"min=8"`
+		Password string `json:"password"`
 	}
 	//ini func untuk error checking
 	if err := ctx.Bind(&input); err != nil {
@@ -65,32 +64,19 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 		Roles    string `json:"roles"`
 		Password string `json:"password"`
 	}
+
 	if err := ctx.Bind(&input); err != nil {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
 
-	// Check if user exists
-	existingUser, err := h.userService.GetUserByID(ctx.Request().Context(), input.ID)
-	if err != nil {
-		// Handle the case when the user with the given ID doesn't exist
-		return ctx.JSON(http.StatusNotFound, map[string]interface{}{
-			"message": "User not found",
-		})
-	}
-
-	// Update user details
 	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
-	err = h.userService.UpdateUser(ctx.Request().Context(), user)
+
+	err := h.userService.UpdateUser(ctx.Request().Context(), user)
 	if err != nil {
-		return ctx.JSON(http.StatusUnprocessableEntity, err)
+		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
 	}
 
-	fmt.Println(existingUser)
-
-	return ctx.JSON(http.StatusOK, map[string]interface{}{
-		"message": "User updated successfully",
-		"user":    user,
-	})
+	return ctx.JSON(http.StatusOK, map[string]string{"success": "succesfully update user"})
 }
 
 // func untuk melakukan getUser by id

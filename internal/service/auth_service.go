@@ -4,9 +4,11 @@ import (
 	"Ticketing/entity"
 	"context"
 	"errors"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
-//login 
+// login
 type LoginUseCase interface {
 	Login(ctx context.Context, email string, password string) (*entity.User, error)
 }
@@ -38,16 +40,14 @@ func (s *loginService) Login(ctx context.Context, email string, password string)
 	}
 
 	//untuk pengecekan apakah password nya ada atau gaa di databse?
-	if user.Password != password {
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+	if err != nil {
 		return nil, errors.New("incorrect login credentials")
 	}
-
 	//ketika email dan passwerd sama maka akan mengembalikan nil
 	return user, nil
 
 }
-
-
 
 // register
 type RegistrationUseCase interface {
@@ -70,6 +70,11 @@ func NewRegistrationService(repository RegistrationRepository) *registrationServ
 }
 
 func (s *registrationService) Registration(ctx context.Context, user *entity.User) error {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return err
+	}
 
+	user.Password = string(hashedPassword)
 	return s.repository.Registration(ctx, user)
 }

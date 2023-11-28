@@ -66,4 +66,31 @@ func (h *OrderHandler) GetAllOrders(ctx echo.Context) error {
 	})
 }
 
+// get order by user_id
+func (h *OrderHandler) GetOrderByUserID(ctx echo.Context) error {
+	// Implementasi untuk mendapatkan semua pesanan dari usecase
+	orders, err := h.orderService.GetOrders(ctx.Request().Context())
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, echo.NewHTTPError(http.StatusBadRequest, err.Error()))
+	}
+
+	var orderDetails []map[string]interface{}
+	for _, order := range orders {
+		ticket, err := h.orderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
+		if err != nil {
+			return ctx.JSON(http.StatusInternalServerError, echo.NewHTTPError(http.StatusInternalServerError, err.Error()))
+		}
+
+		orderDetail := map[string]interface{}{
+			"user_id": order.UserID,
+			"ticket":  ticket,
+		}
+		orderDetails = append(orderDetails, orderDetail)
+	}
+
+	return ctx.JSON(http.StatusOK, map[string]interface{}{
+		"message":       "Get all orders success",
+		"order_details": orderDetails,
+	})
+}
 

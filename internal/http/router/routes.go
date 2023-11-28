@@ -147,6 +147,12 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Handler: OrderHandler.GetAllOrders,
 		},
 
+		{
+			Method:  echo.GET,
+			Path:    "/order/:id",
+			Handler: OrderHandler.GetOrderByUserID,
+		},
+
 		//filter ticket by location
 		{
 			Method:  echo.GET,
@@ -170,7 +176,7 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.GET,
 			Path:    "/ticket/price/:min/:max",
 			Handler: TicketHandler.FilterTicketByPrice,
-		}
+		},
 	}
 }
 

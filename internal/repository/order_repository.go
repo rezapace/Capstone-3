@@ -61,3 +61,13 @@ func (r *OrderRepository) GetOrders(ctx context.Context) ([]*entity.Order, error
 	}
 	return orders, nil
 }
+
+// get order by user_id
+func (r *OrderRepository) GetOrderByUserID(ctx context.Context, userID int64) ([]*entity.Order, error) {
+	orders := make([]*entity.Order, 0)
+	err := r.db.WithContext(ctx).Preload("Ticket").Where("user_id = ?", userID).Find(&orders).Error
+	if err != nil {
+		return nil, err
+	}
+	return orders, nil
+}

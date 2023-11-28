@@ -1,10 +1,12 @@
 package handler
+
 //NOTE :
 // FOLDER INI UNTUK MEMANGGIL SERVICE DAN REPOSITORY
 import (
 	"Ticketing/entity"
 	"Ticketing/internal/http/validator"
 	"Ticketing/internal/service"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -35,10 +37,10 @@ func (h *UserHandler) GetAllUser(ctx echo.Context) error {
 func (h *UserHandler) CreateUser(ctx echo.Context) error {
 	var input struct {
 		Name     string `json:"name" validate:"required"`
-		Email    string `json:"email" validate:"required,email"`
-		Number   string `json:"number" validate:"required"`
-		Roles	 string `json:"roles" validate:"required"`
-		Password string `json:"password" validate:"required,min=8"`
+		Email    string `json:"email" validate:"email"`
+		Number   string `json:"number" validate:"min=11,max=13"`
+		Roles    string `json:"roles"`
+		Password string `json:"password" validate:"min=8"`
 	}
 	//ini func untuk error checking
 	if err := ctx.Bind(&input); err != nil {
@@ -57,24 +59,37 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 	var input struct {
 		ID       int64  `param:"id" validate:"required"`
-		Name     string `json:"name" validate:"required"`
-		Email    string `json:"email" validate:"required"`
-		Number   string `json:"number" validate:"required"`
-		Roles	 string `json:"roles" validate:"required"`
-		Password string `json:"password" validate:"required"`
+		Name     string `json:"name"`
+		Email    string `json:"email"`
+		Number   string `json:"number"`
+		Roles    string `json:"roles"`
+		Password string `json:"password"`
 	}
 	if err := ctx.Bind(&input); err != nil {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
+
+	// Check if user exists
+	existingUser, err := h.userService.GetUserByID(ctx.Request().Context(), input.ID)
+	if err != nil {
+		// Handle the case when the user with the given ID doesn't exist
+		return ctx.JSON(http.StatusNotFound, map[string]interface{}{
+			"message": "User not found",
+		})
+	}
+
+	// Update user details
 	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
-	err := h.userService.UpdateUser(ctx.Request().Context(), user)
+	err = h.userService.UpdateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
 	}
+
+	fmt.Println(existingUser)
+
 	return ctx.JSON(http.StatusOK, map[string]interface{}{
 		"message": "User updated successfully",
 		"user":    user,
-		// "updated": user.UpdatedAt, //buat munculin si updateAt nya
 	})
 }
 

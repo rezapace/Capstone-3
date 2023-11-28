@@ -32,7 +32,7 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini tdk perlu login krna public
-func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler, BlogHandler *handler.BlogHandler) []*Route {
+func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler, BlogHandler *handler.BlogHandler, OrderHandler *handler.OrderHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
@@ -134,9 +134,45 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Path:    "/blog/search/:search",
 			Handler: BlogHandler.SearchBlog,
 		},
+
+		{
+			Method:  echo.POST,
+			Path:    "/order",
+			Handler: OrderHandler.CreateOrder,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/order",
+			Handler: OrderHandler.GetAllOrders,
+		},
+
+		//filter ticket by location
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/location/:location",
+			Handler: TicketHandler.FilterTicket,
+		},
+		// filter ticket by category
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/category/:category",
+			Handler: TicketHandler.FilterTicketByCategory,
+		},
+		// filter ticket by range time (start - end)
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/range/:start/:end",
+			Handler: TicketHandler.FilterTicketByRangeTime,
+		},
+		// filter ticket by price (min - max)
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/price/:min/:max",
+			Handler: TicketHandler.FilterTicketByPrice,
+		}
 	}
 }
-
 
 //NOTE :
 //MENGAPA TERDAPAT 2 FUNC DIATAS? YAITU PUBLIC DAN PRIVATE

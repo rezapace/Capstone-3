@@ -43,6 +43,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Date        time.Time `json:"date"`
 		Price       float64   `json:"price"`
 		Quota       int       `json:"quota"`
+		Category	string	  `json:"category"`
 	}
 
 	// Input validation
@@ -62,6 +63,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Date:        dateStr, // Assign the formatted date string
 		Price:       int64(input.Price),
 		Quota:       int64(input.Quota),
+		Category:	input.Category,
 		CreatedAt:   time.Now(),
 	}
 
@@ -103,6 +105,7 @@ func (h *TicketHandler) GetTicket(c echo.Context) error {
 			"date":        ticket.Date,
 			"price":       ticket.Price,
 			"quota":       ticket.Quota,
+			"category":    ticket.Category,
 			"created":     ticket.CreatedAt,
 		},
 	})
@@ -119,6 +122,7 @@ func (h *TicketHandler) UpdateTicket(c echo.Context) error {
 		Date        time.Time `json:"date"`
 		Price       float64   `json:"price"`
 		Quota       int       `json:"quota"`
+		Category	string	  `json:"category"`
 	}
 
 	if err := c.Bind(&input); err != nil {
@@ -138,6 +142,7 @@ func (h *TicketHandler) UpdateTicket(c echo.Context) error {
 		Date:        dateStr,            // Assign the formatted date string
 		Price:       int64(input.Price), // Convert Price to int64 if needed
 		Quota:       int64(input.Quota), // Convert Quota to int64 if needed
+		Category:	input.Category,
 	}
 
 	err := h.ticketService.UpdateTicket(c.Request().Context(), &ticket)
@@ -182,6 +187,88 @@ func (h *TicketHandler) SearchTicket(c echo.Context) error {
 	}
 
 	tickets, err := h.ticketService.SearchTicket(c.Request().Context(), input.Search)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tickets,
+	})
+}
+
+// filter ticket by location
+func (h *TicketHandler) FilterTicket(c echo.Context) error {
+	var input struct {
+		Location string `param:"location" validate:"required"` //harus pramater search
+	}
+
+	if err := c.Bind(&input); err != nil {
+		return c.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
+	}
+
+	tickets, err := h.ticketService.FilterTicket(c.Request().Context(), input.Location)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tickets,
+	})
+}
+
+// filter ticket by category
+func (h *TicketHandler) FilterTicketByCategory(c echo.Context) error {
+	var input struct {
+		Category string `param:"category" validate:"required"` //harus pramater search
+	}
+
+	if err := c.Bind(&input); err != nil {
+		return c.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
+	}
+
+	tickets, err := h.ticketService.FilterTicketByCategory(c.Request().Context(), input.Category)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tickets,
+	})
+}
+
+// filter ticket by range time (start - end)
+func (h *TicketHandler) FilterTicketByRangeTime(c echo.Context) error {
+	var input struct {
+		Start string `param:"start" validate:"required"` //harus pramater search
+		End   string `param:"end" validate:"required"`   //harus pramater search
+	}
+
+	if err := c.Bind(&input); err != nil {
+		return c.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
+	}
+
+	tickets, err := h.ticketService.FilterTicketByRangeTime(c.Request().Context(), input.Start, input.End)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tickets,
+	})
+}
+
+// filter ticket by price (min - max)
+func (h *TicketHandler) FilterTicketByPrice(c echo.Context) error {
+	var input struct {
+		Min string `param:"min" validate:"required"` //harus pramater search
+		Max string `param:"max" validate:"required"` //harus pramater search
+	}
+
+	if err := c.Bind(&input); err != nil {
+		return c.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
+	}
+
+	tickets, err := h.ticketService.FilterTicketByPrice(c.Request().Context(), input.Min, input.Max)
 	if err != nil {
 		return c.JSON(http.StatusUnprocessableEntity, err)
 	}

@@ -147,11 +147,30 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Handler: OrderHandler.GetAllOrders,
 		},
 
-		// {
-		// 	Method:  echo.PUT,
-		// 	Path:    "/order/:id",
-		// 	Handler: OrderHandler.UpdateOrder,
-		// },
+		//filter ticket by location
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/location/:location",
+			Handler: TicketHandler.FilterTicket,
+		},
+		// filter ticket by category
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/category/:category",
+			Handler: TicketHandler.FilterTicketByCategory,
+		},
+		// filter ticket by range time (start - end)
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/range/:start/:end",
+			Handler: TicketHandler.FilterTicketByRangeTime,
+		},
+		// filter ticket by price (min - max)
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/price/:min/:max",
+			Handler: TicketHandler.FilterTicketByPrice,
+		}
 	}
 }
 

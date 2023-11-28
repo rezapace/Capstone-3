@@ -464,6 +464,166 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Filter Location Ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTE1NTA2OX0.pThwtF2i9GAGbwd-k35HWoOyCgdbZahe-ifUxdJjuGs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ticket/location/GBK",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ticket",
+								"location",
+								"GBK"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Ticket By Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTE1NTA2OX0.pThwtF2i9GAGbwd-k35HWoOyCgdbZahe-ifUxdJjuGs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ticket/category/:category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ticket",
+								"category",
+								":category"
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Ticket By Time",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTE1NTA2OX0.pThwtF2i9GAGbwd-k35HWoOyCgdbZahe-ifUxdJjuGs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ticket/range/:start/:end",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ticket",
+								"range",
+								":start",
+								":end"
+							],
+							"variable": [
+								{
+									"key": "start",
+									"value": ""
+								},
+								{
+									"key": "end",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Ticket By Price",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTE1NTA2OX0.pThwtF2i9GAGbwd-k35HWoOyCgdbZahe-ifUxdJjuGs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ticket/price/:min/:max",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ticket",
+								"price",
+								":min",
+								":max"
+							],
+							"variable": [
+								{
+									"key": "min",
+									"value": ""
+								},
+								{
+									"key": "max",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS "public"."tickets" (
     Price INT,
     Status TEXT DEFAULT 'available',
     Quota INT,
+    Category TEXT,
     Created_At TIMESTAMP,
     Updated_At TIMESTAMP,
     Deleted_At TIMESTAMP

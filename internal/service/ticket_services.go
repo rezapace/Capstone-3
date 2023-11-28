@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"Ticketing/entity"
+
 )
 
 // TicketUseCase is an interface for ticket-related use cases.
@@ -14,6 +15,10 @@ type TicketUseCase interface {
 	UpdateTicket(ctx context.Context, ticket *entity.Ticket) error
 	SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error)
 	DeleteTicket(ctx context.Context, id int64) error
+	FilterTicket(ctx context.Context, location string) ([]*entity.Ticket, error)
+	FilterTicketByCategory(ctx context.Context, category string) ([]*entity.Ticket, error)
+	FilterTicketByRangeTime(ctx context.Context, start string, end string) ([]*entity.Ticket, error)
+	FilterTicketByPrice(ctx context.Context, min string, max string) ([]*entity.Ticket, error)
 }
 
 type TicketRepository interface {
@@ -23,6 +28,10 @@ type TicketRepository interface {
 	UpdateTicket(ctx context.Context, ticket *entity.Ticket) error
 	SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error)
 	DeleteTicket(ctx context.Context, id int64) error
+	FilterTicket(ctx context.Context, location string) ([]*entity.Ticket, error)
+	FilterTicketByCategory(ctx context.Context, category string) ([]*entity.Ticket, error)
+	FilterTicketByRangeTime(ctx context.Context, start string, end string) ([]*entity.Ticket, error)
+	FilterTicketByPrice(ctx context.Context, min string, max string) ([]*entity.Ticket, error)
 }
 
 // TicketService is responsible for ticket-related business logic.
@@ -58,4 +67,24 @@ func (s *TicketService) DeleteTicket(ctx context.Context, id int64) error {
 // search ticket
 func (s *TicketService) SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error) {
 	return s.Repository.SearchTicket(ctx, search)
+}
+
+//filter ticket by location
+func (s *TicketService) FilterTicket(ctx context.Context, location string) ([]*entity.Ticket, error) {
+	return s.Repository.FilterTicket(ctx, location)
+}
+
+// filter ticket by category
+func (s *TicketService) FilterTicketByCategory(ctx context.Context, category string) ([]*entity.Ticket, error) {
+	return s.Repository.FilterTicketByCategory(ctx, category)
+}
+
+// filter ticket by range time (start - end)
+func (s *TicketService) FilterTicketByRangeTime(ctx context.Context, start string, end string) ([]*entity.Ticket, error) {
+	return s.Repository.FilterTicketByRangeTime(ctx, start, end)
+}
+
+// filter ticket by price (min - max)
+func (s *TicketService) FilterTicketByPrice(ctx context.Context, min string, max string) ([]*entity.Ticket, error) {
+	return s.Repository.FilterTicketByPrice(ctx, min, max)
 }

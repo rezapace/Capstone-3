@@ -14,6 +14,7 @@ type Ticket struct {
 	Price       int64
 	Status      string // e.g., 'available', 'sold out'
 	Quota       int64
+	Category    string // e.g., 'music', 'sport', 'conference'
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 	DeletedAt   time.Time

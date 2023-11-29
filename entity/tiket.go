@@ -12,7 +12,7 @@ type Ticket struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Price       int64  `json:"price"`
-	Status      string `json:"Status"` // e.g., 'available', 'sold out'
+	Status      string `json:"Status"` // e.g., 'available', 'sold'
 	Quota       int64  `json:"Quota"`
 	Category    string `json:"category"`
 	Terjual     int64   `json:"Terjual"` // e.g., 1000, 5000, 10000

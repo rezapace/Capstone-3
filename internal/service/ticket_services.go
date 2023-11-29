@@ -22,6 +22,7 @@ type TicketUseCase interface {
 	SortTicketByMostExpensive(ctx context.Context) ([]*entity.Ticket, error)
 	SortTicketByCheapest(ctx context.Context) ([]*entity.Ticket, error)
 	SortTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error)
+	SortTicketByAvailable(ctx context.Context) ([]*entity.Ticket, error)
 
 }
 
@@ -40,6 +41,7 @@ type TicketRepository interface {
 	SortTicketByMostExpensive(ctx context.Context) ([]*entity.Ticket, error)
 	SortTicketByCheapest(ctx context.Context) ([]*entity.Ticket, error)
 	SortTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error)
+	SortTicketByAvailable(ctx context.Context) ([]*entity.Ticket, error)
 }
 
 // TicketService is responsible for ticket-related business logic.
@@ -115,4 +117,9 @@ func (s *TicketService) SortTicketByCheapest(ctx context.Context) ([]*entity.Tic
 // filter ticket by most bought
 func (s *TicketService) SortTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error) {
 	return s.Repository.SortTicketByMostBought(ctx)
+}
+
+// ticket yang masih tersedia
+func (s *TicketService) SortTicketByAvailable(ctx context.Context) ([]*entity.Ticket, error) {
+	return s.Repository.SortTicketByAvailable(ctx)
 }

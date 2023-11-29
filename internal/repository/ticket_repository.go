@@ -162,3 +162,13 @@ func (r *TicketRepository) SortTicketByMostBought(ctx context.Context) ([]*entit
 	}
 	return tickets, nil
 }
+
+// ticket yang masih tersedia
+func (r *TicketRepository) SortTicketByAvailable(ctx context.Context) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Where("status = ?", "available").Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}

@@ -248,6 +248,13 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Handler: TicketHandler.SortTicketByMostBought,
 			Role:    allRoles,
 		},
+		// ticket yang masih tersedia
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/available",
+			Handler: TicketHandler.SortTicketByAvailable,
+			Role:    allRoles,
+		},
 	}
 }
 

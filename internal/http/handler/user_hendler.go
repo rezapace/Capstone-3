@@ -37,8 +37,8 @@ func (h *UserHandler) GetAllUser(ctx echo.Context) error {
 func (h *UserHandler) CreateUser(ctx echo.Context) error {
 	var input struct {
 		Name     string `json:"name" validate:"required"`
-		Email    string `json:"email"`
-		Number   string `json:"number"`
+		Email    string `json:"email" validate:"email"`
+		Number   string `json:"number" validate:"min=11,max=13"`
 		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
 	}
@@ -60,9 +60,9 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 	var input struct {
 		ID       int64  `param:"id" validate:"required"`
 		Name     string `json:"name"`
-		Email    string `json:"email"`
-		Number   string `json:"number"`
-		Roles    string `json:"roles"`
+		Email    string `json:"email" validate:"email"`
+		Number   string `json:"number" validate:"min=11,max=13"`
+		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
 	}
 
@@ -134,8 +134,8 @@ func (h *UserHandler) UpdateUserSelf(ctx echo.Context) error {
 	var input struct {
 		ID       int64  `param:"id" validate:"required"`
 		Name     string `json:"name"`
-		Email    string `json:"email"`
-		Number   string `json:"number"`
+		Email    string `json:"email" validate:"email"`
+		Number   string `json:"number" ate:"min=11,max=13"`
 		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
 	}

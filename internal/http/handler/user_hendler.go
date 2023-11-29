@@ -32,7 +32,7 @@ func (h *UserHandler) GetAllUser(ctx echo.Context) error {
 	})
 }
 
-// func untuk melakukan createUser update versi reza v1
+// func untuk melakukan createUser update versi reza v4
 func (h *UserHandler) CreateUser(ctx echo.Context) error {
 	var input struct {
 		Name     string `json:"name" validate:"required"`

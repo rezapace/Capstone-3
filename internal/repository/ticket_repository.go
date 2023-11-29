@@ -1,4 +1,5 @@
 package repository
+
 // NOTE :
 // FOLDER INI UNTUK MENANGANI KE BAGIAN DATABASE DAN QUERY
 import (
@@ -111,6 +112,46 @@ func (r *TicketRepository) FilterTicketByRangeTime(ctx context.Context, start st
 func (r *TicketRepository) FilterTicketByPrice(ctx context.Context, min string, max string) ([]*entity.Ticket, error) {
 	tickets := make([]*entity.Ticket, 0)
 	result := r.db.WithContext(ctx).Where("price >= ? AND price <= ?", min, max).Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}
+
+// filter ticket dari yang paling banyak dibeli
+func (r *TicketRepository) FilterTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Order("quota DESC").Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}
+
+// sortir tiket dari yang terbaru
+func (r *TicketRepository) SortTicketByNewest(ctx context.Context) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Order("created_at DESC").Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}
+
+// sortir tiket dari yang termurah
+func (r *TicketRepository) SortTicketByCheapest(ctx context.Context) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Order("price ASC").Find(&tickets)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tickets, nil
+}
+
+// sortir dari yang termahal
+func (r *TicketRepository) SortTicketByMostExpensive(ctx context.Context) ([]*entity.Ticket, error) {
+	tickets := make([]*entity.Ticket, 0)
+	result := r.db.WithContext(ctx).Order("price DESC").Find(&tickets)
 	if result.Error != nil {
 		return nil, result.Error
 	}

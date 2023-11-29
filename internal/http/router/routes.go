@@ -220,6 +220,34 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Handler: TicketHandler.FilterTicketByPrice,
 			Role:    allRoles,
 		},
+		// filter ticket by most bought
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/most-bought",
+			Handler: TicketHandler.FilterTicketByMostBought,
+			Role:    allRoles,
+		},
+		//sortir tiket dari yang terbaru
+		{
+			Method:  echo.GET,
+			Path:    "/tickets",
+			Handler: TicketHandler.SortTicketByNewest,
+			Role:    allRoles,
+		},
+		//sortir tiket dari yang termurah
+		{
+			Method:  echo.GET,
+			Path:    "/tickets/cheapest",
+			Handler: TicketHandler.SortTicketByCheapest,
+			Role:    allRoles,
+		},
+		//sortir tiket dari yang termahal
+		{
+			Method:  echo.GET,
+			Path:    "/tickets/most-expensive",
+			Handler: TicketHandler.SortTicketByMostExpensive,
+			Role:    allRoles,
+		},
 	}
 }
 

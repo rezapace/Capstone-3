@@ -8,6 +8,7 @@ import (
 	"Ticketing/entity"
 
 	"gorm.io/gorm"
+	"fmt"
 )
 
 // ticket repository
@@ -23,12 +24,16 @@ func NewTicketRepository(db *gorm.DB) *TicketRepository {
 
 // GetAllTickets retrieves all tickets from the database.
 func (r *TicketRepository) GetAllTickets(ctx context.Context) ([]*entity.Ticket, error) {
-	tickets := make([]*entity.Ticket, 0)
-	result := r.db.WithContext(ctx).Find(&tickets)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	return tickets, nil
+    tickets := make([]*entity.Ticket, 0)
+    result := r.db.WithContext(ctx).Find(&tickets)
+    if result.Error != nil {
+        return nil, result.Error
+    }
+
+    // Log untuk memeriksa data sebelum dikembalikan
+    fmt.Printf("Tickets: %+v\n", tickets)
+
+    return tickets, nil
 }
 
 // CreateTicket saves a new ticket to the database.

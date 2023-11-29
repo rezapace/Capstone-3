@@ -80,6 +80,13 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Handler: UserHandler.DeleteUser,
 			Role:    onlyAdmin,
 		},
+
+		{
+			Method:  echo.PUT,
+			Path:    "/users/self",
+			Handler: UserHandler.UpdateUserSelf,
+			Role:    allRoles,
+		},
 		{
 			Method:  echo.POST,
 			Path:    "/ticket",

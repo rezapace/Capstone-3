@@ -1,4 +1,5 @@
 package service
+
 //NOTE :
 // FOLDER INI UNTUK MENANGANI LOGIC DAN MEMANGGIL REPOSITORY
 import (
@@ -15,6 +16,7 @@ type UserUsecase interface {
 	UpdateUser(ctx context.Context, user *entity.User) error
 	GetUserByID(ctx context.Context, id int64) (*entity.User, error)
 	Delete(ctx context.Context, id int64) error
+	UpdateUserSelf(ctx context.Context, user *entity.User) error
 }
 
 // interface untuk repository
@@ -26,6 +28,7 @@ type UserRepository interface {
 	UpdateUser(ctx context.Context, user *entity.User) error
 	GetUserByID(ctx context.Context, id int64) (*entity.User, error)
 	Delete(ctx context.Context, id int64) error
+	UpdateUserSelf(ctx context.Context, user *entity.User) error
 }
 
 // code di line 23 merupakan dependency injection, karena repository tidak langsung di panggil.
@@ -67,5 +70,7 @@ func (s *UserService) Delete(ctx context.Context, id int64) error {
 	return s.repository.Delete(ctx, id)
 }
 
-
-
+// Update User Self
+func (s *UserService) UpdateUserSelf(ctx context.Context, user *entity.User) error {
+	return s.repository.UpdateUser(ctx, user)
+}

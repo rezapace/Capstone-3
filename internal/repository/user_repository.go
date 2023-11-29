@@ -1,4 +1,5 @@
 package repository
+
 // NOTE :
 // FOLDER INI UNTUK MENANGANI KE BAGIAN DATABASE DAN QUERY
 import (
@@ -80,4 +81,15 @@ func (r *UserRepository) GetByEmail(ctx context.Context, email string) (*entity.
 		return nil, errors.New("user with that email not found")
 	}
 	return user, nil
+}
+
+// Update User Self
+func (r *UserRepository) UpdateUserSelf(ctx context.Context, user *entity.User) error {
+	if err := r.db.WithContext(ctx).
+		Model(&entity.User{}).
+		Where("id = ?", user.ID).
+		Updates(&user).Error; err != nil {
+		return err
+	}
+	return nil
 }

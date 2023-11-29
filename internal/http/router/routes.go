@@ -50,7 +50,7 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.POST,
 			Path:    "/users",
 			Handler: UserHandler.CreateUser,
-			Role:    allRoles,
+			Role:    onlyBuyer,
 		},
 
 		{
@@ -79,6 +79,13 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Path:    "/users/:id",
 			Handler: UserHandler.DeleteUser,
 			Role:    onlyAdmin,
+		},
+
+		{
+			Method:  echo.PUT,
+			Path:    "/users/self",
+			Handler: UserHandler.UpdateUserSelf,
+			Role:    allRoles,
 		},
 		{
 			Method:  echo.POST,
@@ -168,7 +175,7 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.POST,
 			Path:    "/order",
 			Handler: OrderHandler.CreateOrder,
-			Role:    onlyBuyer,
+			Role:    allRoles,
 		},
 
 		{
@@ -211,6 +218,34 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.GET,
 			Path:    "/ticket/price/:min/:max",
 			Handler: TicketHandler.FilterTicketByPrice,
+			Role:    allRoles,
+		},
+		// filter ticket by most bought
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/most-bought",
+			Handler: TicketHandler.FilterTicketByMostBought,
+			Role:    allRoles,
+		},
+		//sortir tiket dari yang terbaru
+		{
+			Method:  echo.GET,
+			Path:    "/tickets",
+			Handler: TicketHandler.SortTicketByNewest,
+			Role:    allRoles,
+		},
+		//sortir tiket dari yang termurah
+		{
+			Method:  echo.GET,
+			Path:    "/tickets/cheapest",
+			Handler: TicketHandler.SortTicketByCheapest,
+			Role:    allRoles,
+		},
+		//sortir tiket dari yang termahal
+		{
+			Method:  echo.GET,
+			Path:    "/tickets/most-expensive",
+			Handler: TicketHandler.SortTicketByMostExpensive,
 			Role:    allRoles,
 		},
 	}

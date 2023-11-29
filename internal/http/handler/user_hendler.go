@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
 )
 
@@ -36,16 +37,17 @@ func (h *UserHandler) GetAllUser(ctx echo.Context) error {
 func (h *UserHandler) CreateUser(ctx echo.Context) error {
 	var input struct {
 		Name     string `json:"name" validate:"required"`
-		Email    string `json:"email"`
-		Number   string `json:"number"`
+		Email    string `json:"email" validate:"email"`
+		Number   string `json:"number" validate:"min=11,max=13"`
 		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
+		Saldo    int64  `json:"saldo"`
 	}
 	//ini func untuk error checking
 	if err := ctx.Bind(&input); err != nil {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
-	user := entity.NewUser(input.Name, input.Email, input.Number, input.Roles, input.Password)
+	user := entity.NewUser(input.Name, input.Email, input.Number, input.Roles, input.Password, input.Saldo)
 	err := h.userService.CreateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
@@ -59,9 +61,9 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 	var input struct {
 		ID       int64  `param:"id" validate:"required"`
 		Name     string `json:"name"`
-		Email    string `json:"email"`
-		Number   string `json:"number"`
-		Roles    string `json:"roles"`
+		Email    string `json:"email" validate:"email"`
+		Number   string `json:"number" validate:"min=11,max=13"`
+		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
 	}
 
@@ -126,4 +128,44 @@ func (h *UserHandler) DeleteUser(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, map[string]interface{}{
 		"message": "User deleted successfully",
 	})
+}
+
+// Update User Self
+func (h *UserHandler) UpdateUserSelf(ctx echo.Context) error {
+	var input struct {
+		ID       int64  `param:"id" validate:"required"`
+		Name     string `json:"name"`
+		Email    string `json:"email" validate:"email"`
+		Number   string `json:"number" ate:"min=11,max=13"`
+		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
+		Password string `json:"password"`
+	}
+
+	// Mengambil nilai 'claims' dari JWT token
+	claims, ok := ctx.Get("user").(*jwt.Token)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
+	}
+
+	// Mendapatkan nilai 'ID' dari klaim
+	userID, ok := claims.Claims.(jwt.MapClaims)["id"].(float64)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user ID from claims")
+	}
+
+	// Membandingkan ID yang diterima dari input dengan ID dari klaim
+	if int64(userID) != input.ID {
+		return ctx.JSON(http.StatusUnprocessableEntity, "you can't update this user")
+	}
+
+	// Update user
+	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
+
+	// Memanggil service untuk update user
+	err := h.userService.UpdateUser(ctx.Request().Context(), user)
+	if err != nil {
+		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
+	}
+
+	return ctx.JSON(http.StatusOK, map[string]string{"success": "successfully update user"})
 }

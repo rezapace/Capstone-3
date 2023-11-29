@@ -32,13 +32,13 @@ func (h *UserHandler) GetAllUser(ctx echo.Context) error {
 	})
 }
 
-// func untuk melakukan createUser
+// func untuk melakukan createUser update versi reza
 func (h *UserHandler) CreateUser(ctx echo.Context) error {
 	var input struct {
 		Name     string `json:"name" validate:"required"`
 		Email    string `json:"email"`
 		Number   string `json:"number"`
-		Roles    string `json:"roles" validate:"required"`
+		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
 	}
 	//ini func untuk error checking

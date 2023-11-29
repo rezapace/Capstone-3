@@ -43,7 +43,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Date        time.Time `json:"date"`
 		Price       float64   `json:"price"`
 		Quota       int       `json:"quota"`
-		Tersisa	 	int       `json:"tersisa"`
+		Terjual	 	int       `json:"terjual"`
 		Category    string    `json:"category"`
 	}
 
@@ -64,7 +64,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Date:        dateStr, // Assign the formatted date string
 		Price:       int64(input.Price),
 		Quota:       int64(input.Quota),
-		Tersisa:     int64(input.Tersisa),
+		Terjual:     int64(input.Terjual),
 		Category:    input.Category,
 		CreatedAt:   time.Now(),
 	}

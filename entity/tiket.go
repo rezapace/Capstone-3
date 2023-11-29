@@ -15,13 +15,13 @@ type Ticket struct {
 	Status      string `json:"Status"` // e.g., 'available', 'sold out'
 	Quota       int64  `json:"Quota"`
 	Category    string `json:"category"`
-	Tersisa     int64   `json:"Tersisa"` // e.g., 1000, 5000, 10000
+	Terjual     int64   `json:"Terjual"` // e.g., 1000, 5000, 10000
 	CreatedAt time.Time `json:"-"`
 	UpdatedAt time.Time `json:"-"`
 	DeletedAt time.Time `json:"-"`
 }
 
-func NewTicket(image, location, date, title, description, category string, price, quota, tersisa int64) *Ticket {
+func NewTicket(image, location, date, title, description, category string, price, quota, terjual int64) *Ticket {
 	return &Ticket{
 		Image:       image,
 		Location:    location,
@@ -31,11 +31,11 @@ func NewTicket(image, location, date, title, description, category string, price
 		Category:    category,
 		Price:       price,
 		Quota:       quota,
-		Tersisa:     tersisa,
+		Terjual:     terjual,
 	}
 }
 
-func UpdateTicket(id int64, image, location, date, title, description, category string, price, quota, tersisa int64) *Ticket {
+func UpdateTicket(id int64, image, location, date, title, description, category string, price, quota, terjual int64) *Ticket {
 	return &Ticket{
 		ID:          id,
 		Image:       image,
@@ -46,6 +46,6 @@ func UpdateTicket(id int64, image, location, date, title, description, category 
 		Category:    category,
 		Price:       price,
 		Quota:       quota,
-		Tersisa:     tersisa,
+		Terjual:     terjual,
 	}
 }

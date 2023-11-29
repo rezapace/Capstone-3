@@ -152,7 +152,18 @@ func (h *TicketHandler) UpdateTicket(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "Ticket updated successfully",
-		"ticket":  ticket,
+		"data": map[string]interface{}{
+			"id":          ticket.ID,
+			"title":       ticket.Title,
+			"description": ticket.Description,
+			"image":       ticket.Image,
+			"location":    ticket.Location,
+			"date":        ticket.Date,
+			"price":       ticket.Price,
+			"quota":       ticket.Quota,
+			"category":    ticket.Category,
+			"update":      ticket.UpdatedAt,
+		},
 	})
 }
 

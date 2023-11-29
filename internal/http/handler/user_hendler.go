@@ -41,12 +41,13 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 		Number   string `json:"number" validate:"min=11,max=13"`
 		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
+		Saldo    int64  `json:"saldo"`
 	}
 	//ini func untuk error checking
 	if err := ctx.Bind(&input); err != nil {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
-	user := entity.NewUser(input.Name, input.Email, input.Number, input.Roles, input.Password)
+	user := entity.NewUser(input.Name, input.Email, input.Number, input.Roles, input.Password, input.Saldo)
 	err := h.userService.CreateUser(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)

@@ -16,7 +16,7 @@ type Ticket struct {
 	Quota       int64  `json:"-"`
 	Category    string // e.g., 'music', 'sport', 'conference'
 	// Limit       int64     `json:"limit"` // e.g., 1000, 5000, 10000
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"-"`
 	UpdatedAt time.Time `json:"-"`
 	DeletedAt time.Time `json:"-"`
 }
@@ -31,7 +31,6 @@ func NewTicket(image, location, date, title, description, category string, price
 		Category:    category,
 		Price:       price,
 		Quota:       quota,
-		CreatedAt:   time.Now(),
 	}
 }
 
@@ -46,6 +45,5 @@ func UpdateTicket(id int64, image, location, date, title, description, category 
 		Category:    category,
 		Price:       price,
 		Quota:       quota,
-		CreatedAt:   time.Now(),
 	}
 }

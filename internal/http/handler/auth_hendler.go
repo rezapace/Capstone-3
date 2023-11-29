@@ -11,8 +11,8 @@ import (
 
 type AuthHandler struct {
 	registrationService service.RegistrationUseCase // untuk regist
-	loginService service.LoginUseCase //untuk memanggil service yang ngelakuin pengecekan user.
-	tokenService service.TokenUsecase //untuk memanggil func akses token
+	loginService        service.LoginUseCase        //untuk memanggil service yang ngelakuin pengecekan user.
+	tokenService        service.TokenUsecase        //untuk memanggil func akses token
 }
 
 // ini func untuk type AuthHandler
@@ -23,8 +23,8 @@ func NewAuthHandler(
 ) *AuthHandler {
 	return &AuthHandler{
 		registrationService: registartionService,
-		loginService: loginService,
-		tokenService: tokenService,
+		loginService:        loginService,
+		tokenService:        tokenService,
 	}
 }
 
@@ -62,11 +62,10 @@ func (h *AuthHandler) Login(ctx echo.Context) error {
 func (h *AuthHandler) Registration(ctx echo.Context) error {
 	//pengecekan request
 	var input struct {
-		Name        string `json:"name" validate:"required"`
-		Email       string `json:"email" validate:"required,email"`
-		Password    string `json:"password" validate:"required,min=8"`
-		Roles 		string `json:"roles" validate:"required"`
-		Number      string `json:"number" validate:"required,min=11,max=13"`
+		Email    string `json:"email" validate:"required,email"`
+		Password string `json:"password" validate:"required,min=8"`
+		Roles    string `json:"roles" validate:"required"`
+		Number   string `json:"number" validate:"required,min=11,max=13"`
 	}
 
 	if err := ctx.Bind(&input); err != nil { // di cek pake validate buat masukin input
@@ -74,7 +73,7 @@ func (h *AuthHandler) Registration(ctx echo.Context) error {
 	}
 
 	//untuk manggil registration service di folder service
-	user := entity.Register(input.Name, input.Email, input.Password, input.Roles, input.Number)
+	user := entity.Register(input.Email, input.Password, input.Roles, input.Number)
 	err := h.registrationService.Registration(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)

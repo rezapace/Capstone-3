@@ -2,6 +2,8 @@
 test ravita
 By : Golang - Kelompok 3 
 
+# reza
+
 =======
 Dalam proyek capstone ini, tujuan utamanya adalah untuk memberikan pengalaman baru kepada peserta, serta mengimplementasikan Metode Scrum dalam pengembangan produk digital. Proyek ini akan dilakukan dalam bentuk kelompok dan fokus pada pengembangan bagian Back End.
 

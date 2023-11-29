@@ -1,5 +1,4 @@
 BEGIN;
-BEGIN;
 CREATE TABLE IF NOT EXISTS "public"."users" (
     "id" SERIAL NOT NULL PRIMARY KEY,
     "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,

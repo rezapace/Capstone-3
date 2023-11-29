@@ -12,16 +12,17 @@ type TicketUseCase interface {
 	CreateTicket(ctx context.Context, ticket *entity.Ticket) error
 	GetTicket(ctx context.Context, id int64) (*entity.Ticket, error)
 	UpdateTicket(ctx context.Context, ticket *entity.Ticket) error
-	SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error)
 	DeleteTicket(ctx context.Context, id int64) error
+	SearchTicket(ctx context.Context, search string) ([]*entity.Ticket, error)
 	FilterTicket(ctx context.Context, location string) ([]*entity.Ticket, error)
 	FilterTicketByCategory(ctx context.Context, category string) ([]*entity.Ticket, error)
 	FilterTicketByRangeTime(ctx context.Context, start string, end string) ([]*entity.Ticket, error)
 	FilterTicketByPrice(ctx context.Context, min string, max string) ([]*entity.Ticket, error)
-	FilterTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error)
 	SortTicketByNewest(ctx context.Context) ([]*entity.Ticket, error)
-	SortTicketByCheapest(ctx context.Context) ([]*entity.Ticket, error)
 	SortTicketByMostExpensive(ctx context.Context) ([]*entity.Ticket, error)
+	SortTicketByCheapest(ctx context.Context) ([]*entity.Ticket, error)
+	SortTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error)
+
 }
 
 type TicketRepository interface {
@@ -35,10 +36,10 @@ type TicketRepository interface {
 	FilterTicketByCategory(ctx context.Context, category string) ([]*entity.Ticket, error)
 	FilterTicketByRangeTime(ctx context.Context, start string, end string) ([]*entity.Ticket, error)
 	FilterTicketByPrice(ctx context.Context, min string, max string) ([]*entity.Ticket, error)
-	FilterTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error)
 	SortTicketByNewest(ctx context.Context) ([]*entity.Ticket, error)
-	SortTicketByCheapest(ctx context.Context) ([]*entity.Ticket, error)
 	SortTicketByMostExpensive(ctx context.Context) ([]*entity.Ticket, error)
+	SortTicketByCheapest(ctx context.Context) ([]*entity.Ticket, error)
+	SortTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error)
 }
 
 // TicketService is responsible for ticket-related business logic.
@@ -96,14 +97,14 @@ func (s *TicketService) FilterTicketByPrice(ctx context.Context, min string, max
 	return s.Repository.FilterTicketByPrice(ctx, min, max)
 }
 
-// filter ticket by most bought
-func (s *TicketService) FilterTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error) {
-	return s.Repository.FilterTicketByMostBought(ctx)
-}
-
 // sortir tiket dari yang terbaru
 func (s *TicketService) SortTicketByNewest(ctx context.Context) ([]*entity.Ticket, error) {
 	return s.Repository.SortTicketByNewest(ctx)
+}
+
+// sortir dari yang termahal
+func (s *TicketService) SortTicketByMostExpensive(ctx context.Context) ([]*entity.Ticket, error) {
+	return s.Repository.SortTicketByMostExpensive(ctx)
 }
 
 // sortir tiket dari yang termurah
@@ -111,7 +112,7 @@ func (s *TicketService) SortTicketByCheapest(ctx context.Context) ([]*entity.Tic
 	return s.Repository.SortTicketByCheapest(ctx)
 }
 
-// sortir dari yang termahal
-func (s *TicketService) SortTicketByMostExpensive(ctx context.Context) ([]*entity.Ticket, error) {
-	return s.Repository.SortTicketByMostExpensive(ctx)
+// filter ticket by most bought
+func (s *TicketService) SortTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error) {
+	return s.Repository.SortTicketByMostBought(ctx)
 }

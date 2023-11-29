@@ -43,6 +43,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Date        time.Time `json:"date"`
 		Price       float64   `json:"price"`
 		Quota       int       `json:"quota"`
+		Tersisa	 	int       `json:"tersisa"`
 		Category    string    `json:"category"`
 	}
 
@@ -63,6 +64,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Date:        dateStr, // Assign the formatted date string
 		Price:       int64(input.Price),
 		Quota:       int64(input.Quota),
+		Tersisa:     int64(input.Tersisa),
 		Category:    input.Category,
 		CreatedAt:   time.Now(),
 	}
@@ -289,63 +291,7 @@ func (h *TicketHandler) FilterTicketByPrice(c echo.Context) error {
 	})
 }
 
-// filter ticket dari yang paling banyak dibeli
-// INI MASIH ERORR PAS RUN TEST POSTMANT!!!!!!!!!!!!
-func (h *TicketHandler) FilterTicketByMostBought(c echo.Context) error {
-	// var input struct {
-	// 	Limit int64 `param:"limit" validate:"required"`
-	// }
-
-	// Membaca parameter 'sort' dari URL
-	sortParam := c.QueryParam("sort")
-
-	// Memastikan bahwa parameter sort adalah 'terbaru'
-	if sortParam != "terfavorit" {
-		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid sort parameter"})
-	}
-
-	// if err := c.Bind(&input); err != nil {
-	// 	return c.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
-	// }
-
-	// Memanggil service untuk mengurutkan tiket
-	tickets, err := h.ticketService.SortTicketByNewest(c.Request().Context())
-	if err != nil {
-		return c.JSON(http.StatusUnprocessableEntity, err)
-	}
-
-	var ticketResponses []map[string]interface{}
-	for _, ticket := range tickets {
-		ticketResponses = append(ticketResponses, map[string]interface{}{
-			"id":          ticket.ID,
-			"title":       ticket.Title,
-			"description": ticket.Description,
-			"image":       ticket.Image,
-			"location":    ticket.Location,
-			"date":        ticket.Date,
-			"price":       ticket.Price,
-			"quota":       ticket.Quota,
-			"category":    ticket.Category,
-			"created":     ticket.CreatedAt,
-		})
-	}
-
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"data": ticketResponses,
-	})
-}
-
-// 	tickets, err := h.ticketService.FilterTicketByMostBought(c.Request().Context(), input.Limit)
-// 	if err != nil {
-// 		return c.JSON(http.StatusUnprocessableEntity, err)
-// 	}
-
-// 	return c.JSON(http.StatusOK, map[string]interface{}{
-// 		"data": tickets,
-// 	})
-
 // sortir tiket dari yang terbaru
-// INI MASIH ERORR PAS RUN TEST POSTMANT!!!!!!!!!!!!
 func (h *TicketHandler) SortTicketByNewest(c echo.Context) error {
 	// Membaca parameter 'sort' dari URL
 	sortParam := c.QueryParam("sort")
@@ -357,28 +303,6 @@ func (h *TicketHandler) SortTicketByNewest(c echo.Context) error {
 
 	// Memanggil service untuk mengurutkan tiket
 	tickets, err := h.ticketService.SortTicketByNewest(c.Request().Context())
-	if err != nil {
-		return c.JSON(http.StatusUnprocessableEntity, err)
-	}
-
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"data": tickets,
-	})
-}
-
-// sortir tiket dari yang termurah
-// ERROR DI LOGIKA NYA KAYA NYA.
-func (h *TicketHandler) SortTicketByCheapest(c echo.Context) error {
-	// Membaca parameter 'sort' dari URL
-	sortParam := c.QueryParam("sort")
-
-	// Memastikan bahwa parameter sort adalah 'termurah'
-	if sortParam != "termurah" {
-		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid sort parameter"})
-	}
-
-	// Memanggil service untuk mengurutkan tiket dari yang termurah
-	tickets, err := h.ticketService.SortTicketByCheapest(c.Request().Context())
 	if err != nil {
 		return c.JSON(http.StatusUnprocessableEntity, err)
 	}
@@ -400,6 +324,46 @@ func (h *TicketHandler) SortTicketByMostExpensive(c echo.Context) error {
 
 	// Memanggil service untuk mengurutkan tiket dari yang termurah
 	tickets, err := h.ticketService.SortTicketByMostExpensive(c.Request().Context())
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tickets,
+	})
+}
+
+// ticket yang paling banyak dibeli
+func (h *TicketHandler) SortTicketByCheapest(c echo.Context) error {
+	sortParam := c.QueryParam("sort")
+
+	// Memastikan bahwa parameter sort adalah 'termurah'
+	if sortParam != "termurah" {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid sort parameter"})
+	}
+
+	// Memanggil service untuk mengurutkan tiket dari yang termurah
+	tickets, err := h.ticketService.SortTicketByCheapest(c.Request().Context())
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tickets,
+	})
+}
+
+// ticket yang paling banyak dibeli
+func (h *TicketHandler) SortTicketByMostBought(c echo.Context) error {
+	sortParam := c.QueryParam("sort")
+
+	// Memastikan bahwa parameter sort adalah 'terbanyak'
+	if sortParam != "terbanyak" {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid sort parameter"})
+	}
+
+	// Memanggil service untuk mengurutkan tiket dari yang terbanyak
+	tickets, err := h.ticketService.SortTicketByMostBought(c.Request().Context())
 	if err != nil {
 		return c.JSON(http.StatusUnprocessableEntity, err)
 	}

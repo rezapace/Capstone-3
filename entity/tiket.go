@@ -15,13 +15,13 @@ type Ticket struct {
 	Status      string `json:"-"` // e.g., 'available', 'sold out'
 	Quota       int64  `json:"-"`
 	Category    string // e.g., 'music', 'sport', 'conference'
-	// Limit       int64     `json:"limit"` // e.g., 1000, 5000, 10000
+	Tersisa     int64   `json:"-"` // e.g., 1000, 5000, 10000
 	CreatedAt time.Time `json:"-"`
 	UpdatedAt time.Time `json:"-"`
 	DeletedAt time.Time `json:"-"`
 }
 
-func NewTicket(image, location, date, title, description, category string, price, quota int64) *Ticket {
+func NewTicket(image, location, date, title, description, category string, price, quota, tersisa int64) *Ticket {
 	return &Ticket{
 		Image:       image,
 		Location:    location,
@@ -31,6 +31,7 @@ func NewTicket(image, location, date, title, description, category string, price
 		Category:    category,
 		Price:       price,
 		Quota:       quota,
+		Tersisa:     tersisa,
 	}
 }
 

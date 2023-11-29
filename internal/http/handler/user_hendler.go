@@ -38,7 +38,7 @@ func (h *UserHandler) CreateUser(ctx echo.Context) error {
 		Name     string `json:"name" validate:"required"`
 		Email    string `json:"email"`
 		Number   string `json:"number"`
-		Roles    string `json:"roles"`
+		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
 	}
 	//ini func untuk error checking

@@ -42,8 +42,9 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Location    string    `json:"location"`
 		Date        time.Time `json:"date"`
 		Price       float64   `json:"price"`
+		Status      string    `json:"status"`
 		Quota       int       `json:"quota"`
-		Tersisa	 	int       `json:"tersisa"`
+		Tersisa     int       `json:"tersisa"`
 		Category    string    `json:"category"`
 	}
 
@@ -63,6 +64,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Location:    input.Location,
 		Date:        dateStr, // Assign the formatted date string
 		Price:       int64(input.Price),
+		Status:      input.Status,
 		Quota:       int64(input.Quota),
 		Tersisa:     int64(input.Tersisa),
 		Category:    input.Category,
@@ -123,6 +125,7 @@ func (h *TicketHandler) UpdateTicket(c echo.Context) error {
 		Location    string    `json:"location"`
 		Date        time.Time `json:"date"`
 		Price       float64   `json:"price"`
+		Status      string    `json:"status"`
 		Quota       int       `json:"quota"`
 		Category    string    `json:"category"`
 	}
@@ -143,6 +146,7 @@ func (h *TicketHandler) UpdateTicket(c echo.Context) error {
 		Location:    input.Location,
 		Date:        dateStr,            // Assign the formatted date string
 		Price:       int64(input.Price), // Convert Price to int64 if needed
+		Status:      input.Status,
 		Quota:       int64(input.Quota), // Convert Quota to int64 if needed
 		Category:    input.Category,
 	}
@@ -333,7 +337,7 @@ func (h *TicketHandler) SortTicketByMostExpensive(c echo.Context) error {
 	})
 }
 
-// ticket yang paling banyak dibeli
+// ticket yang paling murah
 func (h *TicketHandler) SortTicketByCheapest(c echo.Context) error {
 	sortParam := c.QueryParam("sort")
 

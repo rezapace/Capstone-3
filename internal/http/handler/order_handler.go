@@ -36,7 +36,7 @@ func (h *OrderHandler) CreateOrder(ctx echo.Context) error {
 
 	return ctx.JSON(http.StatusOK, map[string]interface{}{
 		"message": "User updated successfully",
-		"OrderAt": order.OrderAt, //buat munculin si updateAt nya
+		"OrderAt": order.OrderAt,
 	})
 }
 

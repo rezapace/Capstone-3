@@ -34,8 +34,11 @@ func (h *OrderHandler) CreateOrder(ctx echo.Context) error {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
 	}
 
-	return ctx.JSON(http.StatusCreated, "Order created successfully")
-
+	return ctx.JSON(http.StatusOK, map[string]interface{}{
+		"message": "User updated successfully",
+		"Order":   order,
+		"OrderAt": order.OrderAt, //buat munculin si updateAt nya
+	})
 }
 
 // Get All Order
@@ -93,4 +96,3 @@ func (h *OrderHandler) GetOrderByUserID(ctx echo.Context) error {
 		"order_details": orderDetails,
 	})
 }
-

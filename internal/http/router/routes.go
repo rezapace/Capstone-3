@@ -44,7 +44,7 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini tdk perlu login krna public
-func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler, BlogHandler *handler.BlogHandler, OrderHandler *handler.OrderHandler) []*Route {
+func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler, BlogHandler *handler.BlogHandler, OrderHandler *handler.OrderHandler , NotificationHandler *handler.NotificationHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
@@ -260,6 +260,22 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.GET,
 			Path:    "/ticket/available",
 			Handler: TicketHandler.SortTicketByAvailable,
+			Role:    allRoles,
+		},
+
+		// create notification
+		{
+			Method:  echo.POST,
+			Path:    "/notification",
+			Handler: NotificationHandler.CreateNotification,
+			Role:    allRoles,
+		},
+
+		// get all notification
+		{
+			Method:  echo.GET,
+			Path:    "/notification",
+			Handler: NotificationHandler.GetAllNotification,
 			Role:    allRoles,
 		},
 	}

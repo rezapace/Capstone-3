@@ -108,6 +108,8 @@ func (h *TicketHandler) GetTicket(c echo.Context) error {
 			"location":    ticket.Location,
 			"date":        ticket.Date,
 			"price":       ticket.Price,
+			"tersisa":     ticket.Tersisa,
+			"status":      ticket.Status,
 			"quota":       ticket.Quota,
 			"category":    ticket.Category,
 			"created":     ticket.CreatedAt,

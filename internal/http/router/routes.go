@@ -44,7 +44,13 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini tdk perlu login krna public
-func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler, BlogHandler *handler.BlogHandler, OrderHandler *handler.OrderHandler , NotificationHandler *handler.NotificationHandler) []*Route {
+func PrivateRoutes(
+	UserHandler *handler.UserHandler, 
+	TicketHandler *handler.TicketHandler, 
+	BlogHandler *handler.BlogHandler, 
+	OrderHandler *handler.OrderHandler, 
+	NotificationHandler *handler.NotificationHandler, 
+	TopupHandler *handler.TopupHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
@@ -276,6 +282,14 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.GET,
 			Path:    "/notification",
 			Handler: NotificationHandler.GetAllNotification,
+			Role:    allRoles,
+		},
+
+		// topup
+		{
+			Method:  echo.POST,
+			Path:    "/topup",
+			Handler: TopupHandler.CreateTopup,
 			Role:    allRoles,
 		},
 	}

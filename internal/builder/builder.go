@@ -46,6 +46,10 @@ func BuildPrivateRoutes(cfg *config.Config, db *gorm.DB) []*router.Route {
 	NotificationService := service.NewNotificationService(NotificationRepository)
 	NotificationHandler := handler.NewNotificationHandler(NotificationService)
 
+	TopupRepository := repository.NewTopupRepository(db)
+	TopupService := service.NewTopupService(TopupRepository)
+	TopupHandler := handler.NewTopupHandler(TopupService)
+
 	// Menggunakan PrivateRoutes dengan kedua handler
-	return router.PrivateRoutes(userHandler, ticketHandler, BlogHandler, OrderHandler, NotificationHandler)
+	return router.PrivateRoutes(userHandler, ticketHandler, BlogHandler, OrderHandler, NotificationHandler, TopupHandler)
 }

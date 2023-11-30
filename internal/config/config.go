@@ -52,3 +52,16 @@ func parseConfig(envPath string) (*Config, error) {
 	}
 	return cfg, nil
 }
+
+var MidtransConfig struct {
+	ClientKey    string
+	ServerKey    string
+	IsProduction bool
+}
+
+func init() {
+	// Isi konfigurasi Midtrans Anda di sini
+	MidtransConfig.ClientKey = "your_midtrans_client_key"
+	MidtransConfig.ServerKey = "your_midtrans_server_key"
+	MidtransConfig.IsProduction = false // Ganti menjadi true jika sudah di production
+}

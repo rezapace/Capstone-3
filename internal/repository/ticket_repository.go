@@ -106,7 +106,7 @@ func (r *TicketRepository) FilterTicketByCategory(ctx context.Context, category 
 // filter ticket by range time (start - end)
 func (r *TicketRepository) FilterTicketByRangeTime(ctx context.Context, start string, end string) ([]*entity.Ticket, error) {
 	tickets := make([]*entity.Ticket, 0)
-	result := r.db.WithContext(ctx).Where("start_time >= ? AND end_time <= ?", start, end).Find(&tickets)
+	result := r.db.WithContext(ctx).Where("Date >= ? AND Date <= ?", start, end).Find(&tickets)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -156,7 +156,7 @@ func (r *TicketRepository) SortTicketByCheapest(ctx context.Context) ([]*entity.
 // filter ticket dari yang paling banyak dibeli
 func (r *TicketRepository) SortTicketByMostBought(ctx context.Context) ([]*entity.Ticket, error) {
 	tickets := make([]*entity.Ticket, 0)
-	result := r.db.WithContext(ctx).Order("Tersisa DESC").Find(&tickets)
+	result := r.db.WithContext(ctx).Order("Terjual DESC").Find(&tickets)
 	if result.Error != nil {
 		return nil, result.Error
 	}

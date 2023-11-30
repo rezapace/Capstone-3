@@ -50,7 +50,7 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.POST,
 			Path:    "/users",
 			Handler: UserHandler.CreateUser,
-			Role:    onlyBuyer,
+			Role:    allRoles,
 		},
 
 		{
@@ -99,6 +99,13 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Path:    "/ticket",
 			Handler: TicketHandler.GetAllTickets,
 			Role:    allRoles,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/ticket",
+			Handler: TicketHandler.GetAllTickets,
+			Role:    onlyBuyer,
 		},
 
 		{

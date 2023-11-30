@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "843c34b5-2096-432b-ae60-e404f602be20",
+		"_postman_id": "e1c6a240-018f-499f-afd5-33936e8e924d",
 		"name": "Tiketing",
 		"description": "Projek Capstone Golang Mikti Ticketing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26142588"
+		"_exporter_id": "26142588",
+		"_collection_link": "https://ticketing-mikti.postman.co/workspace/Ticketing-Workspace~1c7b0ec0-f35f-4273-b1d6-67507ad4c237/collection/26142588-e1c6a240-018f-499f-afd5-33936e8e924d?action=share&source=collection_link&creator=26142588"
 	},
 	"item": [
 		{
@@ -25,15 +26,37 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/register",
-							"protocol": "http",
+							"raw": "{{url}}/register",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Buyer\",\r\n    \"email\" : \"Buyer@gmail.com\",\r\n    \"roles\" : \"Buyer\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
 								"register"
 							]
 						}
@@ -83,7 +106,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJBZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJleHAiOjE3MDExOTExMTZ9.a-tEEG2VV0rEbRCblc-V2xsu6N6EQIU7YVQ81kGWTZY",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -92,7 +115,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"rr1\",\r\n    \"email\" : \"reza1@gmail.com\",\r\n    \"number\": \"896232123123123\",\r\n    \"roles\" : \"admin\",\r\n    \"password\" : \"123123123123\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"rr1\",\r\n    \"email\" : \"reza1@gmail.com\",\r\n    \"number\": \"1231231231231\",\r\n    \"roles\" : \"Admin\",\r\n    \"password\" : \"123123123123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -100,15 +123,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"users"
 							]
 						}
@@ -123,7 +142,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJBZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJleHAiOjE3MDExOTExMTZ9.a-tEEG2VV0rEbRCblc-V2xsu6N6EQIU7YVQ81kGWTZY",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -131,15 +150,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"users"
 							]
 						}
@@ -154,7 +169,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJBZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJleHAiOjE3MDExOTExMTZ9.a-tEEG2VV0rEbRCblc-V2xsu6N6EQIU7YVQ81kGWTZY",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -163,7 +178,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"rezaupdate\",\r\n    \"email\" : \"reza@gmail.com\",\r\n    \"number\" : \"1234\",\r\n    \"roles\" : \"admin\",\r\n    \"password\" : \"123123123123\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"rezaupdate\",\r\n    \"email\" : \"reza@gmail.com\",\r\n    \"number\" : \"123123123123\",\r\n    \"roles\" : \"Admin\",\r\n    \"password\" : \"123123123123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -171,15 +186,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/1",
-							"protocol": "http",
+							"raw": "{{url}}/users/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"users",
 								"1"
 							]
@@ -195,7 +206,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoicmV6YTEyMjNAZ21haWwuY29tIiwiZXhwIjoxNzAxMDEyMzQ1fQ.JjGXZDnuJg4-TRyRg3C5RcF7nbgLIwVaAY6Pt1e7kKc",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -203,15 +214,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/users/1",
-							"protocol": "http",
+							"raw": "{{url}}/users/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"users",
 								"1"
 							]
@@ -227,7 +234,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoicmV6YTEyMjNAZ21haWwuY29tIiwiZXhwIjoxNzAxMDEyMzQ1fQ.JjGXZDnuJg4-TRyRg3C5RcF7nbgLIwVaAY6Pt1e7kKc",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -264,7 +271,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTEyMTY4N30.Km19OZ4MOqKcPeZlxus_wOwKNFL9HpjFvHCqyjZIWB8",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -273,7 +280,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"coldplay\",\r\n    \"description\": \"penyanyi luar negri\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"GBK\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"price\": 50.0,\r\n    \"quota\": 100\r\n}\r\n",
+							"raw": "{\r\n    \"title\": \"coldplay3\",\r\n    \"description\": \"penyanyi luar negri\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"GBK\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"price\": 50.0,\r\n    \"quota\": 100,\r\n    \"terjual\": 5,\r\n    \"status\": \"available\",\r\n    \"category\": \"music\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -281,15 +288,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket",
-							"protocol": "http",
+							"raw": "{{url}}/ticket",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket"
 							]
 						}
@@ -304,7 +307,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTEyMTY4N30.Km19OZ4MOqKcPeZlxus_wOwKNFL9HpjFvHCqyjZIWB8",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -312,15 +315,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket",
-							"protocol": "http",
+							"raw": "{{url}}/ticket",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket"
 							]
 						}
@@ -335,7 +334,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzMTE3MX0.FHzvHoceGp3aKeCbdvHe0eINjFibaHOkyfs_t-Is6Hw",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -343,15 +342,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/1",
-							"protocol": "http",
+							"raw": "{{url}}/ticket/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket",
 								"1"
 							]
@@ -367,7 +362,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzMTU2MX0.thSxHgn3UZVzOjERCK12UXVBqzgPHyYZP5WCUVYrkrg",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -376,7 +371,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"Lokasi Acara\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"price\": 50.0,\r\n    \"quota\": 200\r\n}",
+							"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"Lokasi Acara\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"category\": \"music\",\r\n    \"price\": 50.0,\r\n    \"quota\": 200\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -384,15 +379,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/1",
-							"protocol": "http",
+							"raw": "{{url}}/ticket/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket",
 								"1"
 							]
@@ -408,7 +399,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzMTU2MX0.thSxHgn3UZVzOjERCK12UXVBqzgPHyYZP5WCUVYrkrg",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -416,15 +407,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/1",
-							"protocol": "http",
+							"raw": "{{url}}/ticket/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket",
 								"1"
 							]
@@ -440,7 +427,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzMzUwMn0.W8rTSfdRYgxivpskkme-5hZuEgEnhbPR_Tp4atjVKLU",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -448,15 +435,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/search/cold",
-							"protocol": "http",
+							"raw": "{{url}}/ticket/search/cold",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket",
 								"search",
 								"cold"
@@ -473,7 +456,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTE1NTA2OX0.pThwtF2i9GAGbwd-k35HWoOyCgdbZahe-ifUxdJjuGs",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -481,15 +464,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/location/GBK",
-							"protocol": "http",
+							"raw": "{{url}}/ticket/location/GBK",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket",
 								"location",
 								"GBK"
@@ -506,7 +485,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTE1NTA2OX0.pThwtF2i9GAGbwd-k35HWoOyCgdbZahe-ifUxdJjuGs",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -514,24 +493,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/category/:category",
-							"protocol": "http",
+							"raw": "{{url}}/ticket/category/music",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket",
 								"category",
-								":category"
-							],
-							"variable": [
-								{
-									"key": "category",
-									"value": ""
-								}
+								"music"
 							]
 						}
 					},
@@ -545,7 +514,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTE1NTA2OX0.pThwtF2i9GAGbwd-k35HWoOyCgdbZahe-ifUxdJjuGs",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -553,15 +522,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/range/:start/:end",
-							"protocol": "http",
+							"raw": "{{url}}/ticket/range/:start/:end",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket",
 								"range",
 								":start",
@@ -589,7 +554,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTE1NTA2OX0.pThwtF2i9GAGbwd-k35HWoOyCgdbZahe-ifUxdJjuGs",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -597,15 +562,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/price/:min/:max",
-							"protocol": "http",
+							"raw": "{{url}}/ticket/price/:min/:max",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"ticket",
 								"price",
 								":min",
@@ -614,11 +575,181 @@
 							"variable": [
 								{
 									"key": "min",
-									"value": ""
+									"value": "0"
 								},
 								{
 									"key": "max",
-									"value": ""
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sort By Termurah",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/cheapest?sort=termurah",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"cheapest"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "termurah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sort By Terlaris",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/most-bought?sort=terbanyak",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"most-bought"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "terbanyak"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sort By Termahal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/most-expensive?sort=termahal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"most-expensive"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "termahal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sort By Terbaru",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/terbaru?sort=terbaru",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"terbaru"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "terbaru"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sort By tersedia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/available?sort=tersedia",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"available"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "tersedia"
 								}
 							]
 						}
@@ -638,7 +769,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNjU5M30.17LzDHFBUFuVxokdnBAe7o1S5_hIdPp8-N1z_Di6TQQ",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -655,15 +786,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/blog",
-							"protocol": "http",
+							"raw": "{{url}}/blog",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"blog"
 							]
 						}
@@ -678,7 +805,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -686,15 +813,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/blog",
-							"protocol": "http",
+							"raw": "{{url}}/blog",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"blog"
 							]
 						}
@@ -709,7 +832,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -717,15 +840,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/blog/1",
-							"protocol": "http",
+							"raw": "{{url}}/blog/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"blog",
 								"1"
 							]
@@ -741,7 +860,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -758,16 +877,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ticket/1",
-							"protocol": "http",
+							"raw": "{{url}}/blog/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
-								"ticket",
+								"blog",
 								"1"
 							]
 						}
@@ -782,7 +897,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -790,18 +905,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/blog/search/Nama ",
-							"protocol": "http",
+							"raw": "{{url}}/blog/search/Nama",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"blog",
 								"search",
-								"Nama "
+								"Nama"
 							]
 						}
 					},
@@ -815,7 +926,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTAzNzA3MH0.UgexFf5RU5v1153PBozAyeO5tbrg7uD1ryzF8Odk2Ms",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -823,15 +934,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/blog/1",
-							"protocol": "http",
+							"raw": "{{url}}/blog/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"blog",
 								"1"
 							]
@@ -852,7 +959,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTEyMTY4N30.Km19OZ4MOqKcPeZlxus_wOwKNFL9HpjFvHCqyjZIWB8",
+									"value": "{{token1}}",
 									"type": "string"
 								}
 							]
@@ -861,7 +968,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 1\r\n}",
+							"raw": "{\r\n  \"ticket_id\": 2,\r\n  \"quantity\": 2,\r\n  \"user_id\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -869,15 +976,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/order",
-							"protocol": "http",
+							"raw": "{{url}}/order",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"order"
 							]
 						}
@@ -892,7 +995,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InJlemFhYTFhYSIsImVtYWlsIjoicmV6YTEyMjNhQGdtYWlsLmNvbSIsImV4cCI6MTcwMTEyMTY4N30.Km19OZ4MOqKcPeZlxus_wOwKNFL9HpjFvHCqyjZIWB8",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -900,15 +1003,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/order",
-							"protocol": "http",
+							"raw": "{{url}}/order",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"order"
 							]
 						}
@@ -918,26 +1017,26 @@
 				{
 					"name": "Get Order By User_ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/order/:id",
-							"protocol": "http",
+							"raw": "{{url}}/order/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"order",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
+								"1"
 							]
 						}
 					},
@@ -948,6 +1047,41 @@
 		{
 			"name": "TOPUP SALDO",
 			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl1",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IiIsImVtYWlsIjoiQWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxMzAzNDExfQ.rhV8vxaJqpzK0E1MwaXAHQxN2_qMIkIZxT5o6D0MYh0",
+			"disabled": true
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IiIsImVtYWlsIjoiQWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxMzAzNzM5fQ.YZUJ5I9OqsBXPk4yUiQlkT6bDO5OZNfOiLXcvESY9do"
+		},
+		{
+			"key": "token1",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IiIsImVtYWlsIjoiQnV5ZXJAZ21haWwuY29tIiwicm9sZSI6IkJ1eWVyIiwiZXhwIjoxNzAxMzA0ODI5fQ.spGCwbgqvr5r5Q9La9SbBMStsCMd7qfXV9GBL0xVxf8"
 		}
 	]
 }

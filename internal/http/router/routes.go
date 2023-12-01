@@ -27,7 +27,10 @@ type Route struct {
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini perlu login krna private
-func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
+func PublicRoutes(
+	authHandler *handler.AuthHandler, 
+	TicketHandler *handler.TicketHandler, 
+	BlogHandler *handler.BlogHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
@@ -38,6 +41,85 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 			Method:  echo.POST,
 			Path:    "/register",
 			Handler: authHandler.Registration,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/public/blog",
+			Handler: BlogHandler.GetAllBlogs,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/public/ticket",
+			Handler: TicketHandler.GetAllTickets,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/blog",
+			Handler: BlogHandler.GetAllBlogs,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/blog/:id",
+			Handler: BlogHandler.GetBlog,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/blog/search/:search",
+			Handler: BlogHandler.SearchBlog,
+		},
+		//filter ticket by location
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/location/:location",
+			Handler: TicketHandler.FilterTicket,
+		},
+		// filter ticket by category
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/category/:category",
+			Handler: TicketHandler.FilterTicketByCategory,
+		},
+		// filter ticket by range time (start - end)
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/range/:start/:end",
+			Handler: TicketHandler.FilterTicketByRangeTime,
+		},
+		// filter ticket by price (min - max)
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/price/:min/:max",
+			Handler: TicketHandler.FilterTicketByPrice,
+		},
+		//sortir tiket dari yang terbaru
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/terbaru",
+			Handler: TicketHandler.SortTicketByNewest,
+		},
+		//sortir tiket dari yang termahal
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/most-expensive",
+			Handler: TicketHandler.SortTicketByMostExpensive,
+		},
+		//sortir tiket dari yang termurah
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/cheapest",
+			Handler: TicketHandler.SortTicketByCheapest,
+		},
+		// filter ticket by most bought
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/most-bought",
+			Handler: TicketHandler.SortTicketByMostBought,
+		},
+		// ticket yang masih tersedia
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/available",
+			Handler: TicketHandler.SortTicketByAvailable,
 		},
 	}
 }
@@ -102,9 +184,9 @@ func PrivateRoutes(
 
 		{
 			Method:  echo.GET,
-			Path:    "/ticket",
+			Path:    "/ticketa",
 			Handler: TicketHandler.GetAllTickets,
-			Role:    allRoles,
+			Role:    onlyAdmin,
 		},
 
 		{
@@ -150,13 +232,6 @@ func PrivateRoutes(
 		},
 
 		{
-			Method:  echo.GET,
-			Path:    "/blog",
-			Handler: BlogHandler.GetAllBlogs,
-			Role:    allRoles,
-		},
-
-		{
 			Method:  echo.PUT,
 			Path:    "/blog/:id",
 			Handler: BlogHandler.UpdateBlog,
@@ -164,24 +239,10 @@ func PrivateRoutes(
 		},
 
 		{
-			Method:  echo.GET,
-			Path:    "/blog/:id",
-			Handler: BlogHandler.GetBlog,
-			Role:    allRoles,
-		},
-
-		{
 			Method:  echo.DELETE,
 			Path:    "/blog/:id",
 			Handler: BlogHandler.DeleteBlog,
 			Role:    onlyAdmin,
-		},
-
-		{
-			Method:  echo.GET,
-			Path:    "/blog/search/:search",
-			Handler: BlogHandler.SearchBlog,
-			Role:    allRoles,
 		},
 
 		{
@@ -195,77 +256,13 @@ func PrivateRoutes(
 			Method:  echo.GET,
 			Path:    "/order",
 			Handler: OrderHandler.GetAllOrders,
-			Role:    allRoles,
+			Role:    onlyAdmin,
 		},
 
 		{
 			Method:  echo.GET,
 			Path:    "/order/:id",
 			Handler: OrderHandler.GetOrderByUserID,
-			Role:    allRoles,
-		},
-
-		//filter ticket by location
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/location/:location",
-			Handler: TicketHandler.FilterTicket,
-			Role:    allRoles,
-		},
-		// filter ticket by category
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/category/:category",
-			Handler: TicketHandler.FilterTicketByCategory,
-			Role:    allRoles,
-		},
-		// filter ticket by range time (start - end)
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/range/:start/:end",
-			Handler: TicketHandler.FilterTicketByRangeTime,
-			Role:    allRoles,
-		},
-		// filter ticket by price (min - max)
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/price/:min/:max",
-			Handler: TicketHandler.FilterTicketByPrice,
-			Role:    allRoles,
-		},
-		//sortir tiket dari yang terbaru
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/terbaru",
-			Handler: TicketHandler.SortTicketByNewest,
-			Role:    allRoles,
-		},
-		//sortir tiket dari yang termahal
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/most-expensive",
-			Handler: TicketHandler.SortTicketByMostExpensive,
-			Role:    allRoles,
-		},
-		//sortir tiket dari yang termurah
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/cheapest",
-			Handler: TicketHandler.SortTicketByCheapest,
-			Role:    allRoles,
-		},
-		// filter ticket by most bought
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/most-bought",
-			Handler: TicketHandler.SortTicketByMostBought,
-			Role:    allRoles,
-		},
-		// ticket yang masih tersedia
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/available",
-			Handler: TicketHandler.SortTicketByAvailable,
 			Role:    allRoles,
 		},
 

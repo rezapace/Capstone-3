@@ -21,7 +21,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -30,7 +30,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\" : \"rr1\",\r\n    \"email\" : \"reza1@gmail.com\",\r\n    \"number\": \"1231231231231\",\r\n    \"roles\" : \"Admin\",\r\n    \"password\" : \"123123123123\"\r\n}",
+									"raw": "{\r\n    \"name\" : \"Reza\",\r\n    \"email\" : \"RezaHidayat@Gmail.com\",\r\n    \"number\": \"082210811378\",\r\n    \"roles\" : \"Admin\",\r\n    \"password\" : \"Djarum76\",\r\n    \"saldo\": 1000\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -38,16 +38,65 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/users",
+									"raw": "{{URL}}/users",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"users"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\" : \"Reza\",\r\n    \"email\" : \"RezaHidayat@Gmail.com\",\r\n    \"number\": \"082210811378\",\r\n    \"roles\" : \"Admin\",\r\n    \"password\" : \"Djarum76\",\r\n    \"saldo\": 1000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 22:51:08 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "28"
+										}
+									],
+									"cookie": [],
+									"body": "\"User created successfully\""
+								}
+							]
 						},
 						{
 							"name": "Get All User",
@@ -57,7 +106,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -65,16 +114,56 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/users",
+									"raw": "{{URL}}/users",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"users"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/users",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 22:51:40 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "980"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"\",\n            \"email\": \"Admin@gmail.com\",\n            \"number\": \"00000000000\",\n            \"roles\": \"Admin\",\n            \"saldo\": 0,\n            \"created_at\": \"2023-12-01T23:38:43.332476+07:00\",\n            \"updated_at\": \"2023-12-01T23:38:43.332476+07:00\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"\",\n            \"email\": \"Admin@gmail.com\",\n            \"number\": \"00000000000\",\n            \"roles\": \"Admin\",\n            \"saldo\": 9999800,\n            \"created_at\": \"2023-12-01T22:19:22.698594+07:00\",\n            \"updated_at\": \"2023-12-01T23:40:34.288419+07:00\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"\",\n            \"email\": \"Admin@gmail.com\",\n            \"number\": \"00000000000\",\n            \"roles\": \"Admin\",\n            \"saldo\": 0,\n            \"created_at\": \"2023-12-02T04:00:08.15209+07:00\",\n            \"updated_at\": \"2023-12-02T04:00:08.15209+07:00\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"\",\n            \"email\": \"Buyer@gmail.com\",\n            \"number\": \"00000000000\",\n            \"roles\": \"Buyer\",\n            \"saldo\": 0,\n            \"created_at\": \"2023-12-02T04:00:49.67267+07:00\",\n            \"updated_at\": \"2023-12-02T04:00:49.67267+07:00\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Reza\",\n            \"email\": \"RezaHidayat@Gmail.com\",\n            \"number\": \"082210811378\",\n            \"roles\": \"Djarum76\",\n            \"saldo\": 1000,\n            \"created_at\": \"2023-12-02T05:51:08.376309+07:00\",\n            \"updated_at\": \"2023-12-02T05:51:08.390398+07:00\"\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Get User By ID",
@@ -84,7 +173,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -92,9 +181,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/users/1",
+									"raw": "{{URL}}/users/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"users",
@@ -102,7 +191,48 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/users/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 22:52:21 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "241"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"created\": \"2023-12-01T22:19:22.698594+07:00\",\n        \"email\": \"Admin@gmail.com\",\n        \"id\": 1,\n        \"name\": \"\",\n        \"number\": \"00000000000\",\n        \"password\": \"$2a$10$c8VMh9ruzUM.rEr5PJk1GOY75G0OXXtOo2VkLIfHgiM6FDLb96JEO\",\n        \"updated\": \"2023-12-01T23:40:34.288419+07:00\"\n    }\n}"
+								}
+							]
 						},
 						{
 							"name": "Edit User",
@@ -112,7 +242,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -121,7 +251,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n            \"name\": \"ravita\",\r\n            \"email\": \"Admin@gmail.com\",\r\n            \"number\": \"00000000000\",\r\n            \"roles\": \"Admin\",\r\n            \"saldo\": 11111111110\r\n}",
+									"raw": "{\r\n    \"name\": \"Ravita\",\r\n    \"email\": \"Ravita@gmail.com\",\r\n    \"number\": \"082210811377\",\r\n    \"roles\": \"Buyer\",\r\n    \"saldo\": 100\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -129,9 +259,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/users/1",
+									"raw": "{{URL}}/users/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"users",
@@ -139,7 +269,57 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Ravita\",\r\n    \"email\": \"Ravita@gmail.com\",\r\n    \"number\": \"082210811377\",\r\n    \"roles\": \"Buyer\",\r\n    \"saldo\": 100\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 22:54:02 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "38"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": \"succesfully update user\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Delete User",
@@ -149,7 +329,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -157,21 +337,62 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/v1/users/2",
-									"protocol": "http",
+									"raw": "{{URL}}/users/2",
 									"host": [
-										"localhost"
+										"{{URL}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"users",
 										"2"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/v1/users/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 22:54:27 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "40"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"User deleted successfully\"\n}"
+								}
+							]
 						}
 					]
 				},
@@ -186,7 +407,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -195,7 +416,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"coldplay3\",\r\n    \"description\": \"penyanyi luar negri\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"GBK\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"price\": 50.0,\r\n    \"quota\": 100,\r\n    \"terjual\": 5,\r\n    \"status\": \"available\",\r\n    \"category\": \"music\"\r\n}\r\n",
+									"raw": "{\r\n    \"title\": \"coldplay\",\r\n    \"description\": \"penyanyi luar negri\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"GBK\",\r\n    \"date\": \"2023-12-31T18:00:01Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"status\": \"available\",\r\n    \"price\": 50.0,\r\n    \"quota\": 100,\r\n    \"terjual\": 5,\r\n    \"category\": \"music\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -203,16 +424,65 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/ticket",
+									"raw": "{{URL}}/ticket",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"coldplay\",\r\n    \"description\": \"penyanyi luar negri\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"GBK\",\r\n    \"date\": \"2023-12-31T18:00:01Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"status\": \"available\",\r\n    \"price\": 50.0,\r\n    \"quota\": 100,\r\n    \"terjual\": 5,\r\n    \"category\": \"music\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/ticket",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 22:58:11 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "30"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ticket created successfully\""
+								}
+							]
 						},
 						{
 							"name": "Get All Ticket",
@@ -222,7 +492,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -230,16 +500,56 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket",
+									"raw": "{{URL}}/ticketa",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
-										"ticket"
+										"ticketa"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticketa",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticketa"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:01:27 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "636"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay3\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 96,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 2,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay3\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Get Ticket By ID",
@@ -249,7 +559,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -257,9 +567,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/1",
+									"raw": "{{URL}}/ticket/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -267,7 +577,48 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/1",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:01:43 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "224"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"category\": \"music\",\n        \"created\": \"2023-12-01T22:20:09.060639Z\",\n        \"date\": \"2023-12-31T00:00:00Z\",\n        \"description\": \"penyanyi luar negri\",\n        \"id\": 1,\n        \"image\": \"https/image\",\n        \"location\": \"GBK\",\n        \"price\": 50,\n        \"quota\": 96,\n        \"title\": \"coldplay3\"\n    }\n}"
+								}
+							]
 						},
 						{
 							"name": "Update Ticket",
@@ -277,7 +628,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -286,7 +637,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"Lokasi Acara\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"category\": \"music\",\r\n    \"price\": 50.0,\r\n    \"quota\": 200\r\n}",
+									"raw": "{\r\n    \"title\": \"Dragon\",\r\n    \"description\": \"konser lagu edm terbaik\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"bekasi\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"category\": \"music\",\r\n    \"price\": 50.0,\r\n    \"quota\": 200\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -294,9 +645,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/ticket/1",
+									"raw": "{{URL}}/ticket/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -304,7 +655,57 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Dragon\",\r\n    \"description\": \"konser lagu edm terbaik\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"bekasi\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"category\": \"music\",\r\n    \"price\": 50.0,\r\n    \"quota\": 200\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/ticket/1",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:03:34 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "261"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"category\": \"music\",\n        \"date\": \"2023-12-31T18:00:00Z\",\n        \"description\": \"konser lagu edm terbaik\",\n        \"id\": 1,\n        \"image\": \"https/image\",\n        \"location\": \"bekasi\",\n        \"price\": 50,\n        \"quota\": 200,\n        \"title\": \"Dragon\",\n        \"update\": \"0001-01-01T00:00:00Z\"\n    },\n    \"message\": \"Ticket updated successfully\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Delete Ticket",
@@ -314,7 +715,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -322,9 +723,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/1",
+									"raw": "{{URL}}/ticket/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -332,7 +733,48 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/2",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:03:55 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "42"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ticket deleted successfully\"\n}"
+								}
+							]
 						}
 					]
 				},
@@ -347,7 +789,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -356,7 +798,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
+									"raw": "{\r\n    \"title\": \"Kerusuhan DI Konser jakarta\",\r\n    \"description\": \"beberapa orang menjadi tersangka\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -364,16 +806,65 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/blog",
+									"raw": "{{URL}}/blog",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Kerusuhan DI Konser jakarta\",\r\n    \"description\": \"beberapa orang menjadi tersangka\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/blog",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"blog"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:06:46 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "28"
+										}
+									],
+									"cookie": [],
+									"body": "\"Blog created successfully\""
+								}
+							]
 						},
 						{
 							"name": "Get All Blog",
@@ -383,7 +874,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -391,16 +882,56 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/blog",
+									"raw": "{{URL}}/blog",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/blog",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"blog"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:07:02 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "742"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"ID\": 1,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-02T00:00:00Z\",\n            \"Title\": \"Nama Tiket\",\n            \"Description\": \"Deskripsi Tiket\",\n            \"CreatedAt\": \"2023-12-02T04:13:07.807064Z\",\n            \"UpdatedAt\": \"2023-12-02T04:13:07.807064Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        {\n            \"ID\": 2,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-02T00:00:00Z\",\n            \"Title\": \"Nama Tiket\",\n            \"Description\": \"Deskripsi Tiket\",\n            \"CreatedAt\": \"2023-12-02T06:05:44.914708Z\",\n            \"UpdatedAt\": \"2023-12-02T06:05:44.914708Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        {\n            \"ID\": 3,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-02T00:00:00Z\",\n            \"Title\": \"Kerusuhan DI Konser jakarta\",\n            \"Description\": \"beberapa orang menjadi tersangka\",\n            \"CreatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"UpdatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Update Blog",
@@ -410,7 +941,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -419,7 +950,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
+									"raw": "{\r\n    \"title\": \"Konser Tersukses\",\r\n    \"description\": \"dikatakan oleh produser menjadi konser tersukses sepanjang masa\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -427,9 +958,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/blog/1",
+									"raw": "{{URL}}/blog/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog",
@@ -437,7 +968,57 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Konser Tersukses\",\r\n    \"description\": \"dikatakan oleh produser menjadi konser tersukses sepanjang masa\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/blog/1",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"blog",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:07:55 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "320"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"Blog\": {\n        \"ID\": 1,\n        \"Image\": \"https/image\",\n        \"Date\": \"2023-12-31T18:00:00Z\",\n        \"Title\": \"Konser Tersukses\",\n        \"Description\": \"dikatakan oleh produser menjadi konser tersukses sepanjang masa\",\n        \"CreatedAt\": \"0001-01-01T00:00:00Z\",\n        \"UpdatedAt\": \"0001-01-01T00:00:00Z\",\n        \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n    },\n    \"message\": \"Blog updated successfully\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Delete Blog",
@@ -447,7 +1028,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -455,17 +1036,58 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/blog/1",
+									"raw": "{{URL}}/blog/2",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog",
-										"1"
+										"2"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/blog/2",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"blog",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:08:57 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "40"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Blog deleted successfully\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Search Blog",
@@ -475,7 +1097,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -483,18 +1105,60 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/blog/search/Nama",
+									"raw": "{{URL}}/blog/search/Kerusuhan",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog",
 										"search",
-										"Nama"
+										"Kerusuhan"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/blog/search/Kerusuhan",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"blog",
+												"search",
+												"Kerusuhan"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:08:32 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "276"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"ID\": 3,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-02T00:00:00Z\",\n            \"Title\": \"Kerusuhan DI Konser jakarta\",\n            \"Description\": \"beberapa orang menjadi tersangka\",\n            \"CreatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"UpdatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -509,7 +1173,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -518,7 +1182,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 1,\r\n  \"status\": \"seleseai\"\r\n}",
+									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 5,\r\n  \"status\": \"seleseai\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -526,16 +1190,65 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/order",
+									"raw": "{{URL}}/order",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"order"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 5,\r\n  \"status\": \"seleseai\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/order",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"order"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:13:23 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "29"
+										}
+									],
+									"cookie": [],
+									"body": "\"Order created successfully\""
+								}
+							]
 						},
 						{
 							"name": "Get All Order",
@@ -545,7 +1258,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -553,16 +1266,56 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/order",
+									"raw": "{{URL}}/order",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"order"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/order",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"order"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:14:57 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "763"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Get all orders success\",\n    \"order_details\": [\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 198,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 1\n        },\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 198,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 1\n        },\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 198,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Get Order ID",
@@ -572,7 +1325,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -580,9 +1333,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/order/1",
+									"raw": "{{URL}}/order/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"order",
@@ -590,7 +1343,48 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/order/1",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"order",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:15:21 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "763"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Get all orders success\",\n    \"order_details\": [\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 198,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 1\n        },\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 198,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 1\n        },\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 198,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 5\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -605,7 +1399,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -614,7 +1408,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"type\": \"Info\",\r\n  \"message\": \"This is a sample notification\",\r\n  \"is_read\": false,\r\n  \"create_at\": \"2023-11-30T12:34:56Z\"\r\n}",
+									"raw": "{\r\n  \"type\": \"Diskon Ticket\",\r\n  \"message\": \"ada diskon loh cek berikut\",\r\n  \"is_read\": false,\r\n  \"create_at\": \"2023-11-30T12:34:56Z\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -622,16 +1416,65 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/notification",
+									"raw": "{{URL}}/notification",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"notification"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"type\": \"Diskon Ticket\",\r\n  \"message\": \"ada diskon loh cek berikut\",\r\n  \"is_read\": false,\r\n  \"create_at\": \"2023-11-30T12:34:56Z\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/notification",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"notification"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:17:03 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "220"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"type\": \"Diskon Ticket\",\n    \"message\": \"ada diskon loh cek berikut\",\n    \"is_read\": false,\n    \"created_at\": \"2023-12-02T06:17:03.6441118+07:00\",\n    \"updated_at\": \"2023-12-02T06:17:03.647676+07:00\",\n    \"deleted_at\": \"0001-01-01T00:00:00Z\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Get Notification",
@@ -641,7 +1484,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Admin}}",
 											"type": "string"
 										}
 									]
@@ -649,16 +1492,56 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/notification",
+									"raw": "{{URL}}/notification",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"notification"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/notification",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"notification"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:17:16 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "220"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"type\": \"Diskon Ticket\",\n            \"message\": \"ada diskon loh cek berikut\",\n            \"is_read\": false,\n            \"created_at\": \"2023-12-02T06:17:03.644111Z\",\n            \"updated_at\": \"2023-12-02T06:17:03.647676Z\",\n            \"deleted_at\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -668,6 +1551,16 @@
 						{
 							"name": "Topup Saldo Copy",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Admin}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -680,16 +1573,65 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/topup",
+									"raw": "{{URL}}/topup",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"topup"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"topup123\",\r\n    \"user_id\": 1,\r\n    \"amount\": 10000,\r\n    \"status\": 0\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/topup",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"topup"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 01 Dec 2023 23:17:59 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "415"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Midtrans API is returning API error. HTTP status code: 401 API response: {\\\"status_code\\\":\\\"401\\\",\\\"status_message\\\":\\\"Unknown Merchant server_key/id\\\",\\\"id\\\":\\\"8cc092fc-f1eb-4d4e-9f03-f9b1b29c094d\\\"}: Midtrans API is returning API error. HTTP status code: 401 API response: {\\\"status_code\\\":\\\"401\\\",\\\"status_message\\\":\\\"Unknown Merchant server_key/id\\\",\\\"id\\\":\\\"8cc092fc-f1eb-4d4e-9f03-f9b1b29c094d\\\"}\"\n}"
+								}
+							]
 						}
 					]
 				}
@@ -2254,10 +3196,34 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "URL",
 			"value": " http://localhost:8080/api/v1"
+		},
+		{
+			"key": "Token-Admin",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IiIsImVtYWlsIjoiQWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxNDcxNTAzfQ.7njlsyp_kFCSby44lBnzcEDjze3OZoKj5Ow4EcooCMs"
 		}
 	]
 }

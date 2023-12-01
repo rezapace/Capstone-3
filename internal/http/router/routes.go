@@ -184,9 +184,9 @@ func PrivateRoutes(
 
 		{
 			Method:  echo.GET,
-			Path:    "/ticket",
+			Path:    "/ticketa",
 			Handler: TicketHandler.GetAllTickets,
-			Role:    allRoles,
+			Role:    onlyAdmin,
 		},
 
 		{

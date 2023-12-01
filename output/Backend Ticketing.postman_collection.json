@@ -1,0 +1,2263 @@
+{
+	"info": {
+		"_postman_id": "475ee4c6-91f3-44de-bd51-5cdc49298a10",
+		"name": "Backend Ticketing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26142588",
+		"_collection_link": "https://ticketing-mikti.postman.co/workspace/Ticketing-Workspace~1c7b0ec0-f35f-4273-b1d6-67507ad4c237/collection/26142588-475ee4c6-91f3-44de-bd51-5cdc49298a10?action=share&source=collection_link&creator=26142588"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"rr1\",\r\n    \"email\" : \"reza1@gmail.com\",\r\n    \"number\": \"1231231231231\",\r\n    \"roles\" : \"Admin\",\r\n    \"password\" : \"123123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"name\": \"ravita\",\r\n            \"email\": \"Admin@gmail.com\",\r\n            \"number\": \"00000000000\",\r\n            \"roles\": \"Admin\",\r\n            \"saldo\": 11111111110\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ticket",
+					"item": [
+						{
+							"name": "Create Ticket",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"coldplay3\",\r\n    \"description\": \"penyanyi luar negri\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"GBK\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"price\": 50.0,\r\n    \"quota\": 100,\r\n    \"terjual\": 5,\r\n    \"status\": \"available\",\r\n    \"category\": \"music\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/ticket",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Ticket",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Ticket By ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Ticket",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"location\": \"Lokasi Acara\",\r\n    \"date\": \"2023-12-31T18:00:00Z\", // Format tanggal dan waktu sesuai dengan RFC3339\r\n    \"category\": \"music\",\r\n    \"price\": 50.0,\r\n    \"quota\": 200\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/ticket/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Ticket",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blog",
+					"item": [
+						{
+							"name": "Create Blog",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/blog",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Blog",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/blog",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Blog",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Nama Tiket\",\r\n    \"description\": \"Deskripsi Tiket\",\r\n    \"image\": \"https/image\",\r\n    \"date\": \"2023-12-31T18:00:00Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/blog/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Blog",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/blog/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Blog",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/blog/search/Nama",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog",
+										"search",
+										"Nama"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Create Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 1,\r\n  \"status\": \"seleseai\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/order",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/order",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Order ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/order/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"order",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notification",
+					"item": [
+						{
+							"name": "Create Notification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"type\": \"Info\",\r\n  \"message\": \"This is a sample notification\",\r\n  \"is_read\": false,\r\n  \"create_at\": \"2023-11-30T12:34:56Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/notification",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Notification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/notification",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Topup Saldo",
+					"item": [
+						{
+							"name": "Topup Saldo Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"topup123\",\r\n    \"user_id\": 1,\r\n    \"amount\": 10000,\r\n    \"status\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/topup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"topup"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Update Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"name\": \"ravita\",\r\n            \"email\": \"Admin@gmail.com\",\r\n            \"number\": \"00000000000\",\r\n            \"roles\": \"Admin\",\r\n            \"saldo\": 11111111110\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Saldo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ticket",
+					"item": [
+						{
+							"name": "Get Ticket",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Ticket ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/search/Nama",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"search",
+										"Nama"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FIlter Location",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/location/GBK",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"location",
+										"GBK"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter Category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/category/music",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"category",
+										"music"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter Time",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/range/:start/:end",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"range",
+										":start",
+										":end"
+									],
+									"variable": [
+										{
+											"key": "start",
+											"value": ""
+										},
+										{
+											"key": "end",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter Price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/price/:min/:max",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"price",
+										":min",
+										":max"
+									],
+									"variable": [
+										{
+											"key": "min",
+											"value": "0"
+										},
+										{
+											"key": "max",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Cheap",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/cheapest?sort=termurah",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"cheapest"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "termurah"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Bestseller",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/most-bought?sort=terbanyak",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"most-bought"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "terbanyak"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Expenive",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/most-expensive?sort=termahal",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"most-expensive"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "termahal"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Lastest",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/terbaru?sort=terbaru",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"terbaru"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "terbaru"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Avaliable",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/available?sort=tersedia",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"available"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "tersedia"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blog",
+					"item": [
+						{
+							"name": "Get All Blog",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/blog",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Blog By ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/blog/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Blog",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/blog/search/Nama",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog",
+										"search",
+										"Nama"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Create Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 1,\r\n  \"status\": \"seleseai\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/order",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get History Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/order/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"order",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notification",
+					"item": [
+						{
+							"name": "Get Notification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/notification",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Topup Saldo",
+					"item": [
+						{
+							"name": "Topup Saldo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"topup123\",\r\n    \"user_id\": 1,\r\n    \"amount\": 10000,\r\n    \"status\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/topup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"topup"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "Ticket",
+					"item": [
+						{
+							"name": "Search Ticket",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/search/Nama",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"search",
+										"Nama"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter Location",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/location/GBK",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"location",
+										"GBK"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fileter Category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/category/music",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"category",
+										"music"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter Time",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/range/:start/:end",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"range",
+										":start",
+										":end"
+									],
+									"variable": [
+										{
+											"key": "start",
+											"value": ""
+										},
+										{
+											"key": "end",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter Price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/price/:min/:max",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"price",
+										":min",
+										":max"
+									],
+									"variable": [
+										{
+											"key": "min",
+											"value": "0"
+										},
+										{
+											"key": "max",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Cheap",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/cheapest?sort=termurah",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"cheapest"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "termurah"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Bestseller",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/most-bought?sort=terbanyak",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"most-bought"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "terbanyak"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Expensive",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/most-expensive?sort=termahal",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"most-expensive"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "termahal"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Latest",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/terbaru?sort=terbaru",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"terbaru"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "terbaru"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Available",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/ticket/available?sort=tersedia",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"ticket",
+										"available"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "tersedia"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blog",
+					"item": [
+						{
+							"name": "Search Blog",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/blog/search/Nama",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"blog",
+										"search",
+										"Nama"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Admin_Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Admin@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Admin@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 21:00:34 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "203"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IiIsImVtYWlsIjoiQWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxNDY1MDM0fQ.vnFmFEyiIVKQRYM8f3hv38hWM9CXbDq_2PUe4Kfsvw8\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Admin_Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Admin\",\r\n    \"email\" : \"Admin@gmail.com\",\r\n    \"roles\" : \"Admin\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Admin\",\r\n    \"email\" : \"Admin@gmail.com\",\r\n    \"roles\" : \"Admin\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 21:00:08 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "246"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IiIsImVtYWlsIjoiQWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxNDY1MDA4fQ.lXziH4jyjrRA4kVv6URMIVRNJRvmQCQ0yxR7j-2sOuk\",\n    \"message\": \"User registration successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buyer_Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Buyer\",\r\n    \"email\" : \"Buyer@gmail.com\",\r\n    \"roles\" : \"Buyer\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Buyer\",\r\n    \"email\" : \"Buyer@gmail.com\",\r\n    \"roles\" : \"Buyer\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 21:00:49 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "246"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IiIsImVtYWlsIjoiQnV5ZXJAZ21haWwuY29tIiwicm9sZSI6IkJ1eWVyIiwiZXhwIjoxNzAxNDY1MDQ5fQ.JDFd9WwL6kkwY5N8gkVjFCRQiRguwknrjHOW1EkD24E\",\n    \"message\": \"User registration successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buyer_Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Buyer@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Buyer@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 21:01:09 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "203"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IiIsImVtYWlsIjoiQnV5ZXJAZ21haWwuY29tIiwicm9sZSI6IkJ1eWVyIiwiZXhwIjoxNzAxNDY1MDY5fQ.snjN9_7b9EnViKmDNyDAw5oO4290DLCAF1IowwOXOaA\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Blog",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/public/blog",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"public",
+								"blog"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/public/blog",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"public",
+										"blog"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 21:18:24 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "244"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"ID\": 1,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-02T00:00:00Z\",\n            \"Title\": \"Nama Tiket\",\n            \"Description\": \"Deskripsi Tiket\",\n            \"CreatedAt\": \"2023-12-02T04:13:07.807064Z\",\n            \"UpdatedAt\": \"2023-12-02T04:13:07.807064Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Ticket",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/public/ticket",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"public",
+								"ticket"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/public/ticket",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"public",
+										"ticket"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 21:18:03 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "428"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay3\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 96,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 2,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay3\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": " http://localhost:8080/api/v1"
+		}
+	]
+}

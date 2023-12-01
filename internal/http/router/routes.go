@@ -27,7 +27,7 @@ type Route struct {
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini perlu login krna private
-func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
+func PublicRoutes(authHandler *handler.AuthHandler, TicketHandler *handler.TicketHandler, BlogHandler *handler.BlogHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
@@ -38,6 +38,16 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 			Method:  echo.POST,
 			Path:    "/register",
 			Handler: authHandler.Registration,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/public/blog",
+			Handler: BlogHandler.GetAllBlogs,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/public/ticket",
+			Handler: TicketHandler.GetAllTickets,
 		},
 	}
 }

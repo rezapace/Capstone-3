@@ -65,13 +65,14 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 		Number   string `json:"number" validate:"min=11,max=13"`
 		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
 		Password string `json:"password"`
+		Saldo    int64  `json:"saldo"`
 	}
 
 	if err := ctx.Bind(&input); err != nil {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
 
-	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
+	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password, input.Saldo)
 
 	err := h.userService.UpdateUser(ctx.Request().Context(), user)
 	if err != nil {
@@ -159,10 +160,10 @@ func (h *UserHandler) UpdateUserSelf(ctx echo.Context) error {
 	}
 
 	// Update user
-	user := entity.UpdateUser(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
+	user := entity.UpdateUserSelf(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
 
 	// Memanggil service untuk update user
-	err := h.userService.UpdateUser(ctx.Request().Context(), user)
+	err := h.userService.UpdateUserSelf(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
 	}

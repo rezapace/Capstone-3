@@ -4,7 +4,7 @@ import (
 	"Ticketing/entity"
 	"context"
 	"gorm.io/gorm"
-	// "errors"
+	"errors"
 )
 
 type OrderRepository struct {
@@ -74,20 +74,40 @@ func (r *OrderRepository) GetOrderByUserID(ctx context.Context, userID int64) ([
 }
 
 //UpdateUserBalance
-// func (r *OrderRepository) UpdateUserBalance(ctx context.Context, userID int64, total int64) error {
-// 	user := new(entity.User)
-// 	if err := r.db.WithContext(ctx).Where("id = ?", userID).First(user).Error; err != nil {
-// 		return err
-// 	}
+func (r *OrderRepository) UpdateUserBalance(ctx context.Context, userID int64, total int64) error {
+	user := new(entity.User)
+	if err := r.db.WithContext(ctx).Where("id = ?", userID).First(user).Error; err != nil {
+		return err
+	}
 
-// 	if user.Saldo < total {
-// 		return errors.New("insufficient balance")
-// 	}
+	if user.Saldo < total {
+		return errors.New("insufficient balance")
+	}
 
-// 	user.Saldo -= total
-// 	if err := r.db.WithContext(ctx).Model(&entity.User{}).Where("id = ?", userID).Updates(user).Error; err != nil {
-// 		return err
-// 	}
+	user.Saldo -= total
+	if err := r.db.WithContext(ctx).Model(&entity.User{}).Where("id = ?", userID).Updates(user).Error; err != nil {
+		return err
+	}
 
-// 	return nil
-// }
+	return nil
+}
+
+// get user balance
+func (r *OrderRepository) GetUserBalance(ctx context.Context, userID int64) (int64, error) {
+	user := new(entity.User)
+	if err := r.db.WithContext(ctx).Where("id = ?", userID).First(user).Error; err != nil {
+		return 0, err
+	}
+
+	return user.Saldo, nil
+}
+
+// GetTicketPrice
+func (r *OrderRepository) GetTicketPrice(ctx context.Context, ticketID int64) (int64, error) {
+	ticket := new(entity.Ticket)
+	if err := r.db.WithContext(ctx).Where("id = ?", ticketID).First(ticket).Error; err != nil {
+		return 0, err
+	}
+
+	return int64(ticket.Price), nil
+}

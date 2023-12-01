@@ -12,7 +12,7 @@ type Order struct {
 	User      User       `json:"user"`
 	Quantity  int64      `json:"quantity"`
 	Total     int64      `json:"total"`
-	Status	  string     `json:"status"`
+	Status    string     `json:"status"`
 	OrderAt   time.Time  `json:"order_at"`
 	UpdatedAt time.Time  `json:"updated_at"`
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`

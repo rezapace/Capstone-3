@@ -13,6 +13,7 @@ type OrderUsecase interface {
 	GetOrders(ctx context.Context) ([]*entity.Order, error)
 	GetTicketByID(ctx context.Context, id int64) (*entity.Ticket, error)
 	GetOrderByUserID(ctx context.Context, userID int64) ([]*entity.Order, error)
+	// UpdateUserBalance(ctx context.Context, userID int64, amount int64) error
 }
 
 type OrderRepository interface {
@@ -22,6 +23,7 @@ type OrderRepository interface {
 	GetOrders(ctx context.Context) ([]*entity.Order, error)
 	GetTicketByID(ctx context.Context, id int64) (*entity.Ticket, error)
 	GetOrderByUserID(ctx context.Context, userID int64) ([]*entity.Order, error)
+	// UpdateUserBalance(ctx context.Context, userID int64, amount int64) error
 }
 
 type OrderService struct {
@@ -58,6 +60,10 @@ func (s *OrderService) CreateOrder(ctx context.Context, order *entity.Order) err
 		return err
 	}
 
+	// Mengurangi saldo pengguna
+	// if err := s.repository.UpdateUserBalance(ctx, order.UserID, order.Total); err != nil {
+	// 	return err
+	// }
 	// Contoh: Mengupdate informasi pengguna setelah melakukan pembelian
 	// Anda dapat menyesuaikan logika ini sesuai dengan kebutuhan
 	// ...
@@ -74,6 +80,10 @@ func (s *OrderService) GetTicket(ctx context.Context, ticketID int64) (*entity.T
 func (s *OrderService) UpdateTicket(ctx context.Context, ticket *entity.Ticket) error {
 	return s.repository.UpdateTicket(ctx, ticket)
 }
+
+// implementasi fungsi update user balance
+// func (s *OrderService) UpdateUserBalance(ctx context.Context, userID int64, amount int64) error {
+// 	return s.repository.UpdateUserBalance(ctx, userID, amount)
 
 func (s *OrderService) GetOrders(ctx context.Context) ([]*entity.Order, error) {
 	return s.repository.GetOrders(ctx)

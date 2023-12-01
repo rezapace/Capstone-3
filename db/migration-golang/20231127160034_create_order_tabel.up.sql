@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS "public". "orders" (
     user_id INT,
     quantity INT,
     total INT,
+    status VARCHAR(255),
     order_at TIMESTAMP,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,

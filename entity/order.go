@@ -12,6 +12,7 @@ type Order struct {
 	User      User       `json:"user"`
 	Quantity  int64      `json:"quantity"`
 	Total     int64      `json:"total"`
+	Status	  string     `json:"status"`
 	OrderAt   time.Time  `json:"order_at"`
 	UpdatedAt time.Time  `json:"updated_at"`
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
@@ -21,11 +22,12 @@ type Order struct {
 }
 
 // membuat func NewOrder dengan memanggil tiketID, quantity, total, dan OrderAt
-func NewOrder(ticketID, quantity, userID int64) *Order {
+func NewOrder(ticketID, quantity, userID int64, status string) *Order {
 	return &Order{
 		TicketID: ticketID,
 		Quantity: quantity,
 		UserID:   userID,
+		Status:   status,
 		OrderAt:  time.Now(),
 	}
 }

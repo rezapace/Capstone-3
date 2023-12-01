@@ -10,11 +10,11 @@ import (
 )
 
 type OrderHandler struct {
-	orderService service.OrderUsecase
+	OrderService service.OrderUsecase
 }
 
-func NewOrderHandler(Orderservice *service.OrderService) *OrderHandler {
-	return &OrderHandler{Orderservice}
+func NewOrderHandler(OrderService service.OrderUsecase) *OrderHandler {
+	return &OrderHandler{OrderService}
 }
 
 // func untuk create order
@@ -23,13 +23,15 @@ func (h *OrderHandler) CreateOrder(ctx echo.Context) error {
 		TicketID int64 `json:"ticket_id" validate:"required"`
 		Quantity int64 `json:"quantity" validate:"required"`
 		UserID   int64 `json:"user_id" validate:"required"`
+		Status   string `json:"status" validate:"required"`
+
 	}
 
 	if err := ctx.Bind(&input); err != nil {
 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 	}
-	order := entity.NewOrder(input.TicketID, input.Quantity, input.UserID)
-	err := h.orderService.CreateOrder(ctx.Request().Context(), order)
+	order := entity.NewOrder(input.TicketID, input.Quantity, input.UserID, input.Status)
+	err := h.OrderService.CreateOrder(ctx.Request().Context(), order)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err)
 	}
@@ -41,14 +43,14 @@ func (h *OrderHandler) CreateOrder(ctx echo.Context) error {
 // Get All Order
 func (h *OrderHandler) GetAllOrders(ctx echo.Context) error {
 	// Implementasi untuk mendapatkan semua pesanan dari usecase
-	orders, err := h.orderService.GetOrders(ctx.Request().Context())
+	orders, err := h.OrderService.GetOrders(ctx.Request().Context())
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, echo.NewHTTPError(http.StatusBadRequest, err.Error()))
 	}
 
 	var orderDetails []map[string]interface{}
 	for _, order := range orders {
-		ticket, err := h.orderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
+		ticket, err := h.OrderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
 		if err != nil {
 			return ctx.JSON(http.StatusInternalServerError, echo.NewHTTPError(http.StatusInternalServerError, err.Error()))
 		}
@@ -69,14 +71,14 @@ func (h *OrderHandler) GetAllOrders(ctx echo.Context) error {
 // get order by user_id
 func (h *OrderHandler) GetOrderByUserID(ctx echo.Context) error {
 	// Implementasi untuk mendapatkan semua pesanan dari usecase
-	orders, err := h.orderService.GetOrders(ctx.Request().Context())
+	orders, err := h.OrderService.GetOrders(ctx.Request().Context())
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, echo.NewHTTPError(http.StatusBadRequest, err.Error()))
 	}
 
 	var orderDetails []map[string]interface{}
 	for _, order := range orders {
-		ticket, err := h.orderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
+		ticket, err := h.OrderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
 		if err != nil {
 			return ctx.JSON(http.StatusInternalServerError, echo.NewHTTPError(http.StatusInternalServerError, err.Error()))
 		}
@@ -93,4 +95,3 @@ func (h *OrderHandler) GetOrderByUserID(ctx echo.Context) error {
 		"order_details": orderDetails,
 	})
 }
-

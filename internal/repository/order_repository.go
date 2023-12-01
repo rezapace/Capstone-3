@@ -4,6 +4,7 @@ import (
 	"Ticketing/entity"
 	"context"
 	"gorm.io/gorm"
+	// "errors"
 )
 
 type OrderRepository struct {
@@ -71,3 +72,22 @@ func (r *OrderRepository) GetOrderByUserID(ctx context.Context, userID int64) ([
 	}
 	return orders, nil
 }
+
+//UpdateUserBalance
+// func (r *OrderRepository) UpdateUserBalance(ctx context.Context, userID int64, total int64) error {
+// 	user := new(entity.User)
+// 	if err := r.db.WithContext(ctx).Where("id = ?", userID).First(user).Error; err != nil {
+// 		return err
+// 	}
+
+// 	if user.Saldo < total {
+// 		return errors.New("insufficient balance")
+// 	}
+
+// 	user.Saldo -= total
+// 	if err := r.db.WithContext(ctx).Model(&entity.User{}).Where("id = ?", userID).Updates(user).Error; err != nil {
+// 		return err
+// 	}
+
+// 	return nil
+// }

@@ -61,7 +61,7 @@ var MidtransConfig struct {
 
 func init() {
 	// Isi konfigurasi Midtrans Anda di sini
-	MidtransConfig.ClientKey = "your_midtrans_client_key"
-	MidtransConfig.ServerKey = "your_midtrans_server_key"
+	MidtransConfig.ClientKey = "SB-Mid-client-ZCcoPJr6rlvFrQ3N"
+	MidtransConfig.ServerKey = "SB-Mid-server-RGIeiP4-kdQSADSfhbpG42B-"
 	MidtransConfig.IsProduction = false // Ganti menjadi true jika sudah di production
 }

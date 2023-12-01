@@ -17,6 +17,7 @@ type UserUsecase interface {
 	GetUserByID(ctx context.Context, id int64) (*entity.User, error)
 	Delete(ctx context.Context, id int64) error
 	UpdateUserSelf(ctx context.Context, user *entity.User) error
+	UpdateUserBalance(ctx context.Context, user *entity.User) error
 }
 
 // interface untuk repository
@@ -29,6 +30,7 @@ type UserRepository interface {
 	GetUserByID(ctx context.Context, id int64) (*entity.User, error)
 	Delete(ctx context.Context, id int64) error
 	UpdateUserSelf(ctx context.Context, user *entity.User) error
+	UpdateUserBalance(ctx context.Context, user *entity.User) error
 }
 
 // code di line 23 merupakan dependency injection, karena repository tidak langsung di panggil.
@@ -73,4 +75,9 @@ func (s *UserService) Delete(ctx context.Context, id int64) error {
 // Update User Self
 func (s *UserService) UpdateUserSelf(ctx context.Context, user *entity.User) error {
 	return s.repository.UpdateUser(ctx, user)
+}
+
+// func update saldo user by id
+func (s *UserService) UpdateUserBalance(ctx context.Context, user *entity.User) error {
+	return s.repository.UpdateUserBalance(ctx, user)
 }

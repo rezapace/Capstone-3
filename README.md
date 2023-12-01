@@ -59,3 +59,4 @@ Proyek ini akan berlangsung selama 2 sprint (2 minggu) dengan penilaian secara b
 - [x] [PPT Document](https://docs.google.com/presentation/d/1vvOwCKjysLxORL7GOtOJbgiW3XAVuYsRK0ccUa8VOzA/edit#slide=id.g21e0640a876_0_25)
 - [x] [Desain Aplikasi](https://www.figma.com/file/1MtWn0HIt9SidftaQIlrXG/Project-Coding-Challenge-References?type=design&node-id=0-4&mode=design&t=dC1tZcf7zlIMfZBL-0)
 - [x] [Notion](https://pouncing-language-444.notion.site/15cb9b14d1cd47f4a355e8b7583b0857?v=e7c8616df95346d7af872d52aba69259&pvs=4)
+- [x] [Postman](https://trello.com/b/6Z6ZQZ6Z/capstone-3)

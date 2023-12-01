@@ -5,50 +5,75 @@ import (
 	"Ticketing/internal/http/validator"
 	"Ticketing/internal/service"
 	"net/http"
+	"errors"
 
 	"github.com/labstack/echo/v4"
 )
 
 type OrderHandler struct {
-	orderService service.OrderUsecase
+	OrderService service.OrderUsecase
 }
 
-func NewOrderHandler(Orderservice *service.OrderService) *OrderHandler {
-	return &OrderHandler{Orderservice}
+func NewOrderHandler(OrderService service.OrderUsecase) *OrderHandler {
+	return &OrderHandler{OrderService}
 }
 
 // func untuk create order
 func (h *OrderHandler) CreateOrder(ctx echo.Context) error {
-	var input struct {
-		TicketID int64 `json:"ticket_id" validate:"required"`
-		Quantity int64 `json:"quantity" validate:"required"`
-		UserID   int64 `json:"user_id" validate:"required"`
-	}
+    var input struct {
+        TicketID int64  `json:"ticket_id" validate:"required"`
+        Quantity int64  `json:"quantity" validate:"required"`
+        UserID   int64  `json:"user_id" validate:"required"`
+        Status   string `json:"status" validate:"required"`
+    }
 
-	if err := ctx.Bind(&input); err != nil {
-		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
-	}
-	order := entity.NewOrder(input.TicketID, input.Quantity, input.UserID)
-	err := h.orderService.CreateOrder(ctx.Request().Context(), order)
-	if err != nil {
-		return ctx.JSON(http.StatusUnprocessableEntity, err)
-	}
+    if err := ctx.Bind(&input); err != nil {
+        return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
+    }
 
-	return ctx.JSON(http.StatusCreated, "Order created successfully")
+    // Mendapatkan informasi saldo pengguna sebelum membuat pesanan
+    userBalance, err := h.OrderService.GetUserBalance(ctx.Request().Context(), input.UserID)
+    if err != nil {
+        return ctx.JSON(http.StatusUnprocessableEntity, err)
+    }
 
+    // Mengambil informasi tiket dari TicketService untuk mendapatkan harga tiket
+    ticketPrice, err := h.OrderService.GetTicketPrice(ctx.Request().Context(), input.TicketID)
+    if err != nil {
+        return ctx.JSON(http.StatusUnprocessableEntity, err)
+    }
+
+    // Memeriksa apakah saldo cukup untuk membuat pesanan
+    if userBalance < (input.Quantity * ticketPrice) {
+        return ctx.JSON(http.StatusUnprocessableEntity, errors.New("insufficient balance"))
+    }
+
+    order := entity.NewOrder(input.TicketID, input.Quantity, input.UserID, input.Status)
+    err = h.OrderService.CreateOrder(ctx.Request().Context(), order)
+    if err != nil {
+        return ctx.JSON(http.StatusUnprocessableEntity, err)
+    }
+
+    // Mengurangkan saldo pengguna setelah membuat pesanan
+    err = h.OrderService.UpdateUserBalance(ctx.Request().Context(), input.UserID, input.Quantity*ticketPrice)
+    if err != nil {
+        return ctx.JSON(http.StatusUnprocessableEntity, err)
+    }
+
+    return ctx.JSON(http.StatusCreated, "Order created successfully")
 }
 
 // Get All Order
 func (h *OrderHandler) GetAllOrders(ctx echo.Context) error {
 	// Implementasi untuk mendapatkan semua pesanan dari usecase
-	orders, err := h.orderService.GetOrders(ctx.Request().Context())
+	orders, err := h.OrderService.GetOrders(ctx.Request().Context())
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, echo.NewHTTPError(http.StatusBadRequest, err.Error()))
 	}
 
 	var orderDetails []map[string]interface{}
 	for _, order := range orders {
-		ticket, err := h.orderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
+		ticket, err := h.OrderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
 		if err != nil {
 			return ctx.JSON(http.StatusInternalServerError, echo.NewHTTPError(http.StatusInternalServerError, err.Error()))
 		}
@@ -69,14 +94,14 @@ func (h *OrderHandler) GetAllOrders(ctx echo.Context) error {
 // get order by user_id
 func (h *OrderHandler) GetOrderByUserID(ctx echo.Context) error {
 	// Implementasi untuk mendapatkan semua pesanan dari usecase
-	orders, err := h.orderService.GetOrders(ctx.Request().Context())
+	orders, err := h.OrderService.GetOrders(ctx.Request().Context())
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, echo.NewHTTPError(http.StatusBadRequest, err.Error()))
 	}
 
 	var orderDetails []map[string]interface{}
 	for _, order := range orders {
-		ticket, err := h.orderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
+		ticket, err := h.OrderService.GetTicketByID(ctx.Request().Context(), order.TicketID)
 		if err != nil {
 			return ctx.JSON(http.StatusInternalServerError, echo.NewHTTPError(http.StatusInternalServerError, err.Error()))
 		}
@@ -93,4 +118,3 @@ func (h *OrderHandler) GetOrderByUserID(ctx echo.Context) error {
 		"order_details": orderDetails,
 	})
 }
-

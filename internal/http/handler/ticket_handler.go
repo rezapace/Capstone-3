@@ -41,6 +41,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Image       string    `json:"image"`
 		Location    string    `json:"location"`
 		Date        time.Time `json:"date"`
+		Status	  	string    `json:"status"`
 		Price       float64   `json:"price"`
 		Quota       int       `json:"quota"`
 		Terjual	 	int       `json:"terjual"`
@@ -62,6 +63,7 @@ func (h *TicketHandler) CreateTicket(c echo.Context) error {
 		Image:       input.Image,
 		Location:    input.Location,
 		Date:        dateStr, // Assign the formatted date string
+		Status:		 input.Status,
 		Price:       int64(input.Price),
 		Quota:       int64(input.Quota),
 		Terjual:     int64(input.Terjual),
@@ -364,6 +366,26 @@ func (h *TicketHandler) SortTicketByMostBought(c echo.Context) error {
 
 	// Memanggil service untuk mengurutkan tiket dari yang terbanyak
 	tickets, err := h.ticketService.SortTicketByMostBought(c.Request().Context())
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": tickets,
+	})
+}
+
+// ticket yang masih tersedia
+func (h *TicketHandler) SortTicketByAvailable(c echo.Context) error {
+	sortParam := c.QueryParam("sort")
+
+	// Memastikan bahwa parameter sort adalah 'tersedia'
+	if sortParam != "tersedia" {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid sort parameter"})
+	}
+
+	// Memanggil service untuk mengurutkan tiket dari yang tersedia
+	tickets, err := h.ticketService.SortTicketByAvailable(c.Request().Context())
 	if err != nil {
 		return c.JSON(http.StatusUnprocessableEntity, err)
 	}

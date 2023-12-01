@@ -44,13 +44,19 @@ func PublicRoutes(authHandler *handler.AuthHandler) []*Route {
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini tdk perlu login krna public
-func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.TicketHandler, BlogHandler *handler.BlogHandler, OrderHandler *handler.OrderHandler) []*Route {
+func PrivateRoutes(
+	UserHandler *handler.UserHandler, 
+	TicketHandler *handler.TicketHandler, 
+	BlogHandler *handler.BlogHandler, 
+	OrderHandler *handler.OrderHandler, 
+	NotificationHandler *handler.NotificationHandler, 
+	TopupHandler *handler.TopupHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
 			Path:    "/users",
 			Handler: UserHandler.CreateUser,
-			Role:    onlyBuyer,
+			Role:    allRoles,
 		},
 
 		{
@@ -99,6 +105,13 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Path:    "/ticket",
 			Handler: TicketHandler.GetAllTickets,
 			Role:    allRoles,
+		},
+
+		{
+			Method:  echo.GET,
+			Path:    "/ticket",
+			Handler: TicketHandler.GetAllTickets,
+			Role:    onlyBuyer,
 		},
 
 		{
@@ -246,6 +259,37 @@ func PrivateRoutes(UserHandler *handler.UserHandler, TicketHandler *handler.Tick
 			Method:  echo.GET,
 			Path:    "/ticket/most-bought",
 			Handler: TicketHandler.SortTicketByMostBought,
+			Role:    allRoles,
+		},
+		// ticket yang masih tersedia
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/available",
+			Handler: TicketHandler.SortTicketByAvailable,
+			Role:    allRoles,
+		},
+
+		// create notification
+		{
+			Method:  echo.POST,
+			Path:    "/notification",
+			Handler: NotificationHandler.CreateNotification,
+			Role:    allRoles,
+		},
+
+		// get all notification
+		{
+			Method:  echo.GET,
+			Path:    "/notification",
+			Handler: NotificationHandler.GetAllNotification,
+			Role:    allRoles,
+		},
+
+		// topup
+		{
+			Method:  echo.POST,
+			Path:    "/topup",
+			Handler: TopupHandler.CreateTopup,
 			Role:    allRoles,
 		},
 	}

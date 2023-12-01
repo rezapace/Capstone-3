@@ -93,3 +93,14 @@ func (r *UserRepository) UpdateUserSelf(ctx context.Context, user *entity.User) 
 	}
 	return nil
 }
+
+// update user balance by id
+func (r *UserRepository) UpdateUserBalance(ctx context.Context, user *entity.User) error {
+	if err := r.db.WithContext(ctx).
+		Model(&entity.User{}).
+		Where("id = ?", user.ID).
+		Updates(&user).Error; err != nil {
+		return err
+	}
+	return nil
+}

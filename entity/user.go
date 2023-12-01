@@ -31,7 +31,7 @@ func NewUser(name, email, number, password, roles string, saldo int64) *User {
 }
 
 // Admin Update User
-func UpdateUser(id int64, name, email, number, roles, password string) *User {
+func UpdateUser(id int64, name, email, number, roles, password string, saldo int64) *User {
 	return &User{
 		ID:        id,
 		Name:      name,
@@ -39,6 +39,7 @@ func UpdateUser(id int64, name, email, number, roles, password string) *User {
 		Number:    number,
 		Roles:     roles,
 		Password:  password,
+		Saldo:     saldo,
 		UpdatedAt: time.Now(),
 	}
 }
@@ -50,5 +51,18 @@ func Register(email, password, roles, number string) *User {
 		Password: password,
 		Roles:    roles,
 		Number:   number,
+	}
+}
+
+// user update by self
+func UpdateUserSelf(id int64, name, email, number, password, roles string) *User {
+	return &User{
+		ID:        id,
+		Name:      name,
+		Email:     email,
+		Number:    number,
+		Password:  password,
+		Roles:     roles,
+		UpdatedAt: time.Now(),
 	}
 }

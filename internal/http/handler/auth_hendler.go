@@ -90,3 +90,4 @@ func (h *AuthHandler) Registration(ctx echo.Context) error {
 	})
 
 }
+

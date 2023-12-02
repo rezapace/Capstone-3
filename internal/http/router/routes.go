@@ -289,6 +289,22 @@ func PrivateRoutes(
 			Handler: TopupHandler.CreateTopup,
 			Role:    allRoles,
 		},
+
+		// delete user self
+		// {
+		// 	Method:  echo.DELETE,
+		// 	Path:    "/users/self/:id",
+		// 	Handler: UserHandler.DeleteUserSelf,
+		// 	Role:    allRoles,
+		// },
+
+		// getprofile
+		{
+			Method:  echo.GET,
+			Path:    "/users/profile",
+			Handler: UserHandler.GetProfile,
+			Role:    allRoles,
+		},
 	}
 }
 

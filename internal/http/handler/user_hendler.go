@@ -6,10 +6,11 @@ import (
 	"Ticketing/entity"
 	"Ticketing/internal/http/validator"
 	"Ticketing/internal/service"
+	"Ticketing/common"
 	"net/http"
 	"strconv"
 
-	"github.com/golang-jwt/jwt"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/labstack/echo/v4"
 )
 
@@ -170,3 +171,73 @@ func (h *UserHandler) UpdateUserSelf(ctx echo.Context) error {
 
 	return ctx.JSON(http.StatusOK, map[string]string{"success": "successfully update user"})
 }
+
+func (h *UserHandler) GetProfile(ctx echo.Context) error {
+	// Retrieve user claims from the JWT token
+	claims, ok := ctx.Get("user").(*jwt.Token)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
+	}
+
+	// Extract user information from claims
+	claimsData, ok := claims.Claims.(*common.JwtCustomClaims)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user information from claims")
+	}
+
+	// Fetch user profile using the user ID
+	user, err := h.userService.GetProfile(ctx.Request().Context(), claimsData.ID)
+	if err != nil {
+		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
+	}
+
+	// Return the user profile
+	return ctx.JSON(http.StatusOK, user)
+}
+
+
+
+// delete user self common.JwtCustomClaims
+// func (h *UserHandler) DeleteUserSelf(ctx echo.Context) error {
+// 	// Pengecekan request
+// 	var input struct {
+// 		Email string `param:"email" validate:"required,email"`
+// 	}
+
+// 	if err := ctx.Bind(&input); err != nil {
+// 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
+// 	}
+
+// 	// Mengambil nilai 'claims' dari JWT token
+// 	claims, ok := ctx.Get("user").(*jwt.Token)
+// 	if !ok {
+// 		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
+// 	}
+
+// 	// Mendapatkan nilai 'email' dari klaim
+// 	jwtClaims, ok := claims.Claims.(*jwt.MapClaims)
+// 	if !ok {
+// 		return ctx.JSON(http.StatusInternalServerError, "unable to get user email from claims")
+// 	}
+
+// 	// Membandingkan email yang diterima dari input dengan email dari klaim
+// 	userEmail, ok := (*jwtClaims)["email"].(string)
+// 	if !ok {
+// 		return ctx.JSON(http.StatusInternalServerError, "unable to get user email from claims")
+// 	}
+
+// 	if userEmail != input.Email {
+// 		return ctx.JSON(http.StatusUnprocessableEntity, "you can't delete this user")
+// 	}
+
+// 	// Delete user
+// 	user := entity.DeleteUserSelfByEmail(input.Email)
+
+// 	// Memanggil service untuk delete user
+// 	err := h.userService.DeleteUserSelfByEmail(ctx.Request().Context(), user)
+// 	if err != nil {
+// 		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
+// 	}
+
+// 	return ctx.JSON(http.StatusOK, map[string]string{"success": "successfully delete user"})
+// }

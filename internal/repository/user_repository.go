@@ -104,3 +104,25 @@ func (r *UserRepository) UpdateUserBalance(ctx context.Context, user *entity.Use
 	}
 	return nil
 }
+
+// GetProfile retrieves the user profile by ID from the database
+func (r *UserRepository) GetProfile(ctx context.Context, userID int64) (*entity.User, error) {
+	var user entity.User
+	err := r.db.WithContext(ctx).First(&user, userID).Error
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+// DeleteUserSelfByEmail
+// func (r *UserRepository) DeleteUserSelfByEmail(ctx context.Context, email string) error {
+// 	if err := r.db.WithContext(ctx).
+// 		Model(&entity.User{}).
+// 		Where("Email = ?", email).
+// 		Delete(nil).
+// 		Error; err != nil {
+// 		return err
+// 	}
+// 	return nil
+// }

@@ -66,3 +66,11 @@ func UpdateUserSelf(id int64, name, email, number, password, roles string) *User
 		UpdatedAt: time.Now(),
 	}
 }
+
+// Update the return type to be *User
+func DeleteUserSelfByEmail(email string) *User {
+	return &User{
+		Email:     email,
+		DeletedAt: nil,
+	}
+}

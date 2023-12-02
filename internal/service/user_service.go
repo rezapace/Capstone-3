@@ -18,6 +18,8 @@ type UserUsecase interface {
 	Delete(ctx context.Context, id int64) error
 	UpdateUserSelf(ctx context.Context, user *entity.User) error
 	UpdateUserBalance(ctx context.Context, user *entity.User) error
+	GetProfile(ctx context.Context, userID int64) (*entity.User, error)
+	// DeleteUserSelfByEmail(ctx context.Context, user *entity.User) error
 }
 
 // interface untuk repository
@@ -31,6 +33,8 @@ type UserRepository interface {
 	Delete(ctx context.Context, id int64) error
 	UpdateUserSelf(ctx context.Context, user *entity.User) error
 	UpdateUserBalance(ctx context.Context, user *entity.User) error
+	GetProfile(ctx context.Context, userID int64) (*entity.User, error)
+	// DeleteUserSelfByEmail(ctx context.Context, user *entity.User) error
 }
 
 // code di line 23 merupakan dependency injection, karena repository tidak langsung di panggil.
@@ -81,3 +85,13 @@ func (s *UserService) UpdateUserSelf(ctx context.Context, user *entity.User) err
 func (s *UserService) UpdateUserBalance(ctx context.Context, user *entity.User) error {
 	return s.repository.UpdateUserBalance(ctx, user)
 }
+
+// GetProfile retrieves the user profile by ID
+func (s *UserService) GetProfile(ctx context.Context, userID int64) (*entity.User, error) {
+	return s.repository.GetProfile(ctx, userID)
+}
+
+// DeleteUserSelfByEmail
+// func (s *UserService) DeleteUserSelfByEmail(ctx context.Context, user *entity.User) error {
+// 	return s.repository.DeleteUserSelfByEmail(ctx, user)
+// }

@@ -26,3 +26,11 @@ func (r *topupRepository) InsertTopup(ctx context.Context, topup entity.Topup) (
     return topup, nil
 }
 
+// topup saldo sederhana
+// func (r *topupRepository) TopupSaldo(ctx context.Context, topup entity.Topup) (entity.Topup, error) {
+//     result := r.db.WithContext(ctx).Create(&topup)
+//     if result.Error != nil {
+//         return entity.Topup{}, result.Error
+//     }
+//     return topup, nil
+// }

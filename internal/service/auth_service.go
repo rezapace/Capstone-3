@@ -78,3 +78,32 @@ func (s *registrationService) Registration(ctx context.Context, user *entity.Use
 	user.Password = string(hashedPassword)
 	return s.repository.Registration(ctx, user)
 }
+
+// BuyerCreateAccount
+type BuyerCreateAccountUseCase interface {
+	BuyerCreateAccount(ctx context.Context, user *entity.User) error
+}
+
+type BuyerCreateAccountRepository interface {
+	BuyerCreateAccount(ctx context.Context, user *entity.User) error
+}
+
+type buyercreateaccountService struct {
+	repository BuyerCreateAccountRepository
+}
+
+func NewBuyerCreateAccountService(repository BuyerCreateAccountRepository) *buyercreateaccountService {
+	return &buyercreateaccountService{
+		repository: repository,
+	}
+}
+
+// func (s *buyercreateaccountService) BuyerCreateAccount(ctx context.Context, user *entity.User) error {
+// 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	user.Password = string(hashedPassword)
+// 	return s.repository.BuyerCreateAccount(ctx, user)
+// }

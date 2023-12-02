@@ -16,10 +16,12 @@ type UserUsecase interface {
 	UpdateUser(ctx context.Context, user *entity.User) error
 	GetUserByID(ctx context.Context, id int64) (*entity.User, error)
 	Delete(ctx context.Context, id int64) error
-	UpdateUserSelf(ctx context.Context, user *entity.User) error
+	UpdateProfile(ctx context.Context, user *entity.User) error
 	UpdateUserBalance(ctx context.Context, user *entity.User) error
 	GetProfile(ctx context.Context, userID int64) (*entity.User, error)
-	// DeleteUserSelfByEmail(ctx context.Context, user *entity.User) error
+	GetUserBalance(ctx context.Context, userID int64) (*entity.User, error)
+	DeleteAccount(ctx context.Context, email string) error
+	// BuyerCreateAccount(ctx context.Context, user *entity.User) error
 }
 
 // interface untuk repository
@@ -31,10 +33,12 @@ type UserRepository interface {
 	UpdateUser(ctx context.Context, user *entity.User) error
 	GetUserByID(ctx context.Context, id int64) (*entity.User, error)
 	Delete(ctx context.Context, id int64) error
-	UpdateUserSelf(ctx context.Context, user *entity.User) error
+	UpdateProfile(ctx context.Context, user *entity.User) error
 	UpdateUserBalance(ctx context.Context, user *entity.User) error
 	GetProfile(ctx context.Context, userID int64) (*entity.User, error)
-	// DeleteUserSelfByEmail(ctx context.Context, user *entity.User) error
+	GetUserBalance(ctx context.Context, userID int64) (*entity.User, error)
+	DeleteAccount(ctx context.Context, email string) error
+	// BuyerCreateAccount(ctx context.Context, user *entity.User) error
 }
 
 // code di line 23 merupakan dependency injection, karena repository tidak langsung di panggil.
@@ -76,14 +80,15 @@ func (s *UserService) Delete(ctx context.Context, id int64) error {
 	return s.repository.Delete(ctx, id)
 }
 
-// Update User Self
-func (s *UserService) UpdateUserSelf(ctx context.Context, user *entity.User) error {
-	return s.repository.UpdateUser(ctx, user)
-}
 
 // func update saldo user by id
 func (s *UserService) UpdateUserBalance(ctx context.Context, user *entity.User) error {
 	return s.repository.UpdateUserBalance(ctx, user)
+}
+
+// Update User Self
+func (s *UserService) UpdateProfile(ctx context.Context, user *entity.User) error {
+	return s.repository.UpdateProfile(ctx, user)
 }
 
 // GetProfile retrieves the user profile by ID
@@ -91,7 +96,17 @@ func (s *UserService) GetProfile(ctx context.Context, userID int64) (*entity.Use
 	return s.repository.GetProfile(ctx, userID)
 }
 
-// DeleteUserSelfByEmail
-// func (s *UserService) DeleteUserSelfByEmail(ctx context.Context, user *entity.User) error {
-// 	return s.repository.DeleteUserSelfByEmail(ctx, user)
+// GetUserBalance
+func (s *UserService) GetUserBalance(ctx context.Context, userID int64) (*entity.User, error) {
+	return s.repository.GetUserBalance(ctx, userID)
+}
+
+//DeleteAccount
+func (s *UserService) DeleteAccount(ctx context.Context, email string) error {
+	return s.repository.DeleteAccount(ctx, email)
+}
+
+//BuyerCreateAccount
+// func (s *UserService) BuyerCreateAccount(ctx context.Context, user *entity.User) error {
+// 	return s.repository.CreateUser(ctx, user)
 // }

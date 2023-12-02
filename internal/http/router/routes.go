@@ -67,6 +67,16 @@ func PublicRoutes(
 			Path:    "/blog/search/:search",
 			Handler: BlogHandler.SearchBlog,
 		},
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/:id",
+			Handler: TicketHandler.GetTicket,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/ticket",
+			Handler: TicketHandler.GetAllTickets,
+		},
 		//filter ticket by location
 		{
 			Method:  echo.GET,
@@ -121,6 +131,16 @@ func PublicRoutes(
 			Path:    "/ticket/available",
 			Handler: TicketHandler.SortTicketByAvailable,
 		},
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/search/:search",
+			Handler: TicketHandler.SearchTicket,
+		},
+		// {
+		// 	Method:  echo.POST,
+		// 	Path:    "/users/register/buyer",
+		// 	Handler: authHandler.BuyerCreateAccount,
+		// },
 	}
 }
 
@@ -170,12 +190,6 @@ func PrivateRoutes(
 		},
 
 		{
-			Method:  echo.PUT,
-			Path:    "/users/self",
-			Handler: UserHandler.UpdateUserSelf,
-			Role:    allRoles,
-		},
-		{
 			Method:  echo.POST,
 			Path:    "/ticket",
 			Handler: TicketHandler.CreateTicket,
@@ -189,12 +203,7 @@ func PrivateRoutes(
 			Role:    onlyAdmin,
 		},
 
-		{
-			Method:  echo.GET,
-			Path:    "/ticket",
-			Handler: TicketHandler.GetAllTickets,
-			Role:    onlyBuyer,
-		},
+
 
 		{
 			Method:  echo.PUT,
@@ -203,25 +212,12 @@ func PrivateRoutes(
 			Role:    onlyAdmin,
 		},
 
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/:id",
-			Handler: TicketHandler.GetTicket,
-			Role:    allRoles,
-		},
 
 		{
 			Method:  echo.DELETE,
 			Path:    "/ticket/:id",
 			Handler: TicketHandler.DeleteTicket,
 			Role:    onlyAdmin,
-		},
-
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/search/:search",
-			Handler: TicketHandler.SearchTicket,
-			Role:    allRoles,
 		},
 
 		{
@@ -271,13 +267,13 @@ func PrivateRoutes(
 			Method:  echo.POST,
 			Path:    "/notification",
 			Handler: NotificationHandler.CreateNotification,
-			Role:    allRoles,
+			Role:    onlyAdmin,
 		},
 
 		// get all notification
 		{
 			Method:  echo.GET,
-			Path:    "/notification",
+			Path:    "/notifications",
 			Handler: NotificationHandler.GetAllNotification,
 			Role:    allRoles,
 		},
@@ -303,6 +299,26 @@ func PrivateRoutes(
 			Method:  echo.GET,
 			Path:    "/users/profile",
 			Handler: UserHandler.GetProfile,
+			Role:    allRoles,
+		},
+		
+		// update profile
+		{
+			Method:  echo.PUT,
+			Path:    "/users/profile",
+			Handler: UserHandler.UpdateProfile,
+			Role:    allRoles,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/users/balance",
+			Handler: UserHandler.GetUserBalance,
+			Role:    onlyBuyer,
+		},
+		{
+			Method:  echo.DELETE,
+			Path:    "/users/deleteprofile",
+			Handler: UserHandler.DeleteAccount,
 			Role:    allRoles,
 		},
 	}

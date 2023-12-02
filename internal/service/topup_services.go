@@ -11,11 +11,16 @@ import (
 type TopupService interface {
     CreateTopup(ctx context.Context, topup entity.Topup) (entity.Topup, error)
     CreateMidtransCharge(orderID string, amount int64) (*coreapi.ChargeResponse, error)
+    // TopupSaldo(ctx context.Context, topup entity.Topup) (entity.Topup, error)
 }
 
 type topupService struct {
     topupRepository repository.TopupRepository
 }
+
+// type TopupRepository interface {
+//     TopupSaldo(ctx context.Context, topup entity.Topup) (entity.Topup, error)
+// }
 
 func NewTopupService(topupRepository repository.TopupRepository) *topupService {
     return &topupService{topupRepository}
@@ -40,3 +45,8 @@ func (s *topupService) CreateMidtransCharge(orderID string, amount int64) (*core
 
     return c.ChargeTransaction(chargeReq)
 }
+
+// topup saldo sederhana
+// func (s *topupService) TopupSaldo(ctx context.Context, topup entity.Topup) (entity.Topup, error) {
+//     return s.topupRepository.TopupSaldo(ctx, topup)
+// }

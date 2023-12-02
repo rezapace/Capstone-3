@@ -36,3 +36,19 @@ func (h *TopupHandler) CreateTopup(c echo.Context) error {
 
     return c.JSON(http.StatusCreated, newTopup)
 }
+
+
+// topup saldo sederhana
+// func (h *TopupHandler) TopupSaldo(c echo.Context) error {
+//     var topup entity.Topup
+//     if err := c.Bind(&topup); err != nil {
+//         return c.JSON(http.StatusBadRequest, echo.Map{"error": err.Error()})
+//     }
+
+//     newTopup, err := h.topupService.TopupSaldo(c.Request().Context(), topup)
+//     if err != nil {
+//         return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
+//     }
+
+//     return c.JSON(http.StatusCreated, newTopup)
+// }

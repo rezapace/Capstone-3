@@ -339,6 +339,12 @@ func PrivateRoutes(
 			Handler: NotificationHandler.UserGetNotification,
 			Role:    allRoles,
 		},
+		{
+			Method:  echo.POST,
+			Path:    "/user/topup",
+			Handler: TopupHandler.UserTopup,
+			Role:    onlyBuyer,
+		},
 	}
 }
 

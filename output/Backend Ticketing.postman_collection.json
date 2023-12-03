@@ -3020,7 +3020,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Buyer}}",
 											"type": "string"
 										}
 									]
@@ -3029,7 +3029,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 1,\r\n  \"status\": \"seleseai\"\r\n}",
+									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"status\": \"seleseai\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3037,52 +3037,68 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/order",
+									"raw": "{{URL}}user/order",
 									"host": [
-										"{{url}}"
+										"{{URL}}user"
 									],
 									"path": [
 										"order"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Create Order",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"status\": \"seleseai\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}user/order",
+											"host": [
+												"{{URL}}user"
+											],
+											"path": [
+												"order"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 03 Dec 2023 19:48:47 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "29"
+										}
+									],
+									"cookie": [],
+									"body": "\"Order created successfully\""
+								}
+							]
 						},
 						{
 							"name": "Get History Order",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/order/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"order",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Notification",
-					"item": [
-						{
-							"name": "Get Notification",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -3097,28 +3113,28 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL}}/notifications",
+									"raw": "{{URL}}user/order",
 									"host": [
-										"{{URL}}"
+										"{{URL}}user"
 									],
 									"path": [
-										"notifications"
+										"order"
 									]
 								}
 							},
 							"response": [
 								{
-									"name": "Get Notification",
+									"name": "Get History Order",
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{URL}}/notifications",
+											"raw": "{{URL}}user/order",
 											"host": [
-												"{{URL}}"
+												"{{URL}}user"
 											],
 											"path": [
-												"notifications"
+												"order"
 											]
 										}
 									},
@@ -3136,7 +3152,79 @@
 										},
 										{
 											"key": "Date",
-											"value": "Sat, 02 Dec 2023 22:47:25 GMT"
+											"value": "Sun, 03 Dec 2023 19:48:32 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "529"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Get all orders success\",\n    \"order_details\": [\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 194,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 10\n        },\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 194,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 10\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Notification",
+					"item": [
+						{
+							"name": "User Get Notification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}user/notification",
+									"host": [
+										"{{URL}}user"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "User Get Notification",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}user/notification",
+											"host": [
+												"{{URL}}user"
+											],
+											"path": [
+												"notification"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 03 Dec 2023 19:57:58 GMT"
 										},
 										{
 											"key": "Content-Length",
@@ -3144,7 +3232,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"type\": \"Diskon Ticket\",\n            \"message\": \"ada diskon loh cek berikut\",\n            \"is_read\": false,\n            \"created_at\": \"2023-12-02T06:17:03.644111Z\",\n            \"updated_at\": \"2023-12-02T06:17:03.647676Z\",\n            \"deleted_at\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"type\": \"Diskon Ticket\",\n            \"message\": \"ada diskon loh cek berikut\",\n            \"is_read\": false,\n            \"created_at\": \"2023-12-02T06:17:03.644111Z\",\n            \"updated_at\": \"2023-12-04T02:57:43.787024Z\",\n            \"deleted_at\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
 								}
 							]
 						}
@@ -3173,6 +3261,43 @@
 										"{{url}}"
 									],
 									"path": [
+										"topup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Topup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"amount\": 1000 \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/topup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
 										"topup"
 									]
 								}

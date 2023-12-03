@@ -332,6 +332,13 @@ func PrivateRoutes(
 			Handler: OrderHandler.GetOrderHistory,
 			Role:    onlyBuyer,
 		},
+		//UserGetNotification
+		{
+			Method:  echo.GET,
+			Path:    "user/notification",
+			Handler: NotificationHandler.UserGetNotification,
+			Role:    allRoles,
+		},
 	}
 }
 

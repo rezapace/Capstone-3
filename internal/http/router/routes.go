@@ -28,8 +28,8 @@ type Route struct {
 // membuat fungsi untuk mengembalikan route
 // pada func ini perlu login krna private
 func PublicRoutes(
-	authHandler *handler.AuthHandler, 
-	TicketHandler *handler.TicketHandler, 
+	authHandler *handler.AuthHandler,
+	TicketHandler *handler.TicketHandler,
 	BlogHandler *handler.BlogHandler) []*Route {
 	return []*Route{
 		{
@@ -147,11 +147,11 @@ func PublicRoutes(
 // membuat fungsi untuk mengembalikan route
 // pada func ini tdk perlu login krna public
 func PrivateRoutes(
-	UserHandler *handler.UserHandler, 
-	TicketHandler *handler.TicketHandler, 
-	BlogHandler *handler.BlogHandler, 
-	OrderHandler *handler.OrderHandler, 
-	NotificationHandler *handler.NotificationHandler, 
+	UserHandler *handler.UserHandler,
+	TicketHandler *handler.TicketHandler,
+	BlogHandler *handler.BlogHandler,
+	OrderHandler *handler.OrderHandler,
+	NotificationHandler *handler.NotificationHandler,
 	TopupHandler *handler.TopupHandler) []*Route {
 	return []*Route{
 		{
@@ -203,15 +203,12 @@ func PrivateRoutes(
 			Role:    onlyAdmin,
 		},
 
-
-
 		{
 			Method:  echo.PUT,
 			Path:    "/ticket/:id",
 			Handler: TicketHandler.UpdateTicket,
 			Role:    onlyAdmin,
 		},
-
 
 		{
 			Method:  echo.DELETE,
@@ -301,7 +298,7 @@ func PrivateRoutes(
 			Handler: UserHandler.GetProfile,
 			Role:    allRoles,
 		},
-		
+
 		// update profile
 		{
 			Method:  echo.PUT,
@@ -320,6 +317,20 @@ func PrivateRoutes(
 			Path:    "/users/deleteprofile",
 			Handler: UserHandler.DeleteAccount,
 			Role:    allRoles,
+		},
+		//UserCreateOrder
+		{
+			Method:  echo.POST,
+			Path:    "user/order",
+			Handler: OrderHandler.UserCreateOrder,
+			Role:    onlyBuyer,
+		},
+		//GetOrderHistory
+		{
+			Method:  echo.GET,
+			Path:    "user/order",
+			Handler: OrderHandler.GetOrderHistory,
+			Role:    onlyBuyer,
 		},
 	}
 }

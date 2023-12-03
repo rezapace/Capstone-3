@@ -16,6 +16,8 @@ type OrderUsecase interface {
 	UpdateUserBalance(ctx context.Context, userID int64, amount int64) error
 	GetUserBalance(ctx context.Context, userID int64) (int64, error)
 	GetTicketPrice(ctx context.Context, ticketID int64) (int64, error)
+	UserCreateOrder(ctx context.Context, order *entity.Order) error
+	GetOrderHistory(ctx context.Context, userID int64) ([]*entity.Order, error)
 }
 
 type OrderRepository interface {
@@ -28,6 +30,8 @@ type OrderRepository interface {
 	UpdateUserBalance(ctx context.Context, userID int64, amount int64) error
 	GetUserBalance(ctx context.Context, userID int64) (int64, error)
 	GetTicketPrice(ctx context.Context, ticketID int64) (int64, error)
+	UserCreateOrder(ctx context.Context, order *entity.Order) error
+	GetOrderHistory(ctx context.Context, userID int64) ([]*entity.Order, error)
 }
 
 type OrderService struct {
@@ -40,39 +44,38 @@ func NewOrderService(repository OrderRepository) *OrderService {
 
 // Updated CreateOrder method in OrderService to receive TicketService
 func (s *OrderService) CreateOrder(ctx context.Context, order *entity.Order) error {
-    // Mendapatkan informasi tiket berdasarkan ID tiket dalam pesanan
-    ticket, err := s.repository.GetTicket(ctx, order.TicketID)
-    if err != nil {
-        return err
-    }
+	// Mendapatkan informasi tiket berdasarkan ID tiket dalam pesanan
+	ticket, err := s.repository.GetTicket(ctx, order.TicketID)
+	if err != nil {
+		return err
+	}
 
-    // Memeriksa ketersediaan tiket
-    if int64(ticket.Quota) < order.Quantity {
-        return errors.New("ticket is not available")
-    }
+	// Memeriksa ketersediaan tiket
+	if int64(ticket.Quota) < order.Quantity {
+		return errors.New("ticket is not available")
+	}
 
-    // Melakukan perhitungan total harga pesanan
-    order.Total = ticket.Price * int64(order.Quantity)
+	// Melakukan perhitungan total harga pesanan
+	order.Total = ticket.Price * int64(order.Quantity)
 
-    // Membuat pesanan
-    if err := s.repository.CreateOrder(ctx, order); err != nil {
-        return err
-    }
+	// Membuat pesanan
+	if err := s.repository.CreateOrder(ctx, order); err != nil {
+		return err
+	}
 
-    // Mengurangi ketersediaan tiket
-    ticket.Quota -= order.Quantity
-    if err := s.repository.UpdateTicket(ctx, ticket); err != nil {
-        return err
-    }
+	// Mengurangi ketersediaan tiket
+	ticket.Quota -= order.Quantity
+	if err := s.repository.UpdateTicket(ctx, ticket); err != nil {
+		return err
+	}
 
-    // Mengurangi saldo pengguna
-    if err := s.repository.UpdateUserBalance(ctx, order.UserID, order.Total); err != nil {
-        return err
-    }
+	// Mengurangi saldo pengguna
+	if err := s.repository.UpdateUserBalance(ctx, order.UserID, order.Total); err != nil {
+		return err
+	}
 
-    return nil
+	return nil
 }
-
 
 // Implementasi fungsi GetTicket
 func (s *OrderService) GetTicket(ctx context.Context, ticketID int64) (*entity.Ticket, error) {
@@ -114,4 +117,44 @@ func (s *OrderService) GetTicketPrice(ctx context.Context, ticketID int64) (int6
 		return 0, err
 	}
 	return int64(ticket.Price), nil
-} 
+}
+
+// UserCreateOrder
+func (s *OrderService) UserCreateOrder(ctx context.Context, order *entity.Order) error {
+	// Mendapatkan informasi tiket berdasarkan ID tiket dalam pesanan
+	ticket, err := s.repository.GetTicket(ctx, order.TicketID)
+	if err != nil {
+		return err
+	}
+
+	// Memeriksa ketersediaan tiket
+	if int64(ticket.Quota) < order.Quantity {
+		return errors.New("ticket is not available")
+	}
+
+	// Melakukan perhitungan total harga pesanan
+	order.Total = ticket.Price * int64(order.Quantity)
+
+	// Membuat pesanan
+	if err := s.repository.CreateOrder(ctx, order); err != nil {
+		return err
+	}
+
+	// Mengurangi ketersediaan tiket
+	ticket.Quota -= order.Quantity
+	if err := s.repository.UpdateTicket(ctx, ticket); err != nil {
+		return err
+	}
+
+	// Mengurangi saldo pengguna
+	if err := s.repository.UpdateUserBalance(ctx, order.UserID, order.Total); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// GetOrderHistory
+func (s *OrderService) GetOrderHistory(ctx context.Context, userID int64) ([]*entity.Order, error) {
+	return s.repository.GetOrderByUserID(ctx, userID)
+}

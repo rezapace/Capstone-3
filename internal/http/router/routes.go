@@ -28,8 +28,8 @@ type Route struct {
 // membuat fungsi untuk mengembalikan route
 // pada func ini perlu login krna private
 func PublicRoutes(
-	authHandler *handler.AuthHandler, 
-	TicketHandler *handler.TicketHandler, 
+	authHandler *handler.AuthHandler,
+	TicketHandler *handler.TicketHandler,
 	BlogHandler *handler.BlogHandler) []*Route {
 	return []*Route{
 		{
@@ -66,6 +66,16 @@ func PublicRoutes(
 			Method:  echo.GET,
 			Path:    "/blog/search/:search",
 			Handler: BlogHandler.SearchBlog,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/:id",
+			Handler: TicketHandler.GetTicket,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/ticket",
+			Handler: TicketHandler.GetAllTickets,
 		},
 		//filter ticket by location
 		{
@@ -121,17 +131,27 @@ func PublicRoutes(
 			Path:    "/ticket/available",
 			Handler: TicketHandler.SortTicketByAvailable,
 		},
+		{
+			Method:  echo.GET,
+			Path:    "/ticket/search/:search",
+			Handler: TicketHandler.SearchTicket,
+		},
+		// {
+		// 	Method:  echo.POST,
+		// 	Path:    "/users/register/buyer",
+		// 	Handler: authHandler.BuyerCreateAccount,
+		// },
 	}
 }
 
 // membuat fungsi untuk mengembalikan route
 // pada func ini tdk perlu login krna public
 func PrivateRoutes(
-	UserHandler *handler.UserHandler, 
-	TicketHandler *handler.TicketHandler, 
-	BlogHandler *handler.BlogHandler, 
-	OrderHandler *handler.OrderHandler, 
-	NotificationHandler *handler.NotificationHandler, 
+	UserHandler *handler.UserHandler,
+	TicketHandler *handler.TicketHandler,
+	BlogHandler *handler.BlogHandler,
+	OrderHandler *handler.OrderHandler,
+	NotificationHandler *handler.NotificationHandler,
 	TopupHandler *handler.TopupHandler) []*Route {
 	return []*Route{
 		{
@@ -170,12 +190,6 @@ func PrivateRoutes(
 		},
 
 		{
-			Method:  echo.PUT,
-			Path:    "/users/self",
-			Handler: UserHandler.UpdateUserSelf,
-			Role:    allRoles,
-		},
-		{
 			Method:  echo.POST,
 			Path:    "/ticket",
 			Handler: TicketHandler.CreateTicket,
@@ -190,13 +204,6 @@ func PrivateRoutes(
 		},
 
 		{
-			Method:  echo.GET,
-			Path:    "/ticket",
-			Handler: TicketHandler.GetAllTickets,
-			Role:    onlyBuyer,
-		},
-
-		{
 			Method:  echo.PUT,
 			Path:    "/ticket/:id",
 			Handler: TicketHandler.UpdateTicket,
@@ -204,24 +211,10 @@ func PrivateRoutes(
 		},
 
 		{
-			Method:  echo.GET,
-			Path:    "/ticket/:id",
-			Handler: TicketHandler.GetTicket,
-			Role:    allRoles,
-		},
-
-		{
 			Method:  echo.DELETE,
 			Path:    "/ticket/:id",
 			Handler: TicketHandler.DeleteTicket,
 			Role:    onlyAdmin,
-		},
-
-		{
-			Method:  echo.GET,
-			Path:    "/ticket/search/:search",
-			Handler: TicketHandler.SearchTicket,
-			Role:    allRoles,
 		},
 
 		{
@@ -271,13 +264,13 @@ func PrivateRoutes(
 			Method:  echo.POST,
 			Path:    "/notification",
 			Handler: NotificationHandler.CreateNotification,
-			Role:    allRoles,
+			Role:    onlyAdmin,
 		},
 
 		// get all notification
 		{
 			Method:  echo.GET,
-			Path:    "/notification",
+			Path:    "/notifications",
 			Handler: NotificationHandler.GetAllNotification,
 			Role:    allRoles,
 		},
@@ -304,6 +297,53 @@ func PrivateRoutes(
 			Path:    "/users/profile",
 			Handler: UserHandler.GetProfile,
 			Role:    allRoles,
+		},
+
+		// update profile
+		{
+			Method:  echo.PUT,
+			Path:    "/users/profile",
+			Handler: UserHandler.UpdateProfile,
+			Role:    allRoles,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/users/balance",
+			Handler: UserHandler.GetUserBalance,
+			Role:    onlyBuyer,
+		},
+		{
+			Method:  echo.DELETE,
+			Path:    "/users/deleteprofile",
+			Handler: UserHandler.DeleteAccount,
+			Role:    allRoles,
+		},
+		//UserCreateOrder
+		{
+			Method:  echo.POST,
+			Path:    "user/order",
+			Handler: OrderHandler.UserCreateOrder,
+			Role:    onlyBuyer,
+		},
+		//GetOrderHistory
+		{
+			Method:  echo.GET,
+			Path:    "user/order",
+			Handler: OrderHandler.GetOrderHistory,
+			Role:    onlyBuyer,
+		},
+		//UserGetNotification
+		{
+			Method:  echo.GET,
+			Path:    "user/notification",
+			Handler: NotificationHandler.UserGetNotification,
+			Role:    allRoles,
+		},
+		{
+			Method:  echo.POST,
+			Path:    "/user/topup",
+			Handler: TopupHandler.UserTopup,
+			Role:    onlyBuyer,
 		},
 	}
 }

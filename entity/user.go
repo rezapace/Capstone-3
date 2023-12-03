@@ -55,14 +55,13 @@ func Register(email, password, roles, number string) *User {
 }
 
 // user update by self
-func UpdateUserSelf(id int64, name, email, number, password, roles string) *User {
+func UpdateProfile(id int64, name, email, number, password string) *User {
 	return &User{
 		ID:        id,
 		Name:      name,
 		Email:     email,
 		Number:    number,
 		Password:  password,
-		Roles:     roles,
 		UpdatedAt: time.Now(),
 	}
 }

@@ -84,7 +84,7 @@ func (r *UserRepository) GetByEmail(ctx context.Context, email string) (*entity.
 }
 
 // Update User Self
-func (r *UserRepository) UpdateUserSelf(ctx context.Context, user *entity.User) error {
+func (r *UserRepository) UpdateProfile(ctx context.Context, user *entity.User) error {
 	if err := r.db.WithContext(ctx).
 		Model(&entity.User{}).
 		Where("id = ?", user.ID).
@@ -115,13 +115,29 @@ func (r *UserRepository) GetProfile(ctx context.Context, userID int64) (*entity.
 	return &user, nil
 }
 
-// DeleteUserSelfByEmail
-// func (r *UserRepository) DeleteUserSelfByEmail(ctx context.Context, email string) error {
-// 	if err := r.db.WithContext(ctx).
-// 		Model(&entity.User{}).
-// 		Where("Email = ?", email).
-// 		Delete(nil).
-// 		Error; err != nil {
+// GetUserBalance
+func (r *UserRepository) GetUserBalance(ctx context.Context, userID int64) (*entity.User, error) {
+	var user entity.User
+	err := r.db.WithContext(ctx).First(&user, userID).Error
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+// DeleteAccount
+func (r *UserRepository) DeleteAccount(ctx context.Context, email string) error {
+	if err := r.db.WithContext(ctx).Delete(&entity.User{}, email).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+//BuyerCreateAccount
+// func (r *UserRepository) BuyerCreateAccount(ctx context.Context, user *entity.User) error {
+// 	//menggunakan db untuk melakukan query ke database
+// 	err := r.db.WithContext(ctx).Create(&user).Error // pada line ini akan melakukan query "INSERT INTO users"
+// 	if err != nil {
 // 		return err
 // 	}
 // 	return nil

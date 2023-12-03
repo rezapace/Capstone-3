@@ -133,14 +133,14 @@ func (h *UserHandler) DeleteUser(ctx echo.Context) error {
 }
 
 // Update User Self
-func (h *UserHandler) UpdateUserSelf(ctx echo.Context) error {
+func (h *UserHandler) UpdateProfile(ctx echo.Context) error {
 	var input struct {
-		ID       int64  `param:"id" validate:"required"`
+		ID       int64 
 		Name     string `json:"name"`
 		Email    string `json:"email" validate:"email"`
-		Number   string `json:"number" ate:"min=11,max=13"`
-		Roles    string `json:"roles" validate:"oneof=Admin Buyer"`
+		Number   string `json:"number" validate:"min=11,max=13"`
 		Password string `json:"password"`
+		Saldo    int64  `json:"saldo"`
 	}
 
 	// Mengambil nilai 'claims' dari JWT token
@@ -149,22 +149,20 @@ func (h *UserHandler) UpdateUserSelf(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
 	}
 
-	// Mendapatkan nilai 'ID' dari klaim
-	userID, ok := claims.Claims.(jwt.MapClaims)["id"].(float64)
+	// Extract user information from claims
+	claimsData, ok := claims.Claims.(*common.JwtCustomClaims)
 	if !ok {
-		return ctx.JSON(http.StatusInternalServerError, "unable to get user ID from claims")
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user information from claims")
 	}
 
-	// Membandingkan ID yang diterima dari input dengan ID dari klaim
-	if int64(userID) != input.ID {
-		return ctx.JSON(http.StatusUnprocessableEntity, "you can't update this user")
-	}
+	// Mengisi ID dari klaim ke input
+	input.ID = claimsData.ID
 
 	// Update user
-	user := entity.UpdateUserSelf(input.ID, input.Name, input.Email, input.Number, input.Roles, input.Password)
+	user := entity.UpdateProfile(input.ID, input.Name, input.Email, input.Number, input.Password)
 
 	// Memanggil service untuk update user
-	err := h.userService.UpdateUserSelf(ctx.Request().Context(), user)
+	err := h.userService.UpdateProfile(ctx.Request().Context(), user)
 	if err != nil {
 		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
 	}
@@ -172,6 +170,7 @@ func (h *UserHandler) UpdateUserSelf(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, map[string]string{"success": "successfully update user"})
 }
 
+// get profile
 func (h *UserHandler) GetProfile(ctx echo.Context) error {
 	// Retrieve user claims from the JWT token
 	claims, ok := ctx.Get("user").(*jwt.Token)
@@ -195,49 +194,79 @@ func (h *UserHandler) GetProfile(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, user)
 }
 
+// Get user balance
+func (h *UserHandler) GetUserBalance(ctx echo.Context) error {
+	// Retrieve user claims from the JWT token
+	claims, ok := ctx.Get("user").(*jwt.Token)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
+	}
 
+	// Extract user information from claims
+	claimsData, ok := claims.Claims.(*common.JwtCustomClaims)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user information from claims")
+	}
 
-// delete user self common.JwtCustomClaims
-// func (h *UserHandler) DeleteUserSelf(ctx echo.Context) error {
-// 	// Pengecekan request
+	// Fetch user balance using the user ID
+	balance, err := h.userService.GetUserBalance(ctx.Request().Context(), claimsData.ID)
+	if err != nil {
+		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
+	}
+
+	// Return the user balance
+	return ctx.JSON(http.StatusOK, balance.Saldo)
+}
+
+//delete account
+func (h *UserHandler) DeleteAccount(ctx echo.Context) error {
+	claims, ok := ctx.Get("user").(*jwt.Token)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
+	}
+
+	// Extract user information from claims
+	claimsData, ok := claims.Claims.(*common.JwtCustomClaims)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user information from claims")
+	}
+
+	// Menggunakan ID dari klaim JWT
+	idToDelete := claimsData.ID
+
+	err := h.userService.Delete(ctx.Request().Context(), idToDelete)
+	if err != nil {
+		return ctx.JSON(http.StatusUnprocessableEntity, err)
+	}
+
+	return ctx.JSON(http.StatusOK, map[string]interface{}{
+		"message": "User deleted successfully",
+	})
+}
+
+// buyer create account
+// func (h *UserHandler) BuyerCreateAccount(ctx echo.Context) error {
 // 	var input struct {
-// 		Email string `param:"email" validate:"required,email"`
+// 		Name     string `json:"name" validate:"required"`
+// 		Email    string `json:"email" validate:"email"`
+// 		Number   string `json:"number" validate:"min=11,max=13"`
+// 		Roles    string `json:"roles" default:"Buyer"`
+// 		Password string `json:"password"`
+// 		Saldo    int64  `json:"saldo" default:"0"`
 // 	}
-
+// 	//ini func untuk error checking
 // 	if err := ctx.Bind(&input); err != nil {
 // 		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
 // 	}
-
-// 	// Mengambil nilai 'claims' dari JWT token
-// 	claims, ok := ctx.Get("user").(*jwt.Token)
-// 	if !ok {
-// 		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
-// 	}
-
-// 	// Mendapatkan nilai 'email' dari klaim
-// 	jwtClaims, ok := claims.Claims.(*jwt.MapClaims)
-// 	if !ok {
-// 		return ctx.JSON(http.StatusInternalServerError, "unable to get user email from claims")
-// 	}
-
-// 	// Membandingkan email yang diterima dari input dengan email dari klaim
-// 	userEmail, ok := (*jwtClaims)["email"].(string)
-// 	if !ok {
-// 		return ctx.JSON(http.StatusInternalServerError, "unable to get user email from claims")
-// 	}
-
-// 	if userEmail != input.Email {
-// 		return ctx.JSON(http.StatusUnprocessableEntity, "you can't delete this user")
-// 	}
-
-// 	// Delete user
-// 	user := entity.DeleteUserSelfByEmail(input.Email)
-
-// 	// Memanggil service untuk delete user
-// 	err := h.userService.DeleteUserSelfByEmail(ctx.Request().Context(), user)
+// 	user := entity.NewUser(input.Name, input.Email, input.Number, input.Roles, input.Password, input.Saldo)
+// 	err := h.userService.CreateUser(ctx.Request().Context(), user)
 // 	if err != nil {
-// 		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
+// 		return ctx.JSON(http.StatusUnprocessableEntity, err)
 // 	}
-
-// 	return ctx.JSON(http.StatusOK, map[string]string{"success": "successfully delete user"})
+// 	//kalau retrun nya kaya gini akan tampil pesan "User created successfully"
+// 	return ctx.JSON(http.StatusCreated, "User created successfully")
 // }
+
+
+
+

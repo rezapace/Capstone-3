@@ -3,8 +3,9 @@ package repository
 import (
 	"Ticketing/entity"
 	"context"
-	"gorm.io/gorm"
 	"errors"
+
+	"gorm.io/gorm"
 )
 
 type OrderRepository struct {
@@ -73,7 +74,7 @@ func (r *OrderRepository) GetOrderByUserID(ctx context.Context, userID int64) ([
 	return orders, nil
 }
 
-//UpdateUserBalance
+// UpdateUserBalance
 func (r *OrderRepository) UpdateUserBalance(ctx context.Context, userID int64, total int64) error {
 	user := new(entity.User)
 	if err := r.db.WithContext(ctx).Where("id = ?", userID).First(user).Error; err != nil {
@@ -110,4 +111,23 @@ func (r *OrderRepository) GetTicketPrice(ctx context.Context, ticketID int64) (i
 	}
 
 	return int64(ticket.Price), nil
+}
+
+// UserCreateOrder
+func (r *OrderRepository) UserCreateOrder(ctx context.Context, order *entity.Order) error {
+	err := r.db.WithContext(ctx).Create(&order).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// GetOrderHistory
+func (r *OrderRepository) GetOrderHistory(ctx context.Context, userID int64) ([]*entity.Order, error) {
+	orders := make([]*entity.Order, 0)
+	err := r.db.WithContext(ctx).Preload("Ticket").Where("user_id = ?", userID).Find(&orders).Error
+	if err != nil {
+		return nil, err
+	}
+	return orders, nil
 }

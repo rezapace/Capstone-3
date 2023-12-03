@@ -1651,7 +1651,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Buyer}}",
 											"type": "string"
 										}
 									]
@@ -1660,7 +1660,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n            \"name\": \"ravita\",\r\n            \"email\": \"Admin@gmail.com\",\r\n            \"number\": \"00000000000\",\r\n            \"roles\": \"Admin\",\r\n            \"saldo\": 11111111110\r\n}",
+									"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\" : \"Buyer1@gmail.com\",\r\n  \"number\": \"12345678901\",\r\n  \"password\" : \"123123123123123123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1668,17 +1668,67 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/users/1",
+									"raw": "{{URL}}/users/profile",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"users",
-										"1"
+										"profile"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Update Profile",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\" : \"Buyer1@gmail.com\",\r\n  \"number\": \"12345678901\",\r\n  \"password\" : \"123123123123123123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/users/profile",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"users",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 21:43:48 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "39"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": \"successfully update user\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Delete Profile",
@@ -1688,57 +1738,84 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Buyer}}",
 											"type": "string"
 										}
 									]
 								},
 								"method": "DELETE",
 								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/api/v1/users/2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"v1",
-										"users",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Profile",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 9\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
-								"method": "GET",
-								"header": [],
 								"url": {
-									"raw": "{{url}}/users/1",
+									"raw": "{{URL}}/users/deleteprofile",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"users",
-										"1"
+										"deleteprofile"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Delete Profile",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": 9\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/users/deleteprofile",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"users",
+												"deleteprofile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 21:54:29 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "40"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"User deleted successfully\"\n}"
+								}
+							]
 						},
 						{
 							"name": "Get Saldo",
@@ -1748,7 +1825,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Buyer}}",
 											"type": "string"
 										}
 									]
@@ -1756,17 +1833,127 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/users/1",
+									"raw": "{{URL}}/users/balance",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"users",
-										"1"
+										"balance"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Saldo",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/users/balance",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"users",
+												"balance"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 21:49:43 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "7"
+										}
+									],
+									"cookie": [],
+									"body": "100000"
+								}
+							]
+						},
+						{
+							"name": "Get Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/users/profile",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Profile",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/users/profile",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"users",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 21:36:00 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "191"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 9,\n    \"name\": \"\",\n    \"email\": \"Buyer1@gmail.com\",\n    \"number\": \"00000000000\",\n    \"roles\": \"Buyer\",\n    \"saldo\": 0,\n    \"created_at\": \"2023-12-03T01:29:58.477828+07:00\",\n    \"updated_at\": \"2023-12-03T01:29:58.477828+07:00\"\n}"
+								}
+							]
 						}
 					]
 				},
@@ -1777,48 +1964,74 @@
 							"name": "Get Ticket",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket",
+									"raw": "{{URL}}/ticket",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Ticket",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:35:09 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Get Ticket ID",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/1",
+									"raw": "{{URL}}/ticket/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -1826,27 +2039,61 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Ticket ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/1",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:35:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "229"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"category\": \"music\",\n        \"created\": \"2023-12-01T22:20:09.060639Z\",\n        \"date\": \"2023-12-31T00:00:00Z\",\n        \"description\": \"konser lagu edm terbaik\",\n        \"id\": 1,\n        \"image\": \"https/image\",\n        \"location\": \"bekasi\",\n        \"price\": 50,\n        \"quota\": 198,\n        \"title\": \"Dragon\"\n    }\n}"
+								}
+							]
 						},
 						{
 							"name": "Search",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/search/Nama",
+									"raw": "{{URL}}/ticket/search/Nama",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -1855,27 +2102,62 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Search",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/search/cold",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"search",
+												"cold"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:35:42 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "219"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "FIlter Location",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/location/GBK",
+									"raw": "{{URL}}/ticket/location/GBK",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -1884,27 +2166,62 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "FIlter Location",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/location/GBK",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"location",
+												"GBK"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:35:58 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "219"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Filter Category",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/category/music",
+									"raw": "{{URL}}/ticket/category/music",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -1913,27 +2230,62 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Filter Category",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/category/music",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"category",
+												"music"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:36:07 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Filter Time",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/range/:start/:end",
+									"raw": "{{URL}}/ticket/range/:start/:end",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -1944,36 +2296,82 @@
 									"variable": [
 										{
 											"key": "start",
-											"value": ""
+											"value": "2023-12-31"
 										},
 										{
 											"key": "end",
-											"value": ""
+											"value": "2024-12-31"
 										}
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Filter Time",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/range/:start/:end",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"range",
+												":start",
+												":end"
+											],
+											"variable": [
+												{
+													"key": "start",
+													"value": "2023-12-31"
+												},
+												{
+													"key": "end",
+													"value": "2024-12-31"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:36:50 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Filter Price",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/price/:min/:max",
+									"raw": "{{URL}}/ticket/price/:min/:max",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -1993,27 +2391,73 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Filter Price",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/price/:min/:max",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"price",
+												":min",
+												":max"
+											],
+											"variable": [
+												{
+													"key": "min",
+													"value": "0"
+												},
+												{
+													"key": "max",
+													"value": "100"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:37:03 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Cheap",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/cheapest?sort=termurah",
+									"raw": "{{URL}}/ticket/cheapest?sort=termurah",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2027,27 +2471,67 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Cheap",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/ticket/cheapest?sort=termurah",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"ticket",
+												"cheapest"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "termurah"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:37:14 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Bestseller",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/most-bought?sort=terbanyak",
+									"raw": "{{URL}}/ticket/most-bought?sort=terbanyak",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2061,20 +2545,60 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Bestseller",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/ticket/most-bought?sort=terbanyak",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"ticket",
+												"most-bought"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "terbanyak"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:37:21 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Expenive",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
@@ -2095,27 +2619,67 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Expenive",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/most-expensive?sort=termahal",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"most-expensive"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "termahal"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:37:27 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Lastest",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/terbaru?sort=terbaru",
+									"raw": "{{URL}}/ticket/terbaru?sort=terbaru",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2129,27 +2693,67 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Lastest",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/terbaru?sort=terbaru",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"terbaru"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "terbaru"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:37:49 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Avaliable",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/available?sort=tersedia",
+									"raw": "{{URL}}/ticket/available?sort=tersedia",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2163,7 +2767,54 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Avaliable",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/available?sort=tersedia",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"available"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "tersedia"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:38:00 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -2174,48 +2825,74 @@
 							"name": "Get All Blog",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/blog",
+									"raw": "{{URL}}/blog",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get All Blog",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/blog",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"blog"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:38:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "563"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"ID\": 3,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-02T00:00:00Z\",\n            \"Title\": \"Kerusuhan DI Konser jakarta\",\n            \"Description\": \"beberapa orang menjadi tersangka\",\n            \"CreatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"UpdatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        {\n            \"ID\": 1,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"Title\": \"Konser Tersukses\",\n            \"Description\": \"dikatakan oleh produser menjadi konser tersukses sepanjang masa\",\n            \"CreatedAt\": \"2023-12-02T04:13:07.807064Z\",\n            \"UpdatedAt\": \"2023-12-02T06:07:55.103818Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Get Blog By ID",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/blog/1",
+									"raw": "{{URL}}/blog/1",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog",
@@ -2223,36 +2900,112 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Blog By ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/blog/1",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"blog",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:38:35 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "217"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"created\": \"2023-12-02T04:13:07.807064Z\",\n        \"date\": \"2023-12-31T00:00:00Z\",\n        \"description\": \"dikatakan oleh produser menjadi konser tersukses sepanjang masa\",\n        \"id\": 1,\n        \"image\": \"https/image\",\n        \"title\": \"Konser Tersukses\"\n    }\n}"
+								}
+							]
 						},
 						{
 							"name": "Search Blog",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/blog/search/Nama",
+									"raw": "{{URL}}/blog/search/Kons",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog",
 										"search",
-										"Nama"
+										"Kons"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Search Blog",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/blog/search/Kons",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"blog",
+												"search",
+												"Kons"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:39:08 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "563"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"ID\": 3,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-02T00:00:00Z\",\n            \"Title\": \"Kerusuhan DI Konser jakarta\",\n            \"Description\": \"beberapa orang menjadi tersangka\",\n            \"CreatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"UpdatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        {\n            \"ID\": 1,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"Title\": \"Konser Tersukses\",\n            \"Description\": \"dikatakan oleh produser menjadi konser tersukses sepanjang masa\",\n            \"CreatedAt\": \"2023-12-02T04:13:07.807064Z\",\n            \"UpdatedAt\": \"2023-12-02T06:07:55.103818Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -2267,7 +3020,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Buyer}}",
 											"type": "string"
 										}
 									]
@@ -2276,7 +3029,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 1,\r\n  \"status\": \"seleseai\"\r\n}",
+									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"status\": \"seleseai\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2284,16 +3037,65 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/order",
+									"raw": "{{URL}}user/order",
 									"host": [
-										"{{url}}"
+										"{{URL}}user"
 									],
 									"path": [
 										"order"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Create Order",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"status\": \"seleseai\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}user/order",
+											"host": [
+												"{{URL}}user"
+											],
+											"path": [
+												"order"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 03 Dec 2023 19:48:47 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "29"
+										}
+									],
+									"cookie": [],
+									"body": "\"Order created successfully\""
+								}
+							]
 						},
 						{
 							"name": "Get History Order",
@@ -2303,7 +3105,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Buyer}}",
 											"type": "string"
 										}
 									]
@@ -2311,17 +3113,56 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/order/1",
+									"raw": "{{URL}}user/order",
 									"host": [
-										"{{url}}"
+										"{{URL}}user"
 									],
 									"path": [
-										"order",
-										"1"
+										"order"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get History Order",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}user/order",
+											"host": [
+												"{{URL}}user"
+											],
+											"path": [
+												"order"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 03 Dec 2023 19:48:32 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "529"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Get all orders success\",\n    \"order_details\": [\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 194,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 10\n        },\n        {\n            \"ticket\": {\n                \"id\": 1,\n                \"image\": \"https/image\",\n                \"location\": \"bekasi\",\n                \"Date\": \"2023-12-31T00:00:00Z\",\n                \"title\": \"Dragon\",\n                \"description\": \"konser lagu edm terbaik\",\n                \"price\": 50,\n                \"Status\": \"available\",\n                \"Quota\": 194,\n                \"category\": \"music\",\n                \"Terjual\": 5\n            },\n            \"user_id\": 10\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -2329,14 +3170,14 @@
 					"name": "Notification",
 					"item": [
 						{
-							"name": "Get Notification",
+							"name": "User Get Notification",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{Token-Buyer}}",
 											"type": "string"
 										}
 									]
@@ -2344,16 +3185,56 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/notification",
+									"raw": "{{URL}}user/notification",
 									"host": [
-										"{{url}}"
+										"{{URL}}user"
 									],
 									"path": [
 										"notification"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "User Get Notification",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}user/notification",
+											"host": [
+												"{{URL}}user"
+											],
+											"path": [
+												"notification"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 03 Dec 2023 19:57:58 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "220"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"type\": \"Diskon Ticket\",\n            \"message\": \"ada diskon loh cek berikut\",\n            \"is_read\": false,\n            \"created_at\": \"2023-12-02T06:17:03.644111Z\",\n            \"updated_at\": \"2023-12-04T02:57:43.787024Z\",\n            \"deleted_at\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -2385,6 +3266,43 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "User Topup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"amount\": 1000 \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/topup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"topup"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -2400,50 +3318,78 @@
 							"name": "Search Ticket",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/search/Nama",
+									"raw": "{{URL}}/ticket/search/col",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
 										"search",
-										"Nama"
+										"col"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Search Ticket",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/search/col",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"search",
+												"col"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:52:52 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "219"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Filter Location",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/location/GBK",
+									"raw": "{{URL}}/ticket/location/GBK",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2452,27 +3398,62 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Filter Location",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/location/GBK",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"location",
+												"GBK"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:53:09 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "219"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Fileter Category",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/category/music",
+									"raw": "{{URL}}/ticket/category/music",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2481,27 +3462,62 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Fileter Category",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/category/music",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"category",
+												"music"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:53:26 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Filter Time",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/range/:start/:end",
+									"raw": "{{URL}}/ticket/range/:start/:end",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2512,16 +3528,69 @@
 									"variable": [
 										{
 											"key": "start",
-											"value": ""
+											"value": "2023-12-31"
 										},
 										{
 											"key": "end",
-											"value": ""
+											"value": "2024-12-31"
 										}
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Filter Time",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/range/:start/:end",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"range",
+												":start",
+												":end"
+											],
+											"variable": [
+												{
+													"key": "start",
+													"value": "2023-12-31"
+												},
+												{
+													"key": "end",
+													"value": "2024-12-31"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:54:03 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Filter Price",
@@ -2539,9 +3608,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/price/:min/:max",
+									"raw": "{{URL}}/ticket/price/:min/:max",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2561,27 +3630,73 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Filter Price",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/price/:min/:max",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"price",
+												":min",
+												":max"
+											],
+											"variable": [
+												{
+													"key": "min",
+													"value": "0"
+												},
+												{
+													"key": "max",
+													"value": "100"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:54:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Cheap",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/cheapest?sort=termurah",
+									"raw": "{{URL}}/ticket/cheapest?sort=termurah",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2595,7 +3710,54 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Cheap",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/cheapest?sort=termurah",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"cheapest"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "termurah"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:54:34 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Bestseller",
@@ -2613,9 +3775,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/most-bought?sort=terbanyak",
+									"raw": "{{URL}}/ticket/most-bought?sort=terbanyak",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2629,27 +3791,67 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Bestseller",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/most-bought?sort=terbanyak",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"most-bought"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "terbanyak"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:54:47 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Expensive",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/most-expensive?sort=termahal",
+									"raw": "{{URL}}/ticket/most-expensive?sort=termahal",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2663,7 +3865,54 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Expensive",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/most-expensive?sort=termahal",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"most-expensive"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "termahal"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:55:02 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Latest",
@@ -2681,9 +3930,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/terbaru?sort=terbaru",
+									"raw": "{{URL}}/ticket/terbaru?sort=terbaru",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2697,27 +3946,67 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Latest",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/terbaru?sort=terbaru",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"terbaru"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "terbaru"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:55:15 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "Sort Available",
 							"request": {
 								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/ticket/available?sort=tersedia",
+									"raw": "{{URL}}/ticket/available?sort=tersedia",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"ticket",
@@ -2731,7 +4020,54 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Sort Available",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/ticket/available?sort=tersedia",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"ticket",
+												"available"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "tersedia"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:55:31 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "432"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https/image\",\n            \"location\": \"GBK\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"coldplay\",\n            \"description\": \"penyanyi luar negri\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 100,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        },\n        {\n            \"id\": 1,\n            \"image\": \"https/image\",\n            \"location\": \"bekasi\",\n            \"Date\": \"2023-12-31T00:00:00Z\",\n            \"title\": \"Dragon\",\n            \"description\": \"konser lagu edm terbaik\",\n            \"price\": 50,\n            \"Status\": \"available\",\n            \"Quota\": 198,\n            \"category\": \"music\",\n            \"Terjual\": 5\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -2754,18 +4090,60 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/blog/search/Nama",
+									"raw": "{{URL}}/blog/search/Ker",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"blog",
 										"search",
-										"Nama"
+										"Ker"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Search Blog",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/blog/search/Ker",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"blog",
+												"search",
+												"Ker"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 22:56:35 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "276"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"ID\": 3,\n            \"Image\": \"https/image\",\n            \"Date\": \"2023-12-02T00:00:00Z\",\n            \"Title\": \"Kerusuhan DI Konser jakarta\",\n            \"Description\": \"beberapa orang menjadi tersangka\",\n            \"CreatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"UpdatedAt\": \"2023-12-02T06:06:46.56004Z\",\n            \"DeletedAt\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
@@ -2926,7 +4304,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Buyer\",\r\n    \"email\" : \"Buyer@gmail.com\",\r\n    \"roles\" : \"Buyer\",\r\n    \"number\" : \"00000000000\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"raw": "{\r\n  \"name\": \"Buyer\",\r\n  \"email\": \"Buyer1@gmail.com\",\r\n  \"number\": \"12345678901\",\r\n  \"password\": \"123123123123123123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3001,7 +4379,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"Buyer@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"Buyer1@gmail.com\",\r\n    \"password\" : \"123123123123123123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3224,6 +4602,11 @@
 		{
 			"key": "Token-Admin",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IiIsImVtYWlsIjoiQWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxNDcxNTAzfQ.7njlsyp_kFCSby44lBnzcEDjze3OZoKj5Ow4EcooCMs"
+		},
+		{
+			"key": "Token-Buyer",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IiIsImVtYWlsIjoiQnV5ZXIxQGdtYWlsLmNvbSIsInJvbGUiOiJCdXllciIsImV4cCI6MTcwMTU0MjA2OH0.6vamjQugLq5kOXi12XJNxpLp3QD2fwKMRLmRS9W5rcE",
+			"type": "string"
 		}
 	]
 }

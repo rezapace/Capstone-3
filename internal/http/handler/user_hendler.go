@@ -3,10 +3,10 @@ package handler
 //NOTE :
 // FOLDER INI UNTUK MEMANGGIL SERVICE DAN REPOSITORY
 import (
+	"Ticketing/common"
 	"Ticketing/entity"
 	"Ticketing/internal/http/validator"
 	"Ticketing/internal/service"
-	"Ticketing/common"
 	"net/http"
 	"strconv"
 
@@ -135,7 +135,7 @@ func (h *UserHandler) DeleteUser(ctx echo.Context) error {
 // Update User Self
 func (h *UserHandler) UpdateProfile(ctx echo.Context) error {
 	var input struct {
-		ID       int64 
+		ID       int64
 		Name     string `json:"name"`
 		Email    string `json:"email" validate:"email"`
 		Number   string `json:"number" validate:"min=11,max=13"`
@@ -218,7 +218,7 @@ func (h *UserHandler) GetUserBalance(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, balance.Saldo)
 }
 
-//delete account
+// delete account
 func (h *UserHandler) DeleteAccount(ctx echo.Context) error {
 	claims, ok := ctx.Get("user").(*jwt.Token)
 	if !ok {
@@ -244,6 +244,78 @@ func (h *UserHandler) DeleteAccount(ctx echo.Context) error {
 	})
 }
 
+// upgrade saldo
+func (h *UserHandler) UpgradeSaldo(ctx echo.Context) error {
+	// Retrieve user ID from JWT claims
+	claims, ok := ctx.Get("user").(*jwt.Token)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
+	}
+
+	// Extract user information from claims
+	claimsData, ok := claims.Claims.(*common.JwtCustomClaims)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user information from claims")
+	}
+
+	userID := claimsData.ID
+
+	// Fetch current saldo for the user
+	currentUser, err := h.userService.GetUserByID(ctx.Request().Context(), userID)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, "unable to fetch user information")
+	}
+
+	// Extract input data
+	var input struct {
+		Saldo int64 `json:"saldo"`
+	}
+
+	if err := ctx.Bind(&input); err != nil {
+		return ctx.JSON(http.StatusBadRequest, validator.ValidatorErrors(err))
+	}
+
+	// Add the new saldo to the current saldo
+	newSaldo := currentUser.Saldo + input.Saldo
+
+	// Update user saldo
+	currentUser.Saldo = newSaldo
+	err = h.userService.UpgradeSaldo(ctx.Request().Context(), currentUser)
+	if err != nil {
+		return ctx.JSON(http.StatusUnprocessableEntity, err.Error())
+	}
+
+	return ctx.JSON(http.StatusOK, map[string]string{"success": "successfully updated user saldo"})
+}
+
+// logout
+func (h *UserHandler) UserLogout(ctx echo.Context) error {
+	// Retrieve user claims from the JWT token
+	claims, ok := ctx.Get("user").(*jwt.Token)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user claims")
+	}
+
+	// Extract user information from claims
+	claimsData, ok := claims.Claims.(*common.JwtCustomClaims)
+	if !ok {
+		return ctx.JSON(http.StatusInternalServerError, "unable to get user information from claims")
+	}
+
+	userID := claimsData.ID
+
+	// Create a *entity.User instance with the userID
+	user := &entity.User{ID: userID}
+
+	// Invalidate the JWT token
+	err := h.userService.UserLogout(ctx.Request().Context(), user)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, "unable to invalidate JWT token")
+	}
+
+	return ctx.JSON(http.StatusOK, map[string]string{"success": "successfully logged out"})
+}
+
 // buyer create account
 // func (h *UserHandler) BuyerCreateAccount(ctx echo.Context) error {
 // 	var input struct {
@@ -266,7 +338,3 @@ func (h *UserHandler) DeleteAccount(ctx echo.Context) error {
 // 	//kalau retrun nya kaya gini akan tampil pesan "User created successfully"
 // 	return ctx.JSON(http.StatusCreated, "User created successfully")
 // }
-
-
-
-

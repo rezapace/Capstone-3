@@ -133,6 +133,28 @@ func (r *UserRepository) DeleteAccount(ctx context.Context, email string) error 
 	return nil
 }
 
+// upgrade saldo
+func (r *UserRepository) UpgradeSaldo(ctx context.Context, user *entity.User) error {
+	if err := r.db.WithContext(ctx).
+		Model(&entity.User{}).
+		Where("id = ?", user.ID).
+		Updates(&user).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+// logout
+func (r *UserRepository) UserLogout(ctx context.Context, user *entity.User) error {
+	if err := r.db.WithContext(ctx).
+		Model(&entity.User{}).
+		Where("id = ?", user.ID).
+		Updates(&user).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 //BuyerCreateAccount
 // func (r *UserRepository) BuyerCreateAccount(ctx context.Context, user *entity.User) error {
 // 	//menggunakan db untuk melakukan query ke database

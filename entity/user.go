@@ -73,3 +73,17 @@ func DeleteUserSelfByEmail(email string) *User {
 		DeletedAt: nil,
 	}
 }
+
+func UpgradeSaldo(id int64, saldo int64) *User {
+	return &User{
+		ID:    id,
+		Saldo: saldo,
+	}
+}
+
+// user logout
+func UserLogout(id int64) *User {
+	return &User{
+		ID: id,
+	}
+}

@@ -345,6 +345,18 @@ func PrivateRoutes(
 			Handler: TopupHandler.UserTopup,
 			Role:    onlyBuyer,
 		},
+		{
+			Method:  echo.POST,
+			Path:    "/user/upgrade",
+			Handler: UserHandler.UpgradeSaldo,
+			Role:    onlyBuyer,
+		},
+		{
+			Method:  echo.POST,
+			Path:    "/user/logout",
+			Handler: UserHandler.UserLogout,
+			Role:    allRoles,
+		},
 	}
 }
 

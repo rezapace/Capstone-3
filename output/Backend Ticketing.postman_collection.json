@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "475ee4c6-91f3-44de-bd51-5cdc49298a10",
 		"name": "Backend Ticketing",
+		"description": "Documentation API untuk program aplikasi pembayaran tiket menggunakan bahasa Go",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26142588",
 		"_collection_link": "https://ticketing-mikti.postman.co/workspace/Ticketing-Workspace~1c7b0ec0-f35f-4273-b1d6-67507ad4c237/collection/26142588-475ee4c6-91f3-44de-bd51-5cdc49298a10?action=share&source=collection_link&creator=26142588"
@@ -45,7 +46,8 @@
 									"path": [
 										"users"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk membuat data atau akun user."
 							},
 							"response": [
 								{
@@ -121,7 +123,8 @@
 									"path": [
 										"users"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menampilkan seluruh data user"
 							},
 							"response": [
 								{
@@ -189,7 +192,8 @@
 										"users",
 										"1"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menampilkan data user berdasarkan ID yang ingin diinginkan."
 							},
 							"response": [
 								{
@@ -267,7 +271,8 @@
 										"users",
 										"1"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk mengupdate atau memperbarui data user berdasarkan ID user."
 							},
 							"response": [
 								{
@@ -345,7 +350,8 @@
 										"users",
 										"2"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menghapus secara permanen data user berdasarkan ID, ketika data atau akun tersebut sudah tidak terpakai."
 							},
 							"response": [
 								{
@@ -393,8 +399,78 @@
 									"body": "{\n    \"message\": \"User deleted successfully\"\n}"
 								}
 							]
+						},
+						{
+							"name": "Logout Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/user/logout",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Logout",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/user/logout",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"user",
+												"logout"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 04 Dec 2023 20:08:02 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "38"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": \"successfully logged out\"\n}"
+								}
+							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi untuk membuat akun user, update data user, get all data user, get user by ID, dan delete user pada bagian atau sisi admin."
 				},
 				{
 					"name": "Ticket",
@@ -431,7 +507,8 @@
 									"path": [
 										"ticket"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk membuat data atau daftar tiket yang akan dijual oleh seorang admin."
 							},
 							"response": [
 								{
@@ -507,7 +584,8 @@
 									"path": [
 										"ticketa"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk melihat secara keseluruhan daftar tiket yang ada pada program ini."
 							},
 							"response": [
 								{
@@ -575,7 +653,8 @@
 										"ticket",
 										"1"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk melihat daftar tiket yang ada berdasarkan ID tiket."
 							},
 							"response": [
 								{
@@ -653,7 +732,8 @@
 										"ticket",
 										"1"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk memperbarui data tiket yang ada berdasarkan ID tiket yang sudah terdaftar sebelumnya."
 							},
 							"response": [
 								{
@@ -731,7 +811,8 @@
 										"ticket",
 										"1"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menghapus data tiket yang ada pada daftar tiket, ketika data tiket tersebut sudah tidak digunakan kembali."
 							},
 							"response": [
 								{
@@ -776,7 +857,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi ketika seorang admin ingin membuat daftar tiket baru, melihat seluruh daftar tiket, melihat daftar tiket berdasrkan ID tiket yang diinginkan, memperbarui data tiket, dan menghapus data tiket yang sudah tidak digunakan."
 				},
 				{
 					"name": "Blog",
@@ -813,7 +895,8 @@
 									"path": [
 										"blog"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk membuat blog baru mengenai event atau tiket yang sedang ada pada program tersebut."
 							},
 							"response": [
 								{
@@ -889,7 +972,8 @@
 									"path": [
 										"blog"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menampilkan seluruh daftar blog yang sudah dibuat sebelumnya oleh admin."
 							},
 							"response": [
 								{
@@ -966,7 +1050,8 @@
 										"blog",
 										"1"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk memperbarui data atau daftar blog yang sudah terdaftar berdasarkan ID blog."
 							},
 							"response": [
 								{
@@ -1044,7 +1129,8 @@
 										"blog",
 										"2"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menghapus salah satu daftar blog yang sudah terdaftar."
 							},
 							"response": [
 								{
@@ -1114,7 +1200,8 @@
 										"search",
 										"Kerusuhan"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk melakukan pencarian blog berdasarkan keyword."
 							},
 							"response": [
 								{
@@ -1160,7 +1247,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi ketika admin ingin membuat data blog, mengupdate atau memperbarui data blog, menghapus data blog, dan melakukan pencarian blog, serta menampilkan data blog secara keseluruhan yang sudah berhasil dibuat atau terdaftar."
 				},
 				{
 					"name": "Order",
@@ -1182,7 +1270,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"ticket_id\": 1,\r\n  \"quantity\": 2,\r\n  \"user_id\": 5,\r\n  \"status\": \"seleseai\"\r\n}",
+									"raw": "{\r\n  \"ticket_id\": 3,\r\n  \"quantity\": 2,\r\n  \"user_id\": 10,\r\n  \"status\": \"seleseai\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1635,7 +1723,8 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "Folder ini menyimpan API untuk fitur yang dapat diakses oleh admin. serta untuk mengakses atau menggunakan endpoint pada folder ini diharuskan memiliki token sesuai dengan role."
 		},
 		{
 			"name": "User",
@@ -1952,6 +2041,75 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"id\": 9,\n    \"name\": \"\",\n    \"email\": \"Buyer1@gmail.com\",\n    \"number\": \"00000000000\",\n    \"roles\": \"Buyer\",\n    \"saldo\": 0,\n    \"created_at\": \"2023-12-03T01:29:58.477828+07:00\",\n    \"updated_at\": \"2023-12-03T01:29:58.477828+07:00\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/user/logout",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Logout",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/user/logout",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"user",
+												"logout"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 04 Dec 2023 20:08:02 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "38"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": \"successfully logged out\"\n}"
 								}
 							]
 						}
@@ -3244,6 +3402,16 @@
 						{
 							"name": "Topup Saldo",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -3303,6 +3471,162 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Topup Saldo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"saldo\" : 1000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/upgrade",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"upgrade"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "topup sederhana",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"saldo\" : 1000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/user/upgrade",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"user",
+												"upgrade"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 04 Dec 2023 19:50:33 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "46"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": \"successfully updated user saldo\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Cek Saldo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/users/balance",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"balance"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Saldo",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/users/balance",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"users",
+												"balance"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 02 Dec 2023 21:49:43 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "7"
+										}
+									],
+									"cookie": [],
+									"body": "100000"
+								}
+							]
 						}
 					]
 				}

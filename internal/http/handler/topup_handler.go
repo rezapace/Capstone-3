@@ -40,7 +40,6 @@ func (h *TopupHandler) CreateTopup(c echo.Context) error {
 }
 
 // topup saldo by jwt token
-// topup saldo by jwt token
 func (h *TopupHandler) UserTopup(c echo.Context) error {
 	// Get JWT token from the context
 	token, ok := c.Get("user").(*jwt.Token)

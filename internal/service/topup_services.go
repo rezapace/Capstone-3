@@ -40,7 +40,7 @@ func (s *topupService) CreateTopup(ctx context.Context, topup entity.Topup) (ent
 
 func (s *topupService) CreateMidtransCharge(orderID string, amount int64) (*coreapi.ChargeResponse, error) {
 	c := coreapi.Client{}
-	c.New("YOUR-SERVER-KEY", midtrans.Sandbox) // Ganti dengan server key Anda
+	c.New("SB-Mid-server-RGIeiP4-kdQSADSfhbpG42B-", midtrans.Sandbox) // Ganti dengan server key Anda
 
 	chargeReq := &coreapi.ChargeReq{
 		PaymentType: coreapi.PaymentTypeBankTransfer, // Sesuaikan dengan jenis pembayaran

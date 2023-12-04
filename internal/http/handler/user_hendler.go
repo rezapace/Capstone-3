@@ -316,6 +316,27 @@ func (h *UserHandler) UserLogout(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, map[string]string{"success": "successfully logged out"})
 }
 
+// TanyaAI
+// func (h *UserHandler) TanyaAI(c echo.Context) error {
+// 	// Baca data masukan dari body request
+// 	var requestBody struct {
+// 		Pertanyaan string `json:"pertanyaan"`
+// 	}
+
+// 	if err := c.Bind(&requestBody); err != nil {
+// 		return c.JSON(http.StatusBadRequest, map[string]string{"error": err.Error()})
+// 	}
+
+// 	// Panggil fungsi AI untuk menjawab pertanyaan
+// 	jawaban, err := h.aiService.TanyaAI(context.Background(), requestBody.Pertanyaan)
+// 	if err != nil {
+// 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
+// 	}
+
+// 	// Kirim jawaban ke client
+// 	return c.JSON(http.StatusOK, map[string]string{"jawaban": jawaban})
+// }
+
 // buyer create account
 // func (h *UserHandler) BuyerCreateAccount(ctx echo.Context) error {
 // 	var input struct {

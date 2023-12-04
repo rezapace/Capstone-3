@@ -155,6 +155,11 @@ func (r *UserRepository) UserLogout(ctx context.Context, user *entity.User) erro
 	return nil
 }
 
+// TanyaAI
+// func (r *UserRepository) TanyaAI(ctx context.Context, user *entity.User) error {
+// 	return nil
+// }
+
 //BuyerCreateAccount
 // func (r *UserRepository) BuyerCreateAccount(ctx context.Context, user *entity.User) error {
 // 	//menggunakan db untuk melakukan query ke database

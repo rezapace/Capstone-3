@@ -21,6 +21,8 @@ type UserUsecase interface {
 	GetProfile(ctx context.Context, userID int64) (*entity.User, error)
 	GetUserBalance(ctx context.Context, userID int64) (*entity.User, error)
 	DeleteAccount(ctx context.Context, email string) error
+	UpgradeSaldo(ctx context.Context, user *entity.User) error
+	UserLogout(ctx context.Context, user *entity.User) error
 	// BuyerCreateAccount(ctx context.Context, user *entity.User) error
 }
 
@@ -38,6 +40,8 @@ type UserRepository interface {
 	GetProfile(ctx context.Context, userID int64) (*entity.User, error)
 	GetUserBalance(ctx context.Context, userID int64) (*entity.User, error)
 	DeleteAccount(ctx context.Context, email string) error
+	UpgradeSaldo(ctx context.Context, user *entity.User) error
+	UserLogout(ctx context.Context, user *entity.User) error
 	// BuyerCreateAccount(ctx context.Context, user *entity.User) error
 }
 
@@ -80,7 +84,6 @@ func (s *UserService) Delete(ctx context.Context, id int64) error {
 	return s.repository.Delete(ctx, id)
 }
 
-
 // func update saldo user by id
 func (s *UserService) UpdateUserBalance(ctx context.Context, user *entity.User) error {
 	return s.repository.UpdateUserBalance(ctx, user)
@@ -101,9 +104,19 @@ func (s *UserService) GetUserBalance(ctx context.Context, userID int64) (*entity
 	return s.repository.GetUserBalance(ctx, userID)
 }
 
-//DeleteAccount
+// DeleteAccount
 func (s *UserService) DeleteAccount(ctx context.Context, email string) error {
 	return s.repository.DeleteAccount(ctx, email)
+}
+
+// upgrade saldo
+func (s *UserService) UpgradeSaldo(ctx context.Context, user *entity.User) error {
+	return s.repository.UpgradeSaldo(ctx, user)
+}
+
+// logout
+func (s *UserService) UserLogout(ctx context.Context, user *entity.User) error {
+	return s.repository.UserLogout(ctx, user)
 }
 
 //BuyerCreateAccount

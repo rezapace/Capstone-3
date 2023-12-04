@@ -357,6 +357,12 @@ func PrivateRoutes(
 			Handler: UserHandler.UserLogout,
 			Role:    allRoles,
 		},
+		// {
+		// 	Method:  http.MethodPost,
+		// 	Path:    "/diagnostic-ai",
+		// 	Handler: UserHandler.DiagnosticAI,
+		// 	Role:    allRoles,
+		// },
 	}
 }
 

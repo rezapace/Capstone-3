@@ -119,6 +119,16 @@ func (s *UserService) UserLogout(ctx context.Context, user *entity.User) error {
 	return s.repository.UserLogout(ctx, user)
 }
 
+// TanyaAI
+// func (s *UserService) TanyaAI(ctx context.Context, pertanyaan string) (string, error) {
+// 	// Implementasi logika untuk bertanya ke AI di sini
+// 	// Misalnya, menggunakan paket go-openai atau alat pemrosesan bahasa alami lainnya
+// 	// ...
+
+// 	// Sebagai contoh, kita akan menggunakan jawaban statis
+// 	return "Jawaban dari AI untuk pertanyaan: " + pertanyaan, nil
+// }
+
 //BuyerCreateAccount
 // func (s *UserService) BuyerCreateAccount(ctx context.Context, user *entity.User) error {
 // 	return s.repository.CreateUser(ctx, user)

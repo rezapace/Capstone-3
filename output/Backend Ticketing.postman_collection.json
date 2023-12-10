@@ -424,7 +424,8 @@
 										"user",
 										"logout"
 									]
-								}
+								},
+								"description": "Endpoint ini digunakan untuk melakukan logout ketika sudah tidak ingin menggunakan program atau aplikasi tersebut."
 							},
 							"response": [
 								{
@@ -1285,7 +1286,8 @@
 									"path": [
 										"order"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint ketika admin ingin membuat new order untuk customer yang tidak bisa order secara mandiri."
 							},
 							"response": [
 								{
@@ -1361,7 +1363,8 @@
 									"path": [
 										"order"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menampilkan seluruh data order yang sudah dibuat baik oleh admin maupun pembeli."
 							},
 							"response": [
 								{
@@ -1429,7 +1432,8 @@
 										"order",
 										"1"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menampilkan data order bersadarkan ID yang sudah terdaftar pada database order."
 							},
 							"response": [
 								{
@@ -1474,7 +1478,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi ketika admin ingin membuat new order, menampilkan seluruh data order, dan menampilkan data order berdasarkan ID."
 				},
 				{
 					"name": "Notification",
@@ -1511,7 +1516,8 @@
 									"path": [
 										"notification"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint ketika admin ingin membuat notifikasi."
 							},
 							"response": [
 								{
@@ -1587,7 +1593,8 @@
 									"path": [
 										"notification"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint yang digunakan untuk nampilkan notifikasi"
 							},
 							"response": [
 								{
@@ -1631,13 +1638,14 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi ketika admin ingin membuat suatu notifikasi yang nanti nya akan tampil di layar pembeli dan melihat notifikasi apa saja yang akan muncul."
 				},
 				{
 					"name": "Topup Saldo",
 					"item": [
 						{
-							"name": "Topup Saldo Copy",
+							"name": "Topup Saldo",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1668,7 +1676,8 @@
 									"path": [
 										"topup"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menambahkan saldo pada suatu akun dari sisi admin."
 							},
 							"response": [
 								{
@@ -1720,8 +1729,165 @@
 									"body": "{\n    \"error\": \"Midtrans API is returning API error. HTTP status code: 401 API response: {\\\"status_code\\\":\\\"401\\\",\\\"status_message\\\":\\\"Unknown Merchant server_key/id\\\",\\\"id\\\":\\\"8cc092fc-f1eb-4d4e-9f03-f9b1b29c094d\\\"}: Midtrans API is returning API error. HTTP status code: 401 API response: {\\\"status_code\\\":\\\"401\\\",\\\"status_message\\\":\\\"Unknown Merchant server_key/id\\\",\\\"id\\\":\\\"8cc092fc-f1eb-4d4e-9f03-f9b1b29c094d\\\"}\"\n}"
 								}
 							]
+						},
+						{
+							"name": "History TopUP",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/transactions/history",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"transactions",
+										"history"
+									]
+								},
+								"description": "Endpoint ini digunakan untuk melakukan cek atau melihat history top up yang dilakukan oleh admin."
+							},
+							"response": [
+								{
+									"name": "History TopUP",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/transactions/history",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"transactions",
+												"history"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 05 Dec 2023 17:07:13 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "140"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"ID\": 1,\n        \"OrderID\": \"topup\",\n        \"UserID\": 1,\n        \"Amount\": 10000,\n        \"Status\": \"paid\"\n    },\n    {\n        \"ID\": 2,\n        \"OrderID\": \"topup\",\n        \"UserID\": 1,\n        \"Amount\": 50000,\n        \"Status\": \"paid\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "midtrans",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"order_id\": \"topup\",\r\n\t\"amount\": 50000\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/transactions",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"transactions"
+									]
+								},
+								"description": "**Endpoin ini digunakan untuk top up saldo menggunakan midtrans**\n\nMASIH BELUM PASTI"
+							},
+							"response": [
+								{
+									"name": "midtrans",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\t\"order_id\": \"topup\",\r\n\t\"amount\": 50000\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/transactions",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"transactions"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 05 Dec 2023 16:29:17 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "111"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"url_pembayaran\": \"https://app.sandbox.midtrans.com/snap/v3/redirection/17f57236-6ef2-4deb-a044-e4724a5c291e\"\n}"
+								}
+							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi ketika admin ingin menambahkan saldo pada akun yang saldo nya ingin ditambahkan."
 				}
 			],
 			"description": "Folder ini menyimpan API untuk fitur yang dapat diakses oleh admin. serta untuk mengakses atau menggunakan endpoint pada folder ini diharuskan memiliki token sesuai dengan role."
@@ -1765,7 +1931,8 @@
 										"users",
 										"profile"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk melakukan update profile dari sisi pembeli."
 							},
 							"response": [
 								{
@@ -1852,7 +2019,8 @@
 										"users",
 										"deleteprofile"
 									]
-								}
+								},
+								"description": "berikut merupakan endpoint untuk menghapus profile pembeli."
 							},
 							"response": [
 								{
@@ -1930,7 +2098,8 @@
 										"users",
 										"balance"
 									]
-								}
+								},
+								"description": "endpoint berikut ini digunakan untuk melihat saldi yang dimiliki oleh pembeli."
 							},
 							"response": [
 								{
@@ -1999,7 +2168,8 @@
 										"users",
 										"profile"
 									]
-								}
+								},
+								"description": "endpoint berikut ini digunakan untuk melihat profile"
 							},
 							"response": [
 								{
@@ -2068,7 +2238,8 @@
 										"user",
 										"logout"
 									]
-								}
+								},
+								"description": "endpoint diatas digunakan untuk melakukan logout akun."
 							},
 							"response": [
 								{
@@ -2113,7 +2284,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi ketika pembeli ingin melakukan update, delete, melihat saldo, dan melihat profile mereka."
 				},
 				{
 					"name": "Ticket",
@@ -2134,7 +2306,8 @@
 									"path": [
 										"ticket"
 									]
-								}
+								},
+								"description": "endpoint diatas digunakan untuk melihat tiket secara keseluruhan tanpa adanya penyortiran."
 							},
 							"response": [
 								{
@@ -2195,7 +2368,8 @@
 										"ticket",
 										"1"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk melihat tiket berdasarkan ID"
 							},
 							"response": [
 								{
@@ -2258,7 +2432,8 @@
 										"search",
 										"Nama"
 									]
-								}
+								},
+								"description": "endpoing ini digunakan ketika pembeli ingin melakukan pecarian di button search."
 							},
 							"response": [
 								{
@@ -2322,7 +2497,8 @@
 										"location",
 										"GBK"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan data tiket atau event yang sedang berlangsung berdasarkan lokasi."
 							},
 							"response": [
 								{
@@ -2386,7 +2562,8 @@
 										"category",
 										"music"
 									]
-								}
+								},
+								"description": "endpoint diatas gunakan untuk menampikan data tiket berdasarkan category tiket yang tersedia."
 							},
 							"response": [
 								{
@@ -2461,7 +2638,8 @@
 											"value": "2024-12-31"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan data tiket yang tersedia berdasarka waktu."
 							},
 							"response": [
 								{
@@ -2547,7 +2725,8 @@
 											"value": "100"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan range harga tiket yang tersedia."
 							},
 							"response": [
 								{
@@ -2627,7 +2806,8 @@
 											"value": "termurah"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan data tiket mulai dari yang termurah."
 							},
 							"response": [
 								{
@@ -2701,7 +2881,8 @@
 											"value": "terbanyak"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan data tiket dengan pembeli terbanyak atau terfavorit."
 							},
 							"response": [
 								{
@@ -2775,7 +2956,8 @@
 											"value": "termahal"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk melihat daftar tiket dengan harga termahal."
 							},
 							"response": [
 								{
@@ -2849,7 +3031,8 @@
 											"value": "terbaru"
 										}
 									]
-								}
+								},
+								"description": "endpoint diatas digunakan untuk menampilkan data tiket yang paling baru atau terbaru."
 							},
 							"response": [
 								{
@@ -2923,7 +3106,8 @@
 											"value": "tersedia"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan data tiket yang masih tersedia."
 							},
 							"response": [
 								{
@@ -2974,7 +3158,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi ketika pembeli ingin melihat daftar tiket secara keseluruhan, berdasarkan filter dan sortir mulai dari berdasarkan lokasi, kategori, waktu, harga, terfavorit, termurah, termahal, tersedia, dsb."
 				},
 				{
 					"name": "Blog",
@@ -2995,7 +3180,8 @@
 									"path": [
 										"blog"
 									]
-								}
+								},
+								"description": "endpoin ini berfungsi untuk menampikan seluruh blog yang tersedia pada aplikasi ini."
 							},
 							"response": [
 								{
@@ -3056,7 +3242,8 @@
 										"blog",
 										"1"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk melihat blog berdasarkan ID"
 							},
 							"response": [
 								{
@@ -3119,7 +3306,8 @@
 										"search",
 										"Kons"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi ketika pembeli ingin melakukan pencarian pada button search menggunkan sebuah keyword."
 							},
 							"response": [
 								{
@@ -3165,7 +3353,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini digunakan ketika pembeli ingin melihat blog atau mencari blog berdasarkan keyword."
 				},
 				{
 					"name": "Order",
@@ -3202,7 +3391,8 @@
 									"path": [
 										"order"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk membuat new order oleh pembeli."
 							},
 							"response": [
 								{
@@ -3278,7 +3468,8 @@
 									"path": [
 										"order"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk melihat history order yang sudah pernah dilakukan."
 							},
 							"response": [
 								{
@@ -3322,7 +3513,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi ketika pembeli membuat new order, dan melihat history order"
 				},
 				{
 					"name": "Notification",
@@ -3350,7 +3542,8 @@
 									"path": [
 										"notification"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan notifikasi."
 							},
 							"response": [
 								{
@@ -3394,123 +3587,103 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini digunakan ketika untuk menampilkan notifikasi dilayar pembeli."
 				},
 				{
 					"name": "Topup Saldo",
 					"item": [
 						{
-							"name": "Topup Saldo",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{Token-Buyer}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"topup123\",\r\n    \"user_id\": 1,\r\n    \"amount\": 10000,\r\n    \"status\": 0\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/topup",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"topup"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "User Topup",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{Token-Buyer}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"amount\": 1000 \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/user/topup",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"user",
-										"topup"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Topup Saldo",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{Token-Buyer}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"saldo\" : 1000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/user/upgrade",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"user",
-										"upgrade"
-									]
-								}
-							},
-							"response": [
+							"name": "Manual Topup",
+							"item": [
 								{
-									"name": "topup sederhana",
-									"originalRequest": {
+									"name": "Topup Saldo",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{Token-Buyer}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"topup123\",\r\n    \"user_id\": 1,\r\n    \"amount\": 10000,\r\n    \"status\": 0\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/topup",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"topup"
+											]
+										},
+										"description": "endpoin ini digunakan ketika pembeli ingin melakukan top up saldo."
+									},
+									"response": []
+								},
+								{
+									"name": "User Topup",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{Token-Buyer}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"amount\": 1000 \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/user/topup",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"user",
+												"topup"
+											]
+										},
+										"description": "ini untuk topup manual tidak menggunakan midtrans jadi si user bisa menambahkan saldo menggunakan jwt untuk mendeketsi id nya kemudian menambahkan saldo nya"
+									},
+									"response": []
+								},
+								{
+									"name": "Topup Saldo",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{Token-Buyer}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "POST",
 										"header": [],
 										"body": {
@@ -3531,33 +3704,63 @@
 												"user",
 												"upgrade"
 											]
-										}
+										},
+										"description": "endpoint ini berfungsi untuk melakukan upgrade pada saldo yang dimiliki oleh pembeli."
 									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
+									"response": [
 										{
-											"key": "Content-Type",
-											"value": "application/json; charset=UTF-8"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Mon, 04 Dec 2023 19:50:33 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "46"
+											"name": "topup sederhana",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"saldo\" : 1000\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{URL}}/user/upgrade",
+													"host": [
+														"{{URL}}"
+													],
+													"path": [
+														"user",
+														"upgrade"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=UTF-8"
+												},
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 04 Dec 2023 19:50:33 GMT"
+												},
+												{
+													"key": "Content-Length",
+													"value": "46"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"success\": \"successfully updated user saldo\"\n}"
 										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": \"successfully updated user saldo\"\n}"
+									]
 								}
-							]
+							],
+							"description": "Folder untuk top up dari sisi user atau pembeli tanpa menggunakan midtrans."
 						},
 						{
 							"name": "Cek Saldo",
@@ -3583,7 +3786,8 @@
 										"users",
 										"balance"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk melihat jumlah saldo yang dimiliki."
 							},
 							"response": [
 								{
@@ -3627,10 +3831,168 @@
 									"body": "100000"
 								}
 							]
+						},
+						{
+							"name": "midtrans",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"order_id\": \"topup\",\r\n\t\"amount\": 50000\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/transactions",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"transactions"
+									]
+								},
+								"description": "endpoint topup menggunakan midtrans"
+							},
+							"response": [
+								{
+									"name": "midtrans",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\t\"order_id\": \"topup\",\r\n\t\"amount\": 50000\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/transactions",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"transactions"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 05 Dec 2023 16:29:17 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "111"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"url_pembayaran\": \"https://app.sandbox.midtrans.com/snap/v3/redirection/17f57236-6ef2-4deb-a044-e4724a5c291e\"\n}"
+								}
+							]
+						},
+						{
+							"name": "History TopUP",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token-Buyer}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/transactions/history",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"transactions",
+										"history"
+									]
+								},
+								"description": "Endpoint ini berfungsi untuk melihat history top up menggunakan midtrans."
+							},
+							"response": [
+								{
+									"name": "History TopUP",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/transactions/history",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"transactions",
+												"history"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=UTF-8"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 05 Dec 2023 17:07:13 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "140"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"ID\": 1,\n        \"OrderID\": \"topup\",\n        \"UserID\": 1,\n        \"Amount\": 10000,\n        \"Status\": \"paid\"\n    },\n    {\n        \"ID\": 2,\n        \"OrderID\": \"topup\",\n        \"UserID\": 1,\n        \"Amount\": 50000,\n        \"Status\": \"paid\"\n    }\n]"
+								}
+							]
 						}
-					]
+					],
+					"description": "Folder ini digunakan ketika pembeli ingin melakukan top up, cek saldo, dsb."
 				}
-			]
+			],
+			"description": "Folder ini menyimpan API untuk fitur yang dapat diakses oleh pembeli. serta untuk mengakses atau menggunakan endpoint pada folder ini diharuskan memiliki token sesuai dengan role sebagai buyer/pembeli."
 		},
 		{
 			"name": "Public",
@@ -3656,7 +4018,8 @@
 										"search",
 										"col"
 									]
-								}
+								},
+								"description": "endpoint ini digunakan untuk melakukan pencarian pada button search menggunakan suaty keyword."
 							},
 							"response": [
 								{
@@ -3720,7 +4083,8 @@
 										"location",
 										"GBK"
 									]
-								}
+								},
+								"description": "endpoint ini untuk menampilkan data berdaskan lokasi event."
 							},
 							"response": [
 								{
@@ -3784,7 +4148,8 @@
 										"category",
 										"music"
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan data berdasarkan kategori tiket atau event."
 							},
 							"response": [
 								{
@@ -3859,7 +4224,8 @@
 											"value": "2024-12-31"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan seluruh data tiket atau event berdasarkan waktu."
 							},
 							"response": [
 								{
@@ -3952,7 +4318,8 @@
 											"value": "100"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan data tiket berdasarkan range harga yang tersedia."
 							},
 							"response": [
 								{
@@ -4032,7 +4399,8 @@
 											"value": "termurah"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampilkan data tiket berdasarkan harga termurah."
 							},
 							"response": [
 								{
@@ -4113,7 +4481,8 @@
 											"value": "terbanyak"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampikan data tiket berdasarkan terfavorit atau terbnyak di beli."
 							},
 							"response": [
 								{
@@ -4187,7 +4556,8 @@
 											"value": "termahal"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampikan data tiket berdasarkan harga termahal."
 							},
 							"response": [
 								{
@@ -4268,7 +4638,8 @@
 											"value": "terbaru"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampikan data tiket berdasarkan terbaru"
 							},
 							"response": [
 								{
@@ -4342,7 +4713,8 @@
 											"value": "tersedia"
 										}
 									]
-								}
+								},
+								"description": "endpoint ini berfungsi untuk menampikan data tiket yang masih tersedia."
 							},
 							"response": [
 								{
@@ -4393,7 +4765,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berisikan endpoint yang dapat digunakan untuk melakukan search, filter, dan sortir,"
 				},
 				{
 					"name": "Blog",
@@ -4423,7 +4796,8 @@
 										"search",
 										"Ker"
 									]
-								}
+								},
+								"description": "endpoint untuk melakukan pencarian di button search berdasarkan keyword."
 							},
 							"response": [
 								{
@@ -4469,7 +4843,8 @@
 								}
 							]
 						}
-					]
+					],
+					"description": "Folder ini berfungsi untuk menyimpan endpoint get atau menampilkan data mengenai blog yang ada pada aplikasi tersebut."
 				},
 				{
 					"name": "Admin_Login",
@@ -4493,7 +4868,8 @@
 							"path": [
 								"login"
 							]
-						}
+						},
+						"description": "endpoint ini digunakan admin untuk melakukan login atau sign in."
 					},
 					"response": [
 						{
@@ -4568,7 +4944,8 @@
 							"path": [
 								"register"
 							]
-						}
+						},
+						"description": "endpoint ini digunakan untuk melakukan register atau sign up oleh admin."
 					},
 					"response": [
 						{
@@ -4643,7 +5020,8 @@
 							"path": [
 								"register"
 							]
-						}
+						},
+						"description": "endpoint ini digunakan untuk melakukan register atau sign up oleh oleh pembeli"
 					},
 					"response": [
 						{
@@ -4718,7 +5096,8 @@
 							"path": [
 								"login"
 							]
-						}
+						},
+						"description": "endpoint ini digunakan untuk melakukan login atau sign in oleh pembeli."
 					},
 					"response": [
 						{
@@ -4788,7 +5167,8 @@
 								"public",
 								"blog"
 							]
-						}
+						},
+						"description": "endpoint ini digunakn untuk menampilkan seluruh blog yang tersedia pada bagian homepage"
 					},
 					"response": [
 						{
@@ -4850,7 +5230,8 @@
 								"public",
 								"ticket"
 							]
-						}
+						},
+						"description": "endpoint ini digunakan untuk menampilkan seluruh data tiket pada bagian homepage."
 					},
 					"response": [
 						{
@@ -4895,7 +5276,8 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "Folder ini digunakan untuk memanpilkan seluruh data atau homepage yang berisikan tiket, blog, sign in , dan sign up."
 		}
 	],
 	"event": [

@@ -155,6 +155,26 @@ func (r *UserRepository) UserLogout(ctx context.Context, user *entity.User) erro
 	return nil
 }
 
+// UpdateSaldo
+// UpdateSaldo updates the saldo of a user by ID
+func (r *UserRepository) UpdateSaldo(ctx context.Context, userID int64, updatedSaldo int64) error {
+	user := &entity.User{ID: userID, Saldo: updatedSaldo}
+
+	if err := r.db.WithContext(ctx).Model(&entity.User{}).Where("id = ?", userID).Updates(&user).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+// FindByID
+func (r *UserRepository) FindByID(ctx context.Context, id int64) (*entity.User, error) {
+	user := new(entity.User)
+	if err := r.db.WithContext(ctx).Where("id = ?", id).First(&user).Error; err != nil {
+		return nil, err
+	}
+	return user, nil
+}
+
 // TanyaAI
 // func (r *UserRepository) TanyaAI(ctx context.Context, user *entity.User) error {
 // 	return nil

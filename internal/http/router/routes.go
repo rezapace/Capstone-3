@@ -30,7 +30,8 @@ type Route struct {
 func PublicRoutes(
 	authHandler *handler.AuthHandler,
 	TicketHandler *handler.TicketHandler,
-	BlogHandler *handler.BlogHandler) []*Route {
+	BlogHandler *handler.BlogHandler,
+	transactionHandler *handler.TransactionHandler) []*Route {
 	return []*Route{
 		{
 			Method:  echo.POST,
@@ -136,6 +137,11 @@ func PublicRoutes(
 			Path:    "/ticket/search/:search",
 			Handler: TicketHandler.SearchTicket,
 		},
+		{
+			Method:  echo.POST,
+			Path:    "/transactions/webhook",
+			Handler: transactionHandler.WebHookTransaction,
+		},
 		// {
 		// 	Method:  echo.POST,
 		// 	Path:    "/users/register/buyer",
@@ -152,6 +158,7 @@ func PrivateRoutes(
 	BlogHandler *handler.BlogHandler,
 	OrderHandler *handler.OrderHandler,
 	NotificationHandler *handler.NotificationHandler,
+	transactionHandler *handler.TransactionHandler,
 	TopupHandler *handler.TopupHandler) []*Route {
 	return []*Route{
 		{
@@ -355,6 +362,18 @@ func PrivateRoutes(
 			Method:  echo.POST,
 			Path:    "/user/logout",
 			Handler: UserHandler.UserLogout,
+			Role:    allRoles,
+		},
+		{
+			Method:  echo.POST,
+			Path:    "/transactions",
+			Handler: transactionHandler.CreateOrder,
+			Role:    allRoles,
+		},
+		{
+			Method:  echo.GET,
+			Path:    "/transactions/history",
+			Handler: transactionHandler.HistoryTransaction,
 			Role:    allRoles,
 		},
 		// {

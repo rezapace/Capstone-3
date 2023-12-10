@@ -23,6 +23,8 @@ type UserUsecase interface {
 	DeleteAccount(ctx context.Context, email string) error
 	UpgradeSaldo(ctx context.Context, user *entity.User) error
 	UserLogout(ctx context.Context, user *entity.User) error
+	UpdateSaldo(ctx context.Context, userID int64, updatedSaldo int64) error
+	FindByID(ctx context.Context, id int64) (*entity.User, error)
 	// BuyerCreateAccount(ctx context.Context, user *entity.User) error
 }
 
@@ -42,6 +44,8 @@ type UserRepository interface {
 	DeleteAccount(ctx context.Context, email string) error
 	UpgradeSaldo(ctx context.Context, user *entity.User) error
 	UserLogout(ctx context.Context, user *entity.User) error
+	UpdateSaldo(ctx context.Context, userID int64, updatedSaldo int64) error
+	FindByID(ctx context.Context, id int64) (*entity.User, error)
 	// BuyerCreateAccount(ctx context.Context, user *entity.User) error
 }
 
@@ -117,6 +121,16 @@ func (s *UserService) UpgradeSaldo(ctx context.Context, user *entity.User) error
 // logout
 func (s *UserService) UserLogout(ctx context.Context, user *entity.User) error {
 	return s.repository.UserLogout(ctx, user)
+}
+
+// UpdateSaldo updates the saldo of a user by ID
+func (s *UserService) UpdateSaldo(ctx context.Context, userID int64, updatedSaldo int64) error {
+	return s.repository.UpdateSaldo(ctx, userID, updatedSaldo)
+}
+
+// FindByID
+func (s *UserService) FindByID(ctx context.Context, id int64) (*entity.User, error) {
+	return s.repository.FindByID(ctx, id)
 }
 
 // TanyaAI

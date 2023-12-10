@@ -1,4 +1,5 @@
 package config
+
 //NOTE :
 // direktory ini berfungsi untuk konfigurasi database, port, dan lain-lain
 import (
@@ -10,9 +11,17 @@ import (
 
 // Config adalah konfigurasi untuk aplikasi
 type Config struct {
-	Port     string         `env:"PORT" envDefault:"8080"`
-	Postgres PostgresConfig `envPrefix:"POSTGRES_"`
-	JWT      JwtConfig      `envPrefix:"JWT_"`
+	Env            string         `env:"ENV" envDefault:"development"`
+	Port           string         `env:"PORT" envDefault:"8080"`
+	Postgres       PostgresConfig `envPrefix:"POSTGRES_"`
+	JWT            JwtConfig      `envPrefix:"JWT_"`
+	MidtransConfig MidtransConfig `envPrefix:"MIDTRANS_"`
+}
+
+type MidtransConfig struct {
+	BaseURL   string `env:"BASE_URL"`
+	ClientKey string `env:"CLIENT_KEY"`
+	ServerKey string `env:"SERVER_KEY"`
 }
 
 // JwtConfig adalah konfigurasi untuk JWT
@@ -53,15 +62,9 @@ func parseConfig(envPath string) (*Config, error) {
 	return cfg, nil
 }
 
-var MidtransConfig struct {
-	ClientKey    string
-	ServerKey    string
-	IsProduction bool
-}
-
-func init() {
-	// Isi konfigurasi Midtrans Anda di sini
-	MidtransConfig.ClientKey = "SB-Mid-client-ZCcoPJr6rlvFrQ3N"
-	MidtransConfig.ServerKey = "SB-Mid-server-RGIeiP4-kdQSADSfhbpG42B-"
-	MidtransConfig.IsProduction = false // Ganti menjadi true jika sudah di production
-}
+// func init() {
+// 	// Isi konfigurasi Midtrans Anda di sini
+// 	MidtransConfig.ClientKey = ""
+// 	MidtransConfig.ServerKey = ""
+// 	MidtransConfig.IsProduction = false // Ganti menjadi true jika sudah di production
+// }

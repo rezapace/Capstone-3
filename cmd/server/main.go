@@ -15,6 +15,8 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
+	"github.com/midtrans/midtrans-go"
+	"github.com/midtrans/midtrans-go/snap"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -30,8 +32,10 @@ func main() {
 	db, err := buildGormDB(cfg.Postgres)
 	checkError(err)
 
-	publicRoutes := builder.BuildPublicRoutes(cfg, db)
-	privateRoutes := builder.BuildPrivateRoutes(cfg, db)
+	midtransClient := initMidtrans(cfg)
+
+	publicRoutes := builder.BuildPublicRoutes(cfg, db, midtransClient)
+	privateRoutes := builder.BuildPrivateRoutes(cfg, db, midtransClient)
 
 	echoBinder := &echo.DefaultBinder{}
 	formValidator := validator.NewFormValidator()
@@ -47,6 +51,18 @@ func main() {
 	runServer(srv, cfg.Port)
 
 	waitForShutdown(srv)
+}
+
+func initMidtrans(cfg *config.Config) snap.Client {
+	snapClient := snap.Client{}
+
+	if cfg.Env == "development" {
+		snapClient.New(cfg.MidtransConfig.ServerKey, midtrans.Sandbox)
+	} else {
+		snapClient.New(cfg.MidtransConfig.ServerKey, midtrans.Production)
+	}
+
+	return snapClient
 }
 
 func runServer(srv *server.Server, port string) {
@@ -104,4 +120,3 @@ func checkError(err error) {
 		panic(err)
 	}
 }
-

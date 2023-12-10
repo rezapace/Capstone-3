@@ -87,3 +87,11 @@ func UserLogout(id int64) *User {
 		ID: id,
 	}
 }
+
+// updatesaldo
+func UpdateSaldo(id int64, saldo int64) *User {
+	return &User{
+		ID:    id,
+		Saldo: saldo,
+	}
+}
